@@ -3,7 +3,6 @@ archive/
 
 # 系统/编辑器/同步
 .DS_Store
-.obsidian/
 *.swp
 *~
 
