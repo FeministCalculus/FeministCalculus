@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/>
+
+<mxCell id="title" value="CCST 推导链 / Derivation Chain" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="300" y="40" width="700" height="50" as="geometry"/></mxCell>
+
+<!-- 第0层标签 -->
+<mxCell id="l0" value="第0层：公理层 (Axiom Layer)" style="text;html=1;strokeColor=none;fillColor=#dae8fc;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="120" width="300" height="34" as="geometry"/></mxCell>
+
+<!-- P0 D0 同行 -->
+<mxCell id="P0" value="P0 再生产周期结构不对称&#xa;成本承担与收益获取分离&#xa;→ 恢复汇点（Recovery Sink）涌现" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="80" y="170" width="300" height="80" as="geometry"/></mxCell>
+
+<mxCell id="D0" value="D0 再生产决策主权&#xa;决策权不可还原地属于承担成本的物理主体&#xa;防火墙：不生育 = D0行使，非系统故障" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="560" y="170" width="300" height="80" as="geometry"/></mxCell>
+
+<!-- D1 D2 同行 -->
+<mxCell id="D1" value="D1 提取-恢复率递减&#xa;提取率 &gt; 自然恢复率&#xa;→ 累积恢复率单调递减" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="80" y="310" width="300" height="80" as="geometry"/></mxCell>
+
+<mxCell id="D2" value="D2 不可逆物理阈值 θ&#xa;超过θ → 结构性崩溃&#xa;θ 是滞后区域 H，非单点" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="560" y="310" width="300" height="80" as="geometry"/></mxCell>
+
+<!-- D3 居中 -->
+<mxCell id="D3" value="D3 认知不完备性&#xa;任何局部节点无法全知系统状态&#xa;θ 的精确位置在结构上不可知" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="320" y="450" width="300" height="80" as="geometry"/></mxCell>
+
+<!-- 公理→向量 的箭头，都走左右两侧避开中间 -->
+<mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.2;entryY=0;" edge="1" source="P0" target="Rv" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.4;entryY=0;" edge="1" source="D1" target="Rv" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.6;entryY=0;" edge="1" source="D2" target="Rv" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.8;entryY=0;" edge="1" source="D3" target="Rv" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e0" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="D0" target="Rv" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- 第1层：恢复状态向量 -->
+<mxCell id="l1" value="第1层：恢复状态向量 (Recovery State Vector)" style="text;html=1;strokeColor=none;fillColor=#d5e8d4;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="590" width="380" height="34" as="geometry"/></mxCell>
+
+<mxCell id="Rv" value="R(t) = (R_b, R_c, R_e, R_n, R_i)&#xa;&#xa;R_b  生物再生产能力（TFR / 母婴健康）&#xa;R_c  认知恢复能力（深度思考时间）&#xa;R_e  生态再生能力（碳循环 / 生物多样性）&#xa;R_n  网络韧性（制度协调 / 社会信任）&#xa;R_i   信息完整性（信噪比 / 异见多样性）" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="200" y="640" width="540" height="140" as="geometry"/></mxCell>
+
+<!-- 侧边：恢复主义防火墙 -->
+<mxCell id="FW" value="恢复主义防火墙&#xa;CCST不主张恢复是最高价值&#xa;防止技术官僚主义 / 系统保守主义&#xa;D0最高含义：系统可选择不自维持" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f5f5f5;strokeColor=#888888;fontSize=12;" vertex="1" parent="1"><mxGeometry x="820" y="640" width="260" height="90" as="geometry"/></mxCell>
+
+<mxCell id="efw" style="edgeStyle=orthogonalEdgeStyle;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="Rv" target="FW" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="Rv" target="Th" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- 第2层：级联阈值 -->
+<mxCell id="l2" value="第2层：级联阈值 (Cascade Thresholds)" style="text;html=1;strokeColor=none;fillColor=#ffe6cc;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="840" width="340" height="34" as="geometry"/></mxCell>
+
+<mxCell id="Th" value="Θ = (θ_b, θ_c, θ_e, θ_n, θ_i)&#xa;&#xa;每个 θ_k 含滞后区域 H_k：&#xa;  θ_lower（正向分叉）/ θ_upper（逆向分叉）&#xa;级联耦合矩阵 C：跨维度传导&#xa;E(2→1) 远大于 E(1→2)：破坏易，重建难" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="200" y="890" width="540" height="130" as="geometry"/></mxCell>
+
+<!-- 侧边：非映射域 -->
+<mxCell id="NM" value="非映射域 (MATH-1C)&#xa;审美 / 宗教 / 非功利艺术 / 无目的游戏&#xa;不可维度化 + 不可功能化 + 结构断裂&#xa;防止CCST成为万有理论" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f5f5f5;strokeColor=#888888;fontSize=12;" vertex="1" parent="1"><mxGeometry x="820" y="890" width="260" height="90" as="geometry"/></mxCell>
+
+<mxCell id="enm" style="edgeStyle=orthogonalEdgeStyle;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="Th" target="NM" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="Th" target="E2" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- 第3层：E2社会层 -->
+<mxCell id="l3" value="第3层：E2 社会层 (Social Layer)" style="text;html=1;strokeColor=none;fillColor=#f8cecc;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="1080" width="300" height="34" as="geometry"/></mxCell>
+
+<mxCell id="E2" value="父权制配置 = 恢复汇点结构&#xa;&#xa;成本：再生产劳动由再生产节点承担&#xa;提取：产出通过制度流向非再生产节点&#xa;幻觉：非再生产节点被建构为系统修复者&#xa;父姓登记：符号投资 → 真实回报（ROI脱钩机制）" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="160" y="1130" width="620" height="130" as="geometry"/></mxCell>
+
+<mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="E2" target="E3" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- 第4层：E3认知层 -->
+<mxCell id="l4" value="第4层：E3 认知层 (Cognitive Layer)" style="text;html=1;strokeColor=none;fillColor=#e1d5e7;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="1320" width="320" height="34" as="geometry"/></mxCell>
+
+<mxCell id="E3" value="平台资本主义 = E3层恢复汇点新配置&#xa;&#xa;推荐算法：认知同步↑ → R_i↓ → R_c↓&#xa;注意力碎片化：T &lt; T_min → R_c↓ → R_n↓&#xa;AI认知卸载：作业↑18% / 考试↓24%（24个月滞后）&#xa;D3自我遮蔽：用户报告学得更好 ≠ 真实能力提升" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1"><mxGeometry x="160" y="1370" width="620" height="130" as="geometry"/></mxCell>
+
+<mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="E3" target="AI" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- 第5层：AI自我应用 -->
+<mxCell id="l5" value="第5层：AI自我应用边界 (Self-Application Boundary)" style="text;html=1;strokeColor=none;fillColor=#fff2cc;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="80" y="1560" width="420" height="34" as="geometry"/></mxCell>
+
+<mxCell id="AI" value="AI = 由恢复汇点产生的人造物&#xa;&#xa;非再生产节点（无身体 / 无物理恢复成本）&#xa;消费者模式 → R_c 直接提取工具&#xa;&#xa;三个无法解决的边界：&#xa;① 自我参考性质（诊断还是执行？）&#xa;② 结构断裂（f_old→f_new，属非映射域）&#xa;③ 主权缺失（D0范围之外，无物理成本）" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="160" y="1610" width="620" height="160" as="geometry"/></mxCell>
+
+</root></mxGraphModel>

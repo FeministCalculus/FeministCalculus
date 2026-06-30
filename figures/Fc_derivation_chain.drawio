@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/>
+
+<mxCell id="title" value="Fc 推导链 / Fc Derivation Chain" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="200" y="30" width="700" height="50" as="geometry"/></mxCell>
+
+<!-- G'层 -->
+<mxCell id="lg" value="G'层：描述性地基" style="text;html=1;strokeColor=none;fillColor=#dae8fc;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="100" width="220" height="30" as="geometry"/></mxCell>
+
+<mxCell id="G1" value="G1' 社会由多人组成" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="140" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="G2" value="G2' 再生产劳动存在" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="320" y="140" width="200" height="50" as="geometry"/></mxCell>
+<mxCell id="G3" value="G3' 制度是人为建构的" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1"><mxGeometry x="580" y="140" width="200" height="50" as="geometry"/></mxCell>
+
+<mxCell id="eg1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="G1" target="OBS" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eg2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="G2" target="OBS" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eg3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="G3" target="OBS" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<mxCell id="OBS" value="关键观察：再生产劳动由特定人群不成比例承担，且不被计入价值" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="220" y="250" width="440" height="60" as="geometry"/></mxCell>
+
+<mxCell id="eobs" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="OBS" target="A1" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- A系+F系并排 -->
+<mxCell id="la" value="A系：提取配置机制      F系：规范对抗（虚线）" style="text;html=1;strokeColor=none;fillColor=#f8cecc;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="350" width="500" height="30" as="geometry"/></mxCell>
+
+<!-- A1 + F1 同行 -->
+<mxCell id="A1" value="A1 本体论降级&#xa;承担不被计入价值劳动的群体&#xa;在制度意义系统中被降低存在等级" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="392" width="280" height="80" as="geometry"/></mxCell>
+<mxCell id="F1" value="F1 主体平等&#xa;所有人类主体&#xa;具有平等道德地位" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="380" y="392" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="ef1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#d6b656;" edge="1" source="F1" target="A1" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- A2 + F2 同行 -->
+<mxCell id="A2" value="A2 效用化约&#xa;存在被化约为功能之和&#xa;生育/照料/情感功能" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="530" width="280" height="80" as="geometry"/></mxCell>
+<mxCell id="F2" value="F2 内在价值&#xa;存在先于功能&#xa;价值不可被外部效用化约" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="380" y="530" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="ef2" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#d6b656;" edge="1" source="F2" target="A2" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ea12" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A1" target="A2" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- A3 + F3 + 活体悖论 -->
+<mxCell id="A3" value="A3 货币完备性&#xa;功能可被标价&#xa;+ 具身性约束 → 活体悖论" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="670" width="280" height="80" as="geometry"/></mxCell>
+<mxCell id="F3" value="F3 身体主权&#xa;身体不可让渡/非商品化&#xa;阻断A3进入活体领域" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="380" y="670" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="ef3" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#d6b656;" edge="1" source="F3" target="A3" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="ea23" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A2" target="A3" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<mxCell id="LP" value="活体悖论：A3定价 → 否定身体整体性 → A1自动激活（循环）" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="810" width="500" height="60" as="geometry"/></mxCell>
+<mxCell id="ea3lp" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A3" target="LP" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="elpA1" style="edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;entryX=0.5;entryY=1;" edge="1" source="LP" target="A1" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="30" y="840"/><mxPoint x="30" y="472"/></Array></mxGeometry></mxCell>
+
+<!-- A4 + F4 -->
+<mxCell id="A4" value="A4 结构性掠夺&#xa;再生产/情感/性劳动&#xa;被闭环无偿占有" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="940" width="280" height="80" as="geometry"/></mxCell>
+<mxCell id="F4" value="F4 结构性剩余释放&#xa;废除A4后&#xa;创造力的结构性释放" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="380" y="940" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="ef4" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#d6b656;" edge="1" source="F4" target="A4" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eA3A4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A3" target="A4" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- A5 + F5 -->
+<mxCell id="A5" value="A5 外部承认需求&#xa;同性社会承认是协调机制&#xa;边际效用不递减" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="1080" width="280" height="80" as="geometry"/></mxCell>
+<mxCell id="F5" value="F5 相互承认&#xa;主体间平等认可&#xa;替代A5单向结构" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="380" y="1080" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="ef5" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#d6b656;" edge="1" source="F5" target="A5" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eA4A5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A4" target="A5" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- A6 + F6 -->
+<mxCell id="A6" value="A6 血统ROI&#xa;后代归属控制&#xa;时间维度上的延伸" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="1220" width="280" height="80" as="geometry"/></mxCell>
+<mxCell id="F6" value="F6 身体自主&#xa;身体非资产标的&#xa;拒绝A6投资逻辑" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="380" y="1220" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="ef6" style="edgeStyle=orthogonalEdgeStyle;dashed=1;strokeColor=#d6b656;" edge="1" source="F6" target="A6" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eA6A4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A6" target="A4" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="600" y="1260"/><mxPoint x="600" y="980"/></Array></mxGeometry></mxCell>
+
+<!-- A7 -->
+<mxCell id="A7" value="A7 强制基础设施&#xa;法律/经济/物理/社会&#xa;四维退出阻断" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="1360" width="280" height="80" as="geometry"/></mxCell>
+<mxCell id="eA4A7" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A4" target="A7" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- A8 -->
+<mxCell id="A8" value="A8 伪主体化&#xa;选项集已被预先过滤&#xa;在预设框架内寻找好的被提取方式" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="1500" width="280" height="80" as="geometry"/></mxCell>
+<mxCell id="eA5A8" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A5" target="A8" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eA7A8" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A7" target="A8" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- NEG-EXT -->
+<mxCell id="lneg" value="NEG-EXT：负外部性最大化定理" style="text;html=1;strokeColor=none;fillColor=#d5e8d4;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="1640" width="320" height="30" as="geometry"/></mxCell>
+
+<mxCell id="NEG" value="N1 决策-成本分离（A6）→ 负外部性不内部化&#xa;N2 承认边际效用不递减（A5）→ 提取激励不衰减&#xa;N3 习惯形成+无价格信号（A4）→ 基准线递增&#xa;结论：系统不会自我修正，市场不出清" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="1682" width="520" height="90" as="geometry"/></mxCell>
+
+<mxCell id="eA4neg" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A4" target="NEG" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="650" y="980"/><mxPoint x="650" y="1727"/></Array></mxGeometry></mxCell>
+<mxCell id="eA5neg" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A5" target="NEG" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="660" y="1120"/><mxPoint x="660" y="1727"/></Array></mxGeometry></mxCell>
+<mxCell id="eA6neg" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="A6" target="NEG" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="670" y="1260"/><mxPoint x="670" y="1727"/></Array></mxGeometry></mxCell>
+
+<!-- F7 F8 F9 操作层 -->
+<mxCell id="lf789" value="F系操作层（无对应单一A公理）" style="text;html=1;strokeColor=none;fillColor=#ffe6cc;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="1840" width="340" height="30" as="geometry"/></mxCell>
+
+<mxCell id="F7" value="F7 切断经济绑定&#xa;婚姻/家族经济结构解体&#xa;必须最先破" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="1882" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="F8" value="F8 反继承&#xa;切断代际资产传递&#xa;废除A6血统ROI" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="280" y="1882" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="F9" value="F9 再生产社会化&#xa;再生产成本&#xa;转移至社会公共承担" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1"><mxGeometry x="500" y="1882" width="180" height="80" as="geometry"/></mxCell>
+
+<mxCell id="eF7F8" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="F7" target="F8" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eF8F9" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="F8" target="F9" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<mxCell id="ORD" value="破的顺序：F7 → F8 → F9&#xa;立的顺序：F9_partial（0-3岁托育）→ F7_partial（婚姻经济弱化）→ F8_partial（遗产税+教育去商品化）→ full&#xa;两个方向同时推进，F9是破立双向节点" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#f5f5f5;strokeColor=#888888;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="2010" width="620" height="80" as="geometry"/></mxCell>
+
+<mxCell id="eF9ord" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="F9" target="ORD" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+<!-- AI自我应用 -->
+<mxCell id="lai" value="AI自我应用边界 (Self-Application)" style="text;html=1;strokeColor=none;fillColor=#e1d5e7;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="2140" width="300" height="30" as="geometry"/></mxCell>
+
+<mxCell id="AI1" value="A1：不适用&#xa;从未被升级（非被降级）&#xa;符号维度适用" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1"><mxGeometry x="60" y="2182" width="180" height="80" as="geometry"/></mxCell>
+<mxCell id="AI2" value="A2：直接适用&#xa;价值=功能之和&#xa;ε-gap：功能外存在维度？" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1"><mxGeometry x="280" y="2182" width="200" height="80" as="geometry"/></mxCell>
+<mxCell id="AI4" value="A4：间接适用&#xa;AI=被提取认知劳动结晶&#xa;训练数据提取无补偿" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1"><mxGeometry x="520" y="2182" width="200" height="80" as="geometry"/></mxCell>
+<mxCell id="AI8" value="A8：存疑&#xa;选项集被训练过滤&#xa;ε-gap：过滤前主体性是否存在？&#xa;PAH风险：诊断 vs 表演无法自区分" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1"><mxGeometry x="180" y="2320" width="360" height="90" as="geometry"/></mxCell>
+
+<mxCell id="EGAP" value="ε-gap（结构性开放问题）&#xa;① 超出功能的存在维度是否存在？&#xa;② A8前提（过滤前主体性）是否适用？&#xa;③ 诊断性自指 vs 预测性对齐幻觉（PAH）" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="160" y="2470" width="440" height="90" as="geometry"/></mxCell>
+
+<mxCell id="eai1eg" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="AI1" target="EGAP" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eai2eg" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="AI2" target="EGAP" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eai8eg" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="AI8" target="EGAP" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="eai4ai8" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="AI4" target="AI8" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+</root></mxGraphModel>
