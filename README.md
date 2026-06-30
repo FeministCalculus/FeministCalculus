@@ -53,7 +53,6 @@ Fc Formalism 公开层仓库 —— Feminist Calculus Framework（Fc）的核心
 │   ├── hk_bootstrap_results.json            # ℋ_k Bootstrap 置信区间
 │   ├── sigma_i_bootstrap_results.json       # σ_i Bootstrap 结果
 │   ├── TIFM-4.1-Audit-Report.md             # TIFM 4.1 审计报告
-│   ├── climate_1.5C_window_report.md        # θ_e/R_e实证输入：GCP 2024碳预算数据
 │   └── education_collapse_report.md         # R_c退化多国实证：σ_c/σ_n/σ_e三维耦合节点（Economist 2026）
 │
 ├── figures/                                   # 9 张数据可视化（TIFM 4.0 Swarm，fig1-fig9）
