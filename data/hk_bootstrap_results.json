@@ -1,0 +1,92 @@
+{
+  "version": "v1.3-DRAFT",
+  "audit_date": "2026-06-14",
+  "auditor": "Kimi",
+  "verifier": "Claude",
+  "status": "DRAFT",
+  "covid_adjustment": {
+    "method": "2019-2021 average replacement",
+    "china_2020_original": 1.236,
+    "china_2020_adjusted": 1.3065,
+    "impact": "China d2 reduced from -0.217 to -0.1465"
+  },
+  "thresholds": {
+    "hk2": -0.15,
+    "hk1": -0.05,
+    "source": "CALIBRATE-empirical",
+    "note": "Hard-coded based on visual inspection. Needs historical calibration."
+  },
+  "triggers": [
+    {
+      "country": "China(CN)",
+      "year": "2019",
+      "d2": -0.1465,
+      "Hk": 1,
+      "TFR": 1.496
+    },
+    {
+      "country": "France(FR)",
+      "year": "2021",
+      "d2": -0.06,
+      "Hk": 1,
+      "TFR": 1.83
+    },
+    {
+      "country": "France(FR)",
+      "year": "2022",
+      "d2": -0.07,
+      "Hk": 1,
+      "TFR": 1.78
+    },
+    {
+      "country": "Germany(DE)",
+      "year": "2021",
+      "d2": -0.175,
+      "Hk": 2,
+      "TFR": 1.58
+    },
+    {
+      "country": "India(IN)",
+      "year": "2018",
+      "d2": -0.055,
+      "Hk": 1,
+      "TFR": 2.184
+    },
+    {
+      "country": "Sweden(SE)",
+      "year": "2021",
+      "d2": -0.14,
+      "Hk": 1,
+      "TFR": 1.67
+    }
+  ],
+  "trigger_summary": {
+    "hk2_count": 1,
+    "hk1_count": 5,
+    "total": 6
+  },
+  "bootstrap": {
+    "hk2_mean": 0.015156060606060607,
+    "hk2_ci_95": [
+      0.0,
+      0.045454545454545456
+    ],
+    "hk1_mean": 0.0754,
+    "hk1_ci_95": [
+      0.015151515151515152,
+      0.13636363636363635
+    ],
+    "hk0_mean": 0.9094439393939392,
+    "hk0_ci_95": [
+      0.8484848484848485,
+      0.9696969696969697
+    ],
+    "n_bootstrap": 10000
+  },
+  "sorries": [
+    "SORRY-TIFM-4.1-1: COVID-19 adjustment method may not generalize to other pandemics",
+    "SORRY-TIFM-4.1-2: Thresholds are CALIBRATE, need historical event calibration",
+    "SORRY-TIFM-4.1-3: Sample size still 11 countries, needs expansion to 30+",
+    "SORRY-TIFM-4.1-7: A6-寂灭态为临时命名，社会系统不可恢复假设需独立验证"
+  ]
+}

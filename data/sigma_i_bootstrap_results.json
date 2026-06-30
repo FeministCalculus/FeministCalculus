@@ -1,0 +1,54 @@
+{
+  "version": "v1.3-DRAFT",
+  "audit_date": "2026-06-14",
+  "auditor": "Kimi",
+  "verifier": "Claude",
+  "status": "DRAFT",
+  "sources": {
+    "Ahrefs": {
+      "value": 0.742,
+      "weight": 0.4,
+      "grade": "A"
+    },
+    "Spennemann": {
+      "value": 0.35,
+      "range": [
+        0.3,
+        0.4
+      ],
+      "weight": 0.3,
+      "grade": "B"
+    },
+    "Graphite": {
+      "value": 0.55,
+      "range": [
+        0.5,
+        0.6
+      ],
+      "weight": 0.25,
+      "grade": "B"
+    },
+    "Europol": {
+      "value": 0.9,
+      "weight": 0.05,
+      "grade": "C"
+    }
+  },
+  "bootstrap": {
+    "mean": 0.5844964626562477,
+    "median": 0.5845307497552119,
+    "ci_95": [
+      0.5394987533553457,
+      0.629251671994793
+    ],
+    "ci_80": [
+      0.5551890627621439,
+      0.6142004763221015
+    ],
+    "n_bootstrap": 10000
+  },
+  "sorries": [
+    "SORRY-TIFM-4.1-4: Europol weight reduced to 0.05, but C-grade sources may need exclusion",
+    "SORRY-TIFM-4.1-5: Confidence interval may still be too narrow given source heterogeneity"
+  ]
+}

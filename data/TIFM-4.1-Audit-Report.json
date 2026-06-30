@@ -1,0 +1,82 @@
+{
+  "version": "v1.3-DRAFT",
+  "audit_date": "2026-06-14",
+  "auditor": "Kimi",
+  "validator": "Claude",
+  "status": "DRAFT",
+  "revision_history": [
+    {"version": "v1.1", "by": "Kimi", "changes": "初始审计报告，COVID调整，Europol权重降级"},
+    {"version": "v1.2", "by": "Kimi", "changes": "触发年份部分修正（Germany/China/Sweden），COVID调整名称修正"},
+    {"version": "v1.3", "by": "Claude（二次验证，2026-06-14）", "changes": "India年份修正 2019→2018；France补充漏掉的2021触发；SORRY追加事后阈值风险和A6寂灭态"}
+  ],
+  "package_a": {
+    "covid_adjustment": {
+      "method": "前后两年平均（排除COVID年份）",
+      "method_note": "原名称'2019-2021三年平均'有误，实际计算为(TFR_2019+TFR_2021)/2",
+      "china_2020_original": 1.236,
+      "china_2020_adjusted": 1.3065,
+      "rationale": "2020年下降幅度(-0.260)是后续年份平均降幅的2.18倍，明显异常"
+    },
+    "thresholds": {
+      "hk2": -0.15, "hk1": -0.05,
+      "source": "CALIBRATE-empirical",
+      "note": "Hard-coded. WARNING: 可能存在事后阈值风险（post-hoc thresholding），当前数据集中仅Germany 2021一例超过-0.15。需历史校准。"
+    },
+    "bootstrap": {
+      "hk2_mean": 0.0152, "hk2_ci_95": [0.0, 0.0455],
+      "hk1_mean": 0.0754, "hk1_ci_95": [0.0152, 0.1364],
+      "hk0_mean": 0.9094, "hk0_ci_95": [0.8485, 0.9697],
+      "n_bootstrap": 10000
+    },
+    "triggers": [
+      {"country": "China(CN)", "year": "2019", "year_note": "COVID调整后，中心年份2019", "d2": -0.1465, "Hk": 1, "TFR": 1.3065},
+      {"country": "France(FR)", "year": "2021", "year_note": "v1.1漏掉，Claude验证补充", "d2": -0.06, "Hk": 1, "TFR": 1.83},
+      {"country": "France(FR)", "year": "2022", "d2": -0.07, "Hk": 1, "TFR": 1.78},
+      {"country": "Germany(DE)", "year": "2021", "year_note": "v1.1误为2022，已修正", "d2": -0.175, "Hk": 2, "TFR": 1.58},
+      {"country": "India(IN)", "year": "2018", "year_note": "v1.2误为2019，Claude验证修正", "d2": -0.055, "Hk": 1, "TFR": 2.184},
+      {"country": "Sweden(SE)", "year": "2021", "year_note": "v1.1误为2022，已修正", "d2": -0.14, "Hk": 1, "TFR": 1.67}
+    ],
+    "trigger_summary": {"hk2_count": 1, "hk1_count": 5, "hk0_count": 6, "total_triggers": 6},
+    "korea_note": {
+      "tfr_2024": 0.748, "hk_trigger": false,
+      "explanation": "ℋ_k测量加速度，不测量水平。韩国TFR极低但d2接近零（下降减速），不触发。结构性缺陷：ℋ_k检测穿越过程，不检测S2态维持。",
+      "a6_extinction_state": {
+        "definition": "TFR < 1.0 持续 ≥3年",
+        "korea_status": "满足（2018-2024，连续7年）",
+        "china_status": "边缘（2023年TFR=0.999）",
+        "sorry": "SORRY-TIFM-4.1-7: 韩国模式为Fc不可映射域，A6-寂灭态为临时命名，需独立验证"
+      }
+    },
+    "sorries": [
+      "SORRY-TIFM-4.1-1: COVID-19调整方法（前后两年平均）不可通用，仅适用于单点异常冲击",
+      "SORRY-TIFM-4.1-2: 触发年份在v1.1-v1.3历经三轮修正，建议对最终触发表做独立重算验证",
+      "SORRY-TIFM-4.1-3: 阈值-0.15无历史依据，存在事后阈值风险，需历史事件校准（苏联解体/东欧转型）",
+      "SORRY-TIFM-4.1-4: 样本量11国不足，Bootstrap置信区间可能过度精确，需扩展至30+"
+    ]
+  },
+  "package_b": {
+    "sources": {
+      "Ahrefs": {"value": 0.742, "weight": 0.40, "grade": "A"},
+      "Spennemann": {"value": 0.35, "range": [0.3, 0.4], "weight": 0.30, "grade": "B"},
+      "Graphite": {"value": 0.55, "range": [0.5, 0.6], "weight": 0.25, "grade": "B"},
+      "Europol": {"value": 0.9, "weight": 0.05, "grade": "C", "note": "降权原因：执法案例来源，幸存者偏差"}
+    },
+    "bootstrap": {
+      "mean": 0.5844, "median": 0.5844,
+      "ci_95": [0.5391, 0.6292], "ci_80": [0.5543, 0.6146],
+      "n_bootstrap": 10000
+    },
+    "sensitivity": {"europol_0.15": 0.620, "europol_0.05": 0.584, "europol_0.00": 0.570},
+    "sorries": [
+      "SORRY-TIFM-4.1-5: Europol降权后CI仍可能偏窄，建议追加C级完全排除的敏感性分析",
+      "SORRY-TIFM-4.1-6: 4个来源差异巨大（30%-90%），源异质性未完全捕获"
+    ]
+  },
+  "sorry_count": 8,
+  "hardened_blockers": [
+    "阈值-0.15无历史依据（事后阈值风险）",
+    "样本11国不足",
+    "ℋ_k结构性缺陷（漏掉S2维持态）",
+    "年份修正历经3轮，需独立重算验证"
+  ]
+}

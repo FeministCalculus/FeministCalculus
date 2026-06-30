@@ -1,0 +1,21 @@
+# 归档的历史版本（不进 git）
+archive/
+
+# 系统/编辑器/同步
+.DS_Store
+.obsidian/
+*.swp
+*~
+
+# 二进制/大文件
+*.docx
+*.dmg
+*.zip
+
+# 临时/冲突文件
+*_Conflict.md
+*~Conflict*
+.~lock.*
+
+# 源格式（已转换为 md）
+*.txt
