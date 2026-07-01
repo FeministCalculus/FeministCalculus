@@ -46,7 +46,8 @@ Fc Formalism 公开层仓库 —— Feminist Calculus Framework（Fc）的核心
 │   ├── Fc-A-Topology-v0.1-DRAFT.md           # 跨国法律洼地探索（A-Topology）
 │   ├── Fc-DerivationChains-v9.6.x-Summary-DRAFT.md  # 7条推导链完整展开
 │   ├── Fc 快速对齐包 | Alignment Package v4.0-DRAFT.md  # AI节点对齐工具
-│   └── PCS_v0.3_DRAFT.md                     # 沉淀-约束分离框架（信息论-存在论）
+│   ├── PCS_v0.3_DRAFT.md                     # 沉淀-约束分离框架（信息论-存在论）
+│   └── BET-v1.7-DRAFT.md                     # 边界弹性定理：集体行动中B集合的扩张/收缩机制
 │
 ├── data/                                      # 实证数据与外部研究报告
 │   ├── tfr_panel_2017_2024.csv               # 跨国 TFR 面板数据
