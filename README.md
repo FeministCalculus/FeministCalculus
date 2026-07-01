@@ -33,6 +33,7 @@ Fc Formalism 公开层仓库 —— Feminist Calculus Framework（Fc）的核心
 │
 ├── cases/                                     # 案例库
 │   ├── Fc-v9.6.8-Appendix-F-Cases.md         # 锚定案例增补（A4/A7/A2）
+│   ├── Fc-CaseLibrary-v1.0-DRAFT.md          # 诊断案例库（16案例，含A5竞争清算/A4反向编码等）
 │   ├── 背刺定理历史案例库 | v1.0-DRAFT.md     # 9案例跨历史验证
 │   └── 高校&职场男性竞争清算案例库｜1994-2025.md  # 30年8案模式分析
 │
