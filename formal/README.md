@@ -108,9 +108,11 @@ Only structural/logical claims. Empirical claims live in TIFM.
 
 - **Chain 10: NEG-EXT Maternal Penalty Loop** (6-step self-reinforcing cycle, no intent required)
 - **Chain 11: A8 Internalization Chain** (4 steps: A1-A2 filter options → subject chooses → feels autonomous)
+- **Chain 12: A6 Extinction Theorem** (4 steps: bloodline ROI → Crs grows → Q declines → self-defeat; TFR anchors)
 
 | SORRY-formal-13 | `care_increases_when_income_falls` | Income-to-care-hours model (empirical calibration, TIFM layer) |
-| SORRY-formal-14 | `A8_indistinguishable_from_autonomy` | Model of why filtered-set choice feels identical to full-set choice (filter operates before choice, no phenomenological trace) |
+| SORRY-formal-14 | `A8_indistinguishable_from_autonomy` | Model of why filtered-set choice feels identical to full-set choice |
+| SORRY-formal-15 | `A6_self_defeat_structure` | Trajectory model showing A6 collapse is *necessarily reached* under sustained A4; TFR as empirical anchor |
 
 ## To add next
 

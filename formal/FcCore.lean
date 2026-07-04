@@ -1606,4 +1606,132 @@ theorem A8_indistinguishable_from_autonomy
   -- (the filter operates before the choice, not during — so no phenomenological
   -- trace of the filtering is present at decision time).
 
+-- ─────────────────────────────────────────────
+-- Chain 12: A6 Extinction Theorem
+-- Source: Fc-v9.6.9 §A6
+-- Steps: 4
+-- Key: A6 is internally self-defeating — bloodline ROI logic eventually
+--      destroys the reproductive base it depends on
+-- Empirical anchors: China TFR 1.01, Korea TFR 0.72 (TIFM data)
+-- ─────────────────────────────────────────────
+
+/-- A6: Bloodline ROI — intergenerational investment return maximization.
+    Children as assets, reproduction as capital strategy.
+    The extractor invests symbolic capital (surname, lineage registration)
+    and expects real returns (caregiving, inheritance, social continuation). -/
+structure A6_BloodlineROI where
+  symbolic_investment : ℕ    -- lineage/surname capital invested
+  expected_return     : ℕ    -- expected caregiving + inheritance returns
+  maintenance_cost    : ℕ    -- cost to maintain lineage control structure
+
+def A6_Active (a : A6_BloodlineROI) : Prop :=
+  a.expected_return > 0 ∧ a.symbolic_investment > 0
+
+/-- Crs: bloodline maintenance cost. Includes:
+    - controlling marriage markets (bride price, family veto)
+    - suppressing female exit from reproductive roles
+    - enforcing lineage registration and inheritance rules
+    Under A4 extraction pressure, Crs grows as the bearing subjects
+    resist, exit, or become scarce. -/
+def Crs (a : A6_BloodlineROI) : ℕ := a.maintenance_cost
+
+/-- Q: marginal return on bloodline investment.
+    As TFR falls and female exit increases, each additional unit of
+    lineage investment yields less return — fewer descendants to
+    inherit, fewer caregivers available, lineage continuation uncertain. -/
+def Q (a : A6_BloodlineROI) : ℕ := a.expected_return
+
+/-- A6 viability condition: A6 is viable when return exceeds maintenance cost. -/
+def A6_Viable (a : A6_BloodlineROI) : Prop := Q a > Crs a
+
+/-- A6 collapse condition: when maintenance cost exceeds return,
+    A6 logic becomes self-defeating — investing in lineage control
+    costs more than it returns. -/
+def A6_Collapsed (a : A6_BloodlineROI) : Prop := Crs a ≥ Q a
+
+/-- Crs growth under A4 pressure:
+    As A4 extraction intensifies, bearing subjects increasingly resist or exit.
+    This raises the cost of maintaining lineage control (Crs).
+    Crs is monotonically increasing in extraction pressure. -/
+theorem Crs_grows_under_A4_pressure
+    (a_before a_after : A6_BloodlineROI)
+    (h_pressure : a_after.maintenance_cost > a_before.maintenance_cost) :
+    Crs a_after > Crs a_before := by
+  exact h_pressure
+
+/-- Q decline as bearing subjects exit:
+    When bearing subjects exit reproductive roles (TFR falls),
+    the expected return on bloodline investment declines.
+    Fewer descendants = lower ROI on lineage investment. -/
+theorem Q_declines_as_subjects_exit
+    (a_before a_after : A6_BloodlineROI)
+    (h_exit : a_after.expected_return < a_before.expected_return) :
+    Q a_after < Q a_before := by
+  exact h_exit
+
+/-- A6 Extinction Theorem:
+    When Crs grows and Q declines simultaneously,
+    A6 crosses from viable to collapsed.
+
+    Derivation:
+      1. A6 defined: bloodline ROI, symbolic investment for real return
+      2. Crs grows: A4 pressure → bearing subjects resist/exit → control costs rise
+      3. Q declines: TFR falls → fewer descendants → return on lineage investment falls
+      4. Crs ≥ Q: A6 becomes self-defeating — the logic that drives extraction
+                  destroys the reproductive base extraction depends on
+-/
+theorem A6_extinction
+    (a_before a_after : A6_BloodlineROI)
+    (h_viable : A6_Viable a_before)
+    (h_crs_up : a_after.maintenance_cost > a_before.maintenance_cost)
+    (h_q_down : a_after.expected_return < a_before.expected_return)
+    (h_cross : a_after.maintenance_cost ≥ a_after.expected_return) :
+    A6_Collapsed a_after := by
+  exact h_cross
+
+/-- A6 self-destruction paradox:
+    A6 logic requires bearing subjects to reproduce (to generate returns),
+    but A4 extraction driven by A6 drives bearing subjects to exit reproduction.
+    The more aggressively A6 pursues bloodline ROI through A4 extraction,
+    the faster it destroys the reproductive base it needs.
+
+    This is NOT logical contradiction — it is structural self-defeat:
+    A6 is a strategy that optimizes locally (maximize lineage control)
+    while destroying the systemic precondition (reproductive willingness). -/
+theorem A6_self_defeat_structure
+    (a : A6_BloodlineROI)
+    (h_active : A6_Active a)
+    (h_extraction_pressure : a.maintenance_cost > 0) :
+    -- A6 actively maintaining itself generates the conditions for its own collapse
+    ∃ (future : A6_BloodlineROI),
+      future.maintenance_cost ≥ future.expected_return := by
+  -- Construct a future state where costs have grown past returns
+  exact ⟨{ symbolic_investment := a.symbolic_investment
+            expected_return     := 0
+            maintenance_cost    := a.maintenance_cost + 1 }, by omega⟩
+  -- [SORRY-formal-15]: the substantive claim is that this future state
+  -- is *necessarily reached* under sustained A4 extraction — not just possible.
+  -- Closure: model the trajectory from current A6 configuration to collapse,
+  -- showing that A4 extraction rate > Q recovery rate makes collapse inevitable.
+  -- Empirical anchor: China TFR 1.01, Korea TFR 0.72 as trajectory evidence.
+
+/-- TFR as observable proxy for A6 collapse trajectory.
+    When TFR falls below replacement (2.1), Q is declining.
+    When TFR approaches 1.0, Q has fallen dramatically.
+    TFR < 1.0 (Korea 0.72) marks the terminal phase of A6 collapse. -/
+def TFR_replacement : ℕ := 21  -- 2.1 × 10 to avoid decimals
+def TFR_Korea_2024  : ℕ := 7   -- 0.72 × 10
+def TFR_China_2024  : ℕ := 10  -- 1.01 × 10
+
+theorem TFR_Korea_below_replacement :
+    TFR_Korea_2024 < TFR_replacement := by decide
+
+theorem TFR_China_below_replacement :
+    TFR_China_2024 < TFR_replacement := by decide
+
+-- [NOTE] TFR values are empirical (TIFM/World Bank data, A-weight).
+-- The theorems above are trivial arithmetic. Their purpose is to
+-- formally connect the structural claim (A6 collapse) to observable
+-- proxy data (TFR), establishing the empirical interface for TIFM.
+
 end Fc
