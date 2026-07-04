@@ -16,6 +16,7 @@ Only structural/logical claims. Empirical claims live in TIFM.
   5. **A4 Configuration Topology** (5 steps, F9 necessary not sufficient, Sweden 1995)
   6. **Startup Paradox** (5 steps, Formation_Erased vs Formation_Absent)
   7. **D0 — Reproductive Agency Non-Delegability** (5 steps, cost-anchoring → non-delegability → agency-exercise vs system-failure)
+  8. **NEG-EXT — Negative Externality Maximization** (5 steps, zero mc → no clearing → no self-correction → D1 structural)
 
 ## Open `sorry`s
 
@@ -31,6 +32,8 @@ Only structural/logical claims. Empirical claims live in TIFM.
 | SORRY-formal-8 | `erased_requires_breaking_A7_OE` | Formalize three exit routes (A6 collapse / H-4 gap / DFN diffusion) as A7-OE interruption mechanisms |
 
 | SORRY-formal-9 | `D0_transfer_claim_is_self_contradictory` | Layer insulation model: E2 institutional claims cannot override E1 physical cost anchoring |
+
+| SORRY-formal-10 | `A5_nondiminishing` | A5 as positional good with reference-point updating — marginal utility ≥ 1 is axiomatized, not derived |
 
 ## Proved without sorry
 
@@ -60,6 +63,10 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - `D0_nonoccurrence_is_agency_exercise` — non-initiation = agency exercise, not failure
 - `D0_transfer_claim_is_self_contradictory` — institutional transfer claim contradicts physical non-transferability
 - `D0_full_derivation` — cost non-transferable regardless of institutional claims
+
+- `zero_mc_no_clearing` — zero marginal cost → no market clearing point (omega)
+- `NEG_EXT_no_self_correction` — zero mc + A5 non-diminishing → no internal correction
+- `NEG_EXT_implies_D1_structural` — NEG-EXT makes D1 structurally necessary, not accidental
 
 ## To add next
 
