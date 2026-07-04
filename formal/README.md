@@ -109,10 +109,13 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - **Chain 10: NEG-EXT Maternal Penalty Loop** (6-step self-reinforcing cycle, no intent required)
 - **Chain 11: A8 Internalization Chain** (4 steps: A1-A2 filter options → subject chooses → feels autonomous)
 - **Chain 12: A6 Extinction Theorem** (4 steps: bloodline ROI → Crs grows → Q declines → self-defeat; TFR anchors)
+- **Chain 13: A7 Failure Peak Window** (5 steps: exit completion → motivation peak × protection vacuum → A7 capture)
+- **Chain 14: A3-γ Violence Infrastructure Chain** (5 steps: attention economy → location exposure → platform hijacked → violence delivery + debt trap)
 
 | SORRY-formal-13 | `care_increases_when_income_falls` | Income-to-care-hours model (empirical calibration, TIFM layer) |
 | SORRY-formal-14 | `A8_indistinguishable_from_autonomy` | Model of why filtered-set choice feels identical to full-set choice |
 | SORRY-formal-15 | `A6_self_defeat_structure` | Trajectory model showing A6 collapse is *necessarily reached* under sustained A4; TFR as empirical anchor |
+| SORRY-formal-16 | `A7_capture_via_failure_peak` | Non-intervention during peak window = active perpetrator protection; requires counterfactual intervention timing model |
 
 ## To add next
 
