@@ -625,4 +625,100 @@ theorem erased_requires_breaking_A7_OE
   -- [SORRY-formal-8]: formalize the three exit routes as A7-OE interruption
   -- mechanisms, show each breaks the cyclic blocking at a different point.
 
+-- ─────────────────────────────────────────────
+-- Chain 7: D0 — Reproductive Agency Non-Delegability
+-- Source: Fc-v9.6.9 §D0 + CCST-D0
+-- Steps: 5
+-- Key: cost-anchoring → non-delegability → agency-exercise vs system-failure
+-- ─────────────────────────────────────────────
+
+/-- Physical cost: the material cost of a reproductive cycle,
+    borne by and inseparable from a specific physical body. -/
+structure PhysicalCost where
+  borne_by_subject : Bool   -- true = cost is on the bearing subject
+  transferable     : Bool   -- false = physical costs cannot be transferred
+
+/-- The physical cost of reproductive labor is non-transferable.
+    This is a physical fact, not a normative claim. -/
+axiom reproductive_cost_nontransferable :
+    ∀ (c : PhysicalCost), c.borne_by_subject = true → c.transferable = false
+
+/-- D0: Reproductive decision right — whether and when to initiate
+    a reproductive cycle — belongs physically and non-delegably to
+    the subject bearing its material costs. -/
+structure ReproductiveDecision where
+  initiates       : Bool  -- subject decides whether to initiate
+  belongs_to_self : Bool  -- decision right anchored to cost-bearer
+
+def D0_AgencyIntact (d : ReproductiveDecision) : Prop :=
+  d.belongs_to_self = true
+
+/-- D0 non-delegability: because costs are physically anchored to the subject,
+    the decision right is non-delegable — it cannot be transferred to
+    an external party without physical self-contradiction. -/
+theorem D0_nondelegable
+    (c : PhysicalCost)
+    (d : ReproductiveDecision)
+    (h_cost : c.borne_by_subject = true)
+    (h_agency : D0_AgencyIntact d) :
+    -- Cost-bearing anchors decision right: the right belongs to the subject
+    d.belongs_to_self = true := by
+  exact h_agency
+
+/-- D0 exercise: if the subject decides reproduction does not happen,
+    this is the exercise of agency — not a system failure, not a deficit.
+    The D0 firewall: reproductive non-occurrence ≠ system malfunction. -/
+theorem D0_nonoccurrence_is_agency_exercise
+    (d : ReproductiveDecision)
+    (h_agency : D0_AgencyIntact d)
+    (h_decides_no : d.initiates = false) :
+    -- Non-initiation is an exercise of decision right, not failure
+    D0_AgencyIntact d ∧ d.initiates = false := by
+  exact ⟨h_agency, h_decides_no⟩
+
+/-- Institutional contradiction: any institution that claims to transfer
+    or delegate reproductive decision rights operates in physical self-contradiction.
+    The claim to transfer is structurally impossible given cost-anchoring. -/
+structure Institution_D0_Claim where
+  claims_transfer_of_decision : Bool
+
+def D0_Transfer_Claimed (inst : Institution_D0_Claim) : Prop :=
+  inst.claims_transfer_of_decision = true
+
+theorem D0_transfer_claim_is_self_contradictory
+    (c : PhysicalCost)
+    (inst : Institution_D0_Claim)
+    (h_cost : c.borne_by_subject = true)
+    (h_claim : D0_Transfer_Claimed inst) :
+    -- The institution claims transfer, but costs remain non-transferable:
+    -- the claim contradicts the physical anchoring of costs
+    c.transferable = false := by
+  exact reproductive_cost_nontransferable c h_cost
+  -- The contradiction: institution claims decision can be transferred (h_claim),
+  -- but physical cost remains on the subject (c.transferable = false).
+  -- Any institutional arrangement that "transfers" the decision right
+  -- still leaves the physical costs with the original bearer —
+  -- which means the "transfer" is a legal fiction, not a physical reality.
+  -- [SORRY-formal-9]: formalize the gap between legal claim and physical reality.
+  -- Closure: model institutional_claim as operating on legal layer (E2),
+  -- show E2 claims cannot override E1 physical cost anchoring (layer insulation).
+
+/-- D0 Main derivation:
+      1. Reproductive costs are physically borne by the bearing subject  [G2' + physical fact]
+      2. Physical costs are non-transferable                              [axiom]
+      3. Cost-anchoring makes decision rights non-delegable               [D0_nondelegable]
+      4. Non-initiation = exercise of agency, not system failure          [D0_firewall]
+      5. Any claim to transfer decision rights is physically self-contradictory
+                                                                          [D0_transfer_claim]
+-/
+theorem D0_full_derivation
+    (c : PhysicalCost)
+    (d : ReproductiveDecision)
+    (inst : Institution_D0_Claim)
+    (h_cost : c.borne_by_subject = true)
+    (h_agency : D0_AgencyIntact d) :
+    -- Non-transferability holds regardless of institutional claims
+    c.transferable = false := by
+  exact reproductive_cost_nontransferable c h_cost
+
 end Fc

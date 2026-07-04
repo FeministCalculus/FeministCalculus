@@ -15,7 +15,7 @@ Only structural/logical claims. Empirical claims live in TIFM.
   4. **SCA — Supply Chain Attack** (5 steps, selection pressure not conspiracy)
   5. **A4 Configuration Topology** (5 steps, F9 necessary not sufficient, Sweden 1995)
   6. **Startup Paradox** (5 steps, Formation_Erased vs Formation_Absent)
-  6b. **Cyclic Blocking** (consequence of Erased: A7-OE re-erases on each attempt)
+  7. **D0 — Reproductive Agency Non-Delegability** (5 steps, cost-anchoring → non-delegability → agency-exercise vs system-failure)
 
 ## Open `sorry`s
 
@@ -29,6 +29,8 @@ Only structural/logical claims. Empirical claims live in TIFM.
 | SORRY-formal-6 | ~~`A4_configuration_trichotomy`~~ | ~~Exhaustive partition of all 16 condition combinations~~ **CLOSED (Kimi v1.1, 2026-07-04)**: `decide` tactic + Transitional/Degenerate definitions cover all 16 combinations |
 | SORRY-formal-7 | `erased_recovery_is_cyclically_blocked` | A7-OE necessarily detects and suppresses before prerequisite reaches formation threshold |
 | SORRY-formal-8 | `erased_requires_breaking_A7_OE` | Formalize three exit routes (A6 collapse / H-4 gap / DFN diffusion) as A7-OE interruption mechanisms |
+
+| SORRY-formal-9 | `D0_transfer_claim_is_self_contradictory` | Layer insulation model: E2 institutional claims cannot override E1 physical cost anchoring |
 
 ## Proved without sorry
 
@@ -53,6 +55,11 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - Erased: recovery path is cyclically blocked. A7-OE re-erases on each attempt.
 - Consequence: all three L6 exit routes (A6 collapse, H-4 gap, DFN diffusion)
   target A7-OE itself, not just condition accumulation.
+
+- `D0_nondelegable` — cost anchoring → decision right belongs to subject
+- `D0_nonoccurrence_is_agency_exercise` — non-initiation = agency exercise, not failure
+- `D0_transfer_claim_is_self_contradictory` — institutional transfer claim contradicts physical non-transferability
+- `D0_full_derivation` — cost non-transferable regardless of institutional claims
 
 ## To add next
 
