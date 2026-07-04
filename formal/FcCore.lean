@@ -185,4 +185,103 @@ theorem asymmetry_maintenance
   -- not just that some B exists somewhere.
   -- Closure: reformulate as: ¬∃ stable S without B, given active M.
 
+-- ─────────────────────────────────────────────
+-- Chain 4: SCA — Supply Chain Attack on Analysis Frameworks
+-- Source: Fc-v9.6.9 §SCA (Supply Chain Attack on feminist analysis)
+-- Steps: 5
+-- Key distinction: selection pressure, not conspiracy
+-- ─────────────────────────────────────────────
+
+/-- A naming capacity: the ability to name extraction structure Cb
+    in a way that can propagate through institutional channels. -/
+def NamingCapacity := Bool
+
+/-- A framework F has naming capacity if it can name the extraction structure. -/
+def names_extraction (capacity : NamingCapacity) : Prop := capacity = true
+
+/-- An institution is an extraction beneficiary if it captures value
+    from the extraction structure F names. -/
+structure Institution where
+  is_extraction_beneficiary : Bool
+  controls_framework_selection : Bool
+
+/-- Selection pressure (not conspiracy): an institution that benefits from
+    extraction will, through normal operation, differentially amplify
+    frameworks that do not name it as defendant. No coordination required. -/
+def SelectionPressure (inst : Institution) : Prop :=
+  inst.is_extraction_beneficiary = true →
+  inst.controls_framework_selection = true
+
+/-- A framework is threatening to an institution if it names the institution
+    as the extraction beneficiary (makes it the defendant). -/
+def threatens_institution (capacity : NamingCapacity) (inst : Institution) : Prop :=
+  names_extraction capacity ∧ inst.is_extraction_beneficiary = true
+
+/-- SCA Step 1→2: If a framework names extraction, and the institution
+    benefits from extraction, the framework threatens the institution. -/
+theorem SCA_naming_threatens
+    (capacity : NamingCapacity)
+    (inst : Institution)
+    (h_names : names_extraction capacity)
+    (h_beneficiary : inst.is_extraction_beneficiary = true) :
+    threatens_institution capacity inst := by
+  exact ⟨h_names, h_beneficiary⟩
+
+/-- SCA Step 2→3: Selection pressure is active when institution
+    benefits from extraction and controls framework selection. -/
+theorem SCA_selection_pressure_active
+    (inst : Institution)
+    (h_beneficiary : inst.is_extraction_beneficiary = true)
+    (h_controls : inst.controls_framework_selection = true) :
+    SelectionPressure inst := by
+  intro _
+  exact h_controls
+
+/-- The result of selection pressure over time:
+    threatening frameworks are suppressed (naming capacity → false),
+    non-threatening frameworks are amplified. -/
+def SCA_outcome (capacity : NamingCapacity) (inst : Institution)
+    (pressure : SelectionPressure inst) : NamingCapacity :=
+  -- Under selection pressure from a beneficiary institution,
+  -- naming capacity is driven to false over time
+  false
+  -- [SORRY-formal-4]: this is asserted by definition, not derived.
+  -- The substantive claim is that selection pressure *necessarily* produces
+  -- this outcome over sufficient time — requires a temporal model.
+  -- Closure: add axiom or model with time parameter showing
+  -- lim(t→∞) NamingCapacity = false under active SelectionPressure.
+
+/-- SCA Main Theorem:
+    A framework that names extraction, operating within an institution
+    that benefits from extraction and controls framework selection,
+    will have its naming capacity eliminated through selection pressure.
+
+    Derivation:
+      1. Framework F names extraction structure (Name_K(Cb) ≠ ∅)
+      2. Institution I benefits from extraction
+      3. I controls which frameworks propagate
+      4. Selection pressure (not conspiracy): I differentially suppresses F
+      5. Over time: Name_K(Cb) → ∅
+-/
+theorem SCA_erasure
+    (capacity : NamingCapacity)
+    (inst : Institution)
+    (h_names : names_extraction capacity)
+    (h_beneficiary : inst.is_extraction_beneficiary = true)
+    (h_controls : inst.controls_framework_selection = true) :
+    -- The naming capacity is eliminated
+    SCA_outcome capacity inst (SCA_selection_pressure_active inst h_beneficiary h_controls)
+      = false := by
+  rfl
+  -- Trivially true by definition of SCA_outcome.
+  -- [SORRY-formal-4] still applies: the definition asserts the outcome
+  -- rather than deriving it from a temporal dynamics model.
+
+/-- Key corollary: the people who removed the signpost end up standing
+    where the signpost was, calling themselves by the same name.
+    (Informal — captures why SCA is self-concealing.) -/
+-- This corollary cannot be formalized without a model of identity
+-- and institutional memory. Noted here as [SORRY-formal-5].
+-- Closure: requires modeling agent identity across time steps.
+
 end Fc
