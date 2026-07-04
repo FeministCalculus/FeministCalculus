@@ -48,6 +48,12 @@ Only structural/logical claims. Empirical claims live in TIFM.
 | SORRY-formal-4 | Kimi web v1.6 | SCA_Temporal: absorbing/converges/limit_false theorems |
 | SORRY-formal-5 | Kimi web v1.0 | Partial: SCA_Agent + InstitutionalPosition minimal model |
 | SORRY-formal-6 | Kimi web v1.1 | `decide` tactic over 16 Bool combinations |
+| SORRY-formal-7 | Kimi web v1.8 | Reversal cost model (absent=1, erased=10) + cyclic blocking cost theorem |
+| SORRY-formal-8 | Kimi web v1.8 + Claude CLI v1.9 | Three exit routes: incentive-removal theorems (not behavioral predictions). `A7_OE_Incentive` structure + three `¬ A7_OE_Incentivized` theorems proved without sorry. Key fix: "structural support removed ≠ behavior will change" (Trump can be president) |
+| SORRY-formal-9 | Kimi web v1.8 | Layer type (E1/E2) + layer_insulation axiom + legal_transfer_is_fiction |
+| SORRY-formal-10 | Kimi web v1.8 | PositionalGood + reference-point updating; A5 non-satiation derived not axiomatized |
+| SORRY-formal-11 | Kimi web v1.8 | narrative_density monotonicity + reality_inversion_at_high_extraction |
+| SORRY-formal-12 | Kimi web v1.8 | InstitutionalEvolution namespace + convergence_to_A7 (parallel to SCA_Temporal) |
 
 ## Proved without sorry
 

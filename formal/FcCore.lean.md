@@ -9,19 +9,11 @@
 --   Empirical grounding lives in TIFM, not here.
 --
 -- Version history:
---   v1.0 (Claude CLI): Chains 1-9 skeleton, SORRY-formal-1..12
+--   v1.0 (Claude CLI): Chains 1-9 skeleton, SORRY-formal-1..9
 --   v1.1 (Kimi web): SORRY-formal-6 closed (decide tactic, 16 combos)
 --   v1.5 (Claude CLI): Chains 6-9 + AMT Extension + cyclic blocking
---   v1.6 (Kimi web): SORRY-formal-1,2,3,4 closed; SCA_Temporal namespace
---   v1.7 (Claude CLI): Merge v1.6 into v1.5; Chain 5 uses decide
---   v1.8 (Kimi web): SORRY-formal-7,8,9,10,11,12 closed
---     formal-7: reversal cost model + cyclic blocking cost theorem
---     formal-8: three exit routes as incentive-removal theorems (Claude CLI v1.9 fix:
---       incentive removed ≠ behavior changed; no sorry needed)
---     formal-9: E1/E2 layer insulation axiom + legal_transfer_is_fiction
---     formal-10: A5 as positional good, marginal utility derived not axiomatized
---     formal-11: narrative density monotonicity + reality inversion threshold
---     formal-12: InstitutionalEvolution namespace, convergence_to_A7 theorem
+--   v1.6 (Kimi web): SORRY-formal-1,2,3,4 closed; Chain 5 uses all_goals+done
+--   v1.7 (Claude CLI): Merge v1.6 closures into v1.5; Chain 5 uses decide
 
 namespace Fc
 
@@ -230,60 +222,7 @@ theorem lying_density_proportional_to_extraction
     (extraction_intensity : ℕ) (h_nonzero : extraction_intensity > 0) :
     ∃ _ : CounterfactualNarrative, maintains_counterfactual true := by
   exact ⟨true, rfl⟩
-
--- [SORRY-formal-11 CLOSED v1.0 — Kimi web, 2026-07-04]
--- Narrative density as a monotonic function of extraction intensity.
--- Formalizes the AMT Extension lying corollary: counterfactual narrative
--- density increases with extraction intensity (structural pressure to maintain
--- the absorption layer generates more elaborate justifications).
-
-/-- Narrative density: number of counterfactual narrative units per
-    extraction intensity unit. -/
-def narrative_density (extraction_intensity : ℕ) : ℕ :=
-  extraction_intensity * 2  -- linear model: density ∝ intensity
-  -- [NOTE] Linear model is minimal; future refinement may add threshold effects
-  -- (density spikes when extraction approaches legitimacy crisis points).
-
-/-- Monotonicity: narrative density is non-decreasing in extraction intensity. -/
-theorem narrative_density_monotonic
-    (i1 i2 : ℕ)
-    (h : i1 ≤ i2) :
-    narrative_density i1 ≤ narrative_density i2 := by
-  simp [narrative_density]
-  -- narrative_density i = i * 2, so i1 ≤ i2 → i1*2 ≤ i2*2
-  omega
-
-/-- Strict monotonicity for positive intensities: if intensity increases,
-    density strictly increases (no saturation). -/
-theorem narrative_density_strict_mono
-    (i1 i2 : ℕ)
-    (h_pos : i1 > 0)
-    (h_lt : i1 < i2) :
-    narrative_density i1 < narrative_density i2 := by
-  simp [narrative_density]
-  omega
-
-/-- Density threshold: when extraction intensity exceeds a critical level,
-    narrative density crosses a threshold where counterfactual narratives
-    become the dominant social discourse ("reality inversion"). -/
-def reality_inversion_threshold : ℕ := 10
-
-theorem reality_inversion_at_high_extraction
-    (i : ℕ)
-    (h : i > reality_inversion_threshold) :
-    narrative_density i > reality_inversion_threshold * 2 := by
-  simp [narrative_density, reality_inversion_threshold]
-  omega
-
--- [CLOSURE NOTE] formal-11:
--- The substantive claim is that narrative density increases monotonically
--- with extraction intensity — not that the specific linear model (×2) is
--- empirically accurate. The linear model captures the structural direction
--- (more extraction → more justification needed). Future refinement:
--- 1) Non-linear models (step functions, threshold effects)
--- 2) Empirical calibration from A5/A8 discourse analysis data
--- 3) Saturation effects (can density decrease at extreme intensities?)
--- These are TIFM-layer questions, not FcCore structural questions.
+  -- [SORRY-formal-11]: narrative density as f(extraction_intensity) — monotonic increase.
 
 -- ─────────────────────────────────────────────
 -- Chain 4: SCA — Supply Chain Attack on Analysis Frameworks
@@ -505,7 +444,12 @@ theorem A4_configuration_trichotomy
     True := by
   right; right; right
   trivial
-  -- [HISTORICAL NOTE: pre-v1.1 SORRY-formal-6, now CLOSED by A4_configuration_complete]
+  -- [SORRY-formal-6]: the three named configurations do not partition the full
+  -- condition space — there are 2^4 = 16 possible combinations.
+  -- The trichotomy (operational / weakened / failed) covers the analytically
+  -- relevant cases but is not exhaustive.
+  -- Closure: enumerate all 16 cases, show the three named ones are the
+  -- structurally significant ones (others are transitional or degenerate).
 
 -- [SORRY-formal-6 CLOSED — Kimi v1.1, 2026-07-04]
 -- 16-combination enumeration proving the three attractors cover all
@@ -620,80 +564,10 @@ theorem erased_harder_than_absent
   simp [OrgPrereq_Erased] at h
   simp [OrgPrereq_Absent]
   exact h.2
-
--- [SORRY-formal-7 CLOSED v1.0 — Kimi web, 2026-07-04]
--- Reversal cost model: erased requires overcoming A7-OE (active institutional
--- force), absent only requires conditions to become favorable.
--- Formalizes the substantive claim about *reversal difficulty* as cost functions.
-
-/-- Reversal cost: the institutional effort required to restore a prerequisite
-    from a given state. Cost is measured in "institutional energy units" (abstract). -/
-def ReversalCost := ℕ
-
-/-- Cost function for absent state: conditions become favorable.
-    Cost = baseline environmental improvement (no active opposition). -/
-def absent_reversal_cost : ReversalCost := 1
-
-/-- Cost function for erased state: must overcome A7-OE active suppression.
-    Cost = baseline + A7-OE suppression force + cyclic blocking overhead.
-    The A7-OE force is structurally stronger than passive absence. -/
-def erased_reversal_cost : ReversalCost := 10
-  -- [NOTE] The 10:1 ratio is illustrative, not empirical.
-  -- The structural claim is: erased_cost > absent_cost, not the specific ratio.
-  -- The ratio captures: A7-OE is an active institutional force with
-  -- detection → escalation → re-clearing mechanisms, not just passive absence.
-
-/-- Erased reversal cost strictly greater than absent reversal cost.
-    [Reversal cost model — CLOSED as SORRY-formal-7 v1.0] -/
-theorem erased_reversal_cost_greater
-    (c_absent c_erased : ReversalCost)
-    (h_absent : c_absent = absent_reversal_cost)
-    (h_erased : c_erased = erased_reversal_cost) :
-    c_erased > c_absent := by
-  simp [absent_reversal_cost, erased_reversal_cost] at *
-  omega
-
-/-- Reversal cost ratio: erased is an order of magnitude harder than absent.
-    Structural reason: A7-OE operates a detection-escalation-re-clearing loop
-    that regenerates the erased state whenever recovery begins. -/
-theorem erased_reversal_ratio
-    (c_absent c_erased : ReversalCost)
-    (h_absent : c_absent = absent_reversal_cost)
-    (h_erased : c_erased = erased_reversal_cost) :
-    c_erased ≥ c_absent * 10 := by
-  simp [absent_reversal_cost, erased_reversal_cost] at *
-  omega
-
-/-- Cyclic blocking cost: each recovery attempt triggers A7-OE escalation,
-    adding overhead to subsequent attempts. The cost is not just higher,
-    it is *structurally compounding* — each failure makes the next attempt harder. -/
-def cyclic_blocking_overhead (attempt_number : ℕ) : ReversalCost :=
-  attempt_number * 3  -- each attempt adds escalating overhead
-
-/-- Total erased reversal cost with cyclic blocking: base cost + overhead
-    from all previous failed attempts. -/
-def total_erased_reversal_cost (attempts : ℕ) : ReversalCost :=
-  erased_reversal_cost + cyclic_blocking_overhead attempts
-
-/-- Cyclic blocking theorem: total cost increases with each failed attempt.
-    This formalizes the "cyclic" nature of erased-state recovery. -/
-theorem cyclic_blocking_cost_increases
-    (n : ℕ) :
-    total_erased_reversal_cost (n + 1) > total_erased_reversal_cost n := by
-  simp [total_erased_reversal_cost, cyclic_blocking_overhead]
-  omega
-
--- [CLOSURE NOTE] formal-7:
--- The substantive claim (erased harder to reverse than absent) is formalized
--- as a cost function comparison. The 10:1 ratio is illustrative — the structural
--- claim is the inequality, not the specific number. The cyclic blocking model
--- captures the compounding nature of A7-OE suppression: each recovery attempt
--- triggers escalation, making subsequent attempts harder. This is the
--- "structural infeasibility" (not logical impossibility) of erased-state recovery.
--- Future refinement: empirical calibration from historical case studies
--- (labor union repression, social movement suppression, independent organization
--- destruction and rebuilding). The cost functions could be parameterized
--- by regime type, technology level, and civil society density.
+  -- [SORRY-formal-7]: this proves they are mutually exclusive by definition,
+  -- but the substantive claim is about *reversal difficulty* —
+  -- erased requires overcoming A7-OE (active institutional force),
+  -- absent only requires conditions to become favorable.
   -- Closure: model reversal cost as a function of was_erased,
   -- show E_{2→1}(erased) >> E_{2→1}(absent).
 
@@ -772,7 +646,10 @@ theorem erased_recovery_is_cyclically_blocked
     -- Even with a recovery attempt, the prerequisite is erased again
     OrgPrereq_Erased { exists := false, was_erased := true } := by
   exact ⟨rfl, rfl⟩
-  -- [HISTORICAL NOTE: pre-v1.8 SORRY-formal-7, now CLOSED by reversal cost model]
+  -- [SORRY-formal-7 updated]: the cyclic structure is captured here —
+  -- the A7-OE response produces the same erased state regardless of
+  -- the recovery attempt. The substantive claim is that A7-OE *necessarily*
+  -- detects and suppresses when the prerequisite begins to form.
   -- Closure: model A7-OE as a function of threat_level threshold,
   -- show detection is triggered before prerequisite reaches formation_critical_mass.
 
@@ -799,111 +676,8 @@ theorem erased_requires_breaking_A7_OE
   --   Exit 2: H-4 narrow-band gap (A7 control cost exceeds benefit)
   --   Exit 3: DFN diffusion (structural substitute, bypasses A7 directly)
   -- All three routes target A7-OE itself, not just condition accumulation.
-
--- [SORRY-formal-8 CLOSED v1.8 — three exit routes as structural incentive removal]
--- Correction from Kimi v1.8: original theorems claimed behavioral outcomes
--- (a7.escalates = false) from structural conditions. This requires assuming
--- rational actors — but A7 is an institutionally internalized structure,
--- not a rational agent. Trump can be president: structural incentives removed
--- ≠ behavior changed. Theorems now state incentive removal, not behavioral prediction.
-
-/-- Exit route type: three distinct incentive-removal mechanisms. -/
-inductive ExitRoute where
-  | A6Collapse   : ExitRoute  -- Exit 1: A6 collapse removes maintenance incentive
-  | H4NarrowBand : ExitRoute  -- Exit 2: H-4 gap makes maintenance unprofitable
-  | DFNDiffusion : ExitRoute  -- Exit 3: DFN bypasses detection entirely
-
-/-- A7-OE incentive structure: the conditions under which A7-OE active
-    suppression is structurally supported by the extraction system's logic. -/
-structure A7_OE_Incentive where
-  future_extraction_exists : Bool  -- A6 not collapsed: future to protect
-  benefit_exceeds_cost     : Bool  -- extraction benefit > control cost
-  threat_detectable        : Bool  -- organization visible to A7-OE
-
-def A7_OE_Incentivized (i : A7_OE_Incentive) : Prop :=
-  i.future_extraction_exists = true ∧
-  i.benefit_exceeds_cost     = true ∧
-  i.threat_detectable        = true
-
-/-- Exit 1 — A6 self-collapse removes future extraction incentive.
-    When A6 collapses (no next generation to extract from),
-    A7-OE's maintenance incentive structurally disappears.
-    NOTE: This does not mean A7-OE will stop — institutional inertia,
-    habit, or spite may continue the behavior. The structural support
-    is gone; the behavior is a separate TIFM question. -/
-theorem exit_1_A6_removes_incentive
-    (i : A7_OE_Incentive)
-    (h_a6 : i.future_extraction_exists = false) :
-    ¬ A7_OE_Incentivized i := by
-  simp [A7_OE_Incentivized, h_a6]
-
-/-- Exit 2 — H-4 narrow-band gap makes maintenance structurally unprofitable.
-    When control cost exceeds extraction benefit, A7-OE's active suppression
-    is no longer supported by extraction logic.
-    NOTE: From AMT (Chain 3): B-complexity ∝ 1/naturalness(Δ).
-    When B-complexity (control cost) exceeds Δ-advantage (extraction benefit),
-    the asymmetry cannot be maintained. Whether the extractor accepts this
-    is behavioral — the structural support is what we can prove. -/
-theorem exit_2_H4_removes_incentive
-    (i : A7_OE_Incentive)
-    (h_cost : i.benefit_exceeds_cost = false) :
-    ¬ A7_OE_Incentivized i := by
-  simp [A7_OE_Incentivized, h_cost]
-
-/-- Exit 3 — DFN makes threat structurally undetectable.
-    DFN channels are invisible to A7-OE's detection mechanism.
-    Without detection, A7-OE's incentive structure is irrelevant:
-    even if A7-OE wants to suppress, it cannot find the target.
-    NOTE: DFN's architecture (distributed, encrypted, socially invisible)
-    is what makes this structural — not DFN's goodwill or A7-OE's restraint. -/
-theorem exit_3_DFN_removes_detectability
-    (i : A7_OE_Incentive)
-    (h_dfn : i.threat_detectable = false) :
-    ¬ A7_OE_Incentivized i := by
-  simp [A7_OE_Incentivized, h_dfn]
-
-/-- Three exit routes each remove a different component of A7-OE's incentive.
-    Exit 1: removes future_extraction_exists (A6 collapse)
-    Exit 2: removes benefit_exceeds_cost (H-4 gap)
-    Exit 3: removes threat_detectable (DFN bypass)
-    Together they cover all three necessary conditions for A7-OE incentivization. -/
-theorem three_exits_cover_all_incentive_components :
-    (∃ i : A7_OE_Incentive, i.future_extraction_exists = false → ¬ A7_OE_Incentivized i) ∧
-    (∃ i : A7_OE_Incentive, i.benefit_exceeds_cost     = false → ¬ A7_OE_Incentivized i) ∧
-    (∃ i : A7_OE_Incentive, i.threat_detectable        = false → ¬ A7_OE_Incentivized i) := by
-  refine ⟨⟨⟨false, true, true⟩, ?_⟩, ⟨⟨true, false, true⟩, ?_⟩, ⟨⟨true, true, false⟩, ?_⟩⟩
-  · intro h; exact exit_1_A6_removes_incentive _ h
-  · intro h; exact exit_2_H4_removes_incentive _ h
-  · intro h; exact exit_3_DFN_removes_detectability _ h
-
--- [CLOSURE NOTE] formal-8 (revised):
--- Three exit routes are now formalized as incentive-removal theorems,
--- not behavioral predictions. The key distinction:
---   structural support removed ≠ behavior will change
--- This is the correct FcCore claim: we prove that the extraction system's
--- logic no longer supports A7-OE suppression, not that A7-OE will stop.
--- Behavioral predictions (probability of stopping given incentive removal)
--- belong in FcCore-Behavioral.lean with game-theoretic models.
--- The three theorems are now provable without sorry because they only
--- assert what follows logically from the definitions, not what humans do.
-
-
--- [CLOSURE NOTE] formal-8:
--- The three exit routes are formalized as interruption mechanisms targeting
--- different vulnerabilities in A7-OE's cyclic blocking structure.
--- Each theorem is a *structural claim* (directional, not behavioral), marked
--- with `sorry` because behavioral models (cost-benefit calculus, diffusion
--- dynamics, A6 collapse timing) are outside FcCore's scope.
--- The structural claims are:
---   1. A6 collapse removes A7-OE's maintenance incentive (no future extraction)
---   2. H-4 gap makes A7-OE escalation unprofitable (cost > benefit)
---   3. DFN bypass makes A7-OE detection fail (invisible channels)
--- Future refinement: behavioral models in FcCore-Behavioral.lean extension,
--- with probabilistic claims, game-theoretic analysis, and empirical calibration.
--- Cross-chain references established:
---   Exit 1 ← Chain 5 (A6 collapse theorem, TFR → 0)
---   Exit 2 ← Chain 3 (AMT, B-complexity theorem)
---   Exit 3 ← DFN framework (external to FcCore, interface documented).
+  -- [SORRY-formal-8]: formalize the three exit routes as A7-OE interruption
+  -- mechanisms, show each breaks the cyclic blocking at a different point.
 
 -- ─────────────────────────────────────────────
 -- Chain 7: D0 — Reproductive Agency Non-Delegability
@@ -979,85 +753,9 @@ theorem D0_transfer_claim_is_self_contradictory
   -- Any institutional arrangement that "transfers" the decision right
   -- still leaves the physical costs with the original bearer —
   -- which means the "transfer" is a legal fiction, not a physical reality.
-
--- [SORRY-formal-9 CLOSED v1.0 — Kimi web, 2026-07-04]
--- Layer insulation: E2 (legal/institutional) claims cannot override
--- E1 (physical/embodied) facts. Formalizes the "gap between legal claim
--- and physical reality" as a structural non-derivability.
-
-/-- Layer type: E1 = physical/embodied, E2 = legal/institutional. -/
-inductive Layer where
-  | E1 : Layer  -- physical/embodied facts
-  | E2 : Layer  -- legal/institutional claims
-  deriving BEq
-
-/-- A claim operates at a specific layer. -/
-structure LayeredClaim where
-  layer : Layer
-  content : Prop
-
-/-- Layer insulation axiom: E2 claims cannot derive E1 facts.
-    If a claim is at E2, it cannot prove a proposition about E1 physical reality.
-    This is a structural non-derivability, not a contingent limitation. -/
-axiom layer_insulation_E2_to_E1
-    (claim : LayeredClaim)
-    (h_E2 : claim.layer = Layer.E2)
-    (physical_fact : Prop) :
-    -- An E2 claim cannot prove an E1 physical fact
-    ¬ (claim.content → physical_fact)
-  -- [NOTE] This is a strong axiom: it says E2→E1 derivation is structurally
-  -- impossible, not just currently unavailable. The justification is that
-  -- E2 operates on legal fictions (rights, contracts, titles) while E1 operates
-  -- on physical constraints (bodies, entropy, thermodynamics). The two layers
-  -- have different truth-conditions: E2 truth is institutional convention,
-  -- E1 truth is physical necessity. No amount of E2 reasoning can change E1.
-
-/-- E1 physical fact: costs are non-transferable. -/
-def E1_cost_nontransferable (c : PhysicalCost) : Prop :=
-  c.borne_by_subject = true → c.transferable = false
-
-/-- E2 legal claim: decision rights can be transferred. -/
-def E2_decision_transferable (inst : Institution_D0_Claim) : Prop :=
-  inst.claims_transfer_of_decision = true
-
-/-- Layer insulation theorem: an E2 claim of transferability cannot
-    override the E1 fact of non-transferability. -/
-theorem E2_cannot_override_E1_nontransferability
-    (c : PhysicalCost)
-    (inst : Institution_D0_Claim)
-    (h_E1 : E1_cost_nontransferable c)
-    (h_E2 : E2_decision_transferable inst)
-    (h_cost : c.borne_by_subject = true) :
-    -- The E2 claim does not change the E1 fact
-    c.transferable = false := by
-  -- E1 fact is derived directly from physical axiom
-  exact reproductive_cost_nontransferable c h_cost
-  -- The E2 claim is simply irrelevant to the E1 derivation path
-  -- This is the "layer insulation" in operation: E2 and E1 are
-  -- independent derivation paths; E2 cannot contribute to E1 conclusions.
-
-/-- Layer insulation corollary: legal "transfer" of reproductive decision rights
-    is an E2 operation that leaves E1 physical costs unchanged.
-    The legal fiction does not create physical reality. -/
-theorem legal_transfer_is_fiction
-    (c : PhysicalCost)
-    (inst : Institution_D0_Claim)
-    (h_cost : c.borne_by_subject = true)
-    (h_claim : D0_Transfer_Claimed inst) :
-    -- After the "transfer", costs are still non-transferable
-    c.transferable = false := by
-  exact reproductive_cost_nontransferable c h_cost
-  -- The E2 claim (h_claim) is not used in the proof — this is the point.
-  -- Layer insulation means E2 claims are structurally inert for E1 conclusions.
-
--- [CLOSURE NOTE] formal-9:
--- Layer insulation formalizes the "gap between legal claim and physical reality"
--- as a structural property: E2 (legal) and E1 (physical) are separate derivation
--- layers with no cross-layer inference rules. This is stronger than saying
--- "legal claims are sometimes ineffective" — it says legal claims are
--- *structurally incapable* of affecting physical facts. The axiom is justified
--- by the different truth-conditions: institutional convention vs physical necessity.
--- Future refinement: model other layer pairs (E1/E3 economic, E2/E3 legal-economic).
+  -- [SORRY-formal-9]: formalize the gap between legal claim and physical reality.
+  -- Closure: model institutional_claim as operating on legal layer (E2),
+  -- show E2 claims cannot override E1 physical cost anchoring (layer insulation).
 
 /-- D0 Main derivation:
       1. Reproductive costs are physically borne by the bearing subject  [G2' + physical fact]
@@ -1113,79 +811,13 @@ structure A5_RecognitionDemand where
 
 /-- A5 non-satiation: marginal utility of recognition does not decrease
     as recognition increases — the demand curve does not slope down. -/
--- [SORRY-formal-10 CLOSED v1.0 — Kimi web, 2026-07-04]
--- A5 recognition as positional good: marginal utility derived from
--- reference-point updating mechanism, not axiomatized.
-
-/-- Positional good: value depends on relative standing, not absolute level.
-    The reference point updates with each unit of recognition received. -/
-structure PositionalGood where
-  current_level    : ℕ
-  reference_point  : ℕ  -- the baseline that "feels like zero"
-
-/-- Reference-point updating: each unit of recognition raises the reference point
-    by 1 (full adaptation). This is the core mechanism of positional goods. -/
-def update_reference (pg : PositionalGood) : PositionalGood :=
-  { pg with reference_point := pg.reference_point + 1 }
-
-/-- Positional utility: actual utility is current_level minus reference_point.
-    When current_level = reference_point, utility feels like "zero"
-    (habituation). When current_level < reference_point, utility is negative
-    (relative deprivation). -/
-def positional_utility (pg : PositionalGood) : ℤ :=
-  (pg.current_level : ℤ) - (pg.reference_point : ℤ)
-
-/-- Marginal utility of one more unit: after receiving it, reference point updates.
-    The net gain is: (current+1 - (reference+1)) - (current - reference) = 0
-    BUT the *felt* utility is the new positional utility, which must be ≥ 1
-    to maintain positive self-perception (the A5 drive). -/
-def marginal_positional_utility (pg : PositionalGood) : ℕ :=
-  -- The substantive claim: A5 demands that each new unit feels like progress.
-  -- If marginal utility were 0, the subject would feel no improvement —
-  -- which contradicts the A5 drive for external recognition.
-  -- Minimum marginal utility = 1 (feels like "at least I gained something").
-  if pg.current_level ≥ pg.reference_point then 1 else 0
-
-/-- A5 recognition demand as positional good: the demand structure
-    inherits positional good properties. -/
-def A5_as_positional (d : A5_RecognitionDemand) : PositionalGood :=
-  { current_level := d.current_level, reference_point := d.current_level - 1 }
-  -- Reference point lags by 1: you need *more* than what you have to feel satisfied.
-
-/-- Derived theorem: marginal utility of A5 recognition is always ≥ 1
-    when current_level ≥ reference_point (the normal case).
-    This replaces the axiom with a derived property from positional good structure. -/
-theorem A5_marginal_utility_from_positional
-    (d : A5_RecognitionDemand)
-    (h_pos : d.current_level ≥ 1) :
-    marginal_positional_utility (A5_as_positional d) ≥ 1 := by
-  simp [marginal_positional_utility, A5_as_positional]
-  -- current_level ≥ 1 → current_level ≥ current_level - 1 (always true for ℕ)
-  omega
-
-/-- The original axiom re-stated as a corollary of the positional model.
-    This shows the axiom was not arbitrary: it follows from positional good logic. -/
-theorem A5_nondiminishing
-    (d : A5_RecognitionDemand)
-    (h_pos : d.current_level ≥ 1) :
-    d.marginal_utility ≥ 1 := by
-  -- [BRIDGE] Connect A5_RecognitionDemand.marginal_utility to positional model.
-  -- In the full model, A5_RecognitionDemand would be defined as a PositionalGood,
-  -- making this a direct derivation. Here we show the structural equivalence.
-  exact A5_marginal_utility_from_positional d h_pos
-
--- [CLOSURE NOTE] formal-10:
--- The original axiom `A5_nondiminishing` is replaced by a derived theorem.
--- The derivation path: positional good definition → reference-point updating →
--- marginal utility ≥ 1 (to maintain positive self-perception).
--- The key insight: A5 recognition is not a standard good with diminishing returns,
--- it's a positional good where the reference point adapts fully. This means
--- more recognition raises the baseline, requiring even more — the "hedonic treadmill"
--- of external validation. The formalization captures this as a structural property
--- of positional goods, not an arbitrary axiom about A5.
--- Future refinement: model partial adaptation (reference point updates by < 1),
--- threshold effects (reference point jumps at critical levels), and
--- social comparison (reference point depends on others' recognition levels).
+axiom A5_nondiminishing :
+    ∀ (d : A5_RecognitionDemand),
+      d.marginal_utility ≥ 1
+  -- [SORRY-formal-10]: this is axiomatized, not derived.
+  -- The substantive claim is that A5 recognition operates as a positional good
+  -- (value depends on relative standing, not absolute level) — which means
+  -- more recognition raises the baseline, requiring even more.
   -- Closure: model A5 as positional good with reference-point updating.
 
 /-- No internal correction mechanism:
@@ -1329,101 +961,10 @@ theorem A7_structurally_necessary
                       is_nonaction := true,
                       is_active_complicity := true } := by
   exact ⟨_, rfl⟩
-
--- [SORRY-formal-12 CLOSED v1.0 — Kimi web, 2026-07-04]
--- Institutional evolution selection model: P0 + NEG-EXT → A7 emergence
--- as selection pressure result, not accidental.
--- Parallel to SCA_Temporal for frameworks, but for institutions.
-
-namespace InstitutionalEvolution
-
-/-- Institution type at time t: whether it has exit-blocking behavior. -/
-def InstitutionType := Bool  -- true = has A7-like exit-blocking, false = no exit-blocking
-
-/-- Selection pressure: institutions with exit-blocking are more stable
-    under P0 + NEG-EXT conditions because they prevent externalities from
-    returning to the extractor. -/
-def selection_pressure (has_A7 : Bool) (p0_active : Bool) (neg_ext_active : Bool) : Bool :=
-  -- If P0 and NEG-EXT are active, exit-blocking is selected for
-  p0_active && neg_ext_active && has_A7
-
-/-- Institutional fitness: stability under extraction conditions.
-    Institutions with exit-blocking have higher fitness when P0+NEG-EXT active. -/
-def fitness (inst : InstitutionType) (p0 : Bool) (neg_ext : Bool) : ℕ :=
-  if inst then
-    if p0 && neg_ext then 10 else 5
-  else
-    if p0 && neg_ext then 1 else 5
-  -- With P0+NEG-EXT: A7-institution fitness = 10, non-A7 fitness = 1
-  -- Without P0+NEG-EXT: both fitness = 5 (no selection pressure)
-
-/-- Evolution step: institutions replicate proportional to fitness.
-    Simplified model: A7-institutions increase when P0+NEG-EXT active. -/
-def evolution_step (current : InstitutionType) (p0 : Bool) (neg_ext : Bool) : InstitutionType :=
-  -- Selection pressure pushes toward A7-institutions when P0+NEG-EXT active
-  if p0 && neg_ext then true else current
-
-/-- Institutional trajectory: sequence of institution types over time. -/
-def trajectory (initial : InstitutionType) (p0 : ℕ → Bool) (neg_ext : ℕ → Bool) : ℕ → InstitutionType
-  | 0 => initial
-  | t + 1 => evolution_step (trajectory initial p0 neg_ext t) (p0 t) (neg_ext t)
-
-/-- Convergence theorem: under persistent P0+NEG-EXT, all institutions
-    converge to A7-type (exit-blocking) regardless of initial state. -/
-theorem convergence_to_A7
-    (initial : InstitutionType)
-    (p0 : ℕ → Bool)
-    (neg_ext : ℕ → Bool)
-    (h_persistent : ∃ T, ∀ t ≥ T, p0 t = true ∧ neg_ext t = true) :
-    ∃ T', ∀ t ≥ T', trajectory initial p0 neg_ext t = true := by
-  cases h_persistent with | intro T hT =>
-  use T
-  intro t ht
-  induction t with
-  | zero =>
-    cases ht with
-    | refl =>
-      simp [trajectory, evolution_step]
-      have h := hT T (by linarith)
-      simp [h.1, h.2]
-  | succ t ih =>
-    simp [trajectory, evolution_step]
-    have h := hT t (by linarith [ht])
-    simp [h.1, h.2]
-
-/-- Structural necessity theorem: P0 + NEG-EXT *necessarily* generates A7-type
-    institutions over time through selection pressure. This is the formalization
-    of "A7's existence is not accidental". -/
-theorem A7_structurally_necessary_evolution
-    (p0 : ℕ → Bool)
-    (neg_ext : ℕ → Bool)
-    (h_persistent : ∃ T, ∀ t ≥ T, p0 t = true ∧ neg_ext t = true) :
-    -- A7-type institutions emerge as the stable equilibrium
-    ∃ T, ∀ t ≥ T, trajectory false p0 neg_ext t = true := by
-  exact convergence_to_A7 false p0 neg_ext h_persistent
-
-end InstitutionalEvolution
-
--- [CLOSURE NOTE] formal-12:
--- The institutional evolution model formalizes the substantive claim that
--- P0 + NEG-EXT *necessarily* generates A7-type institutions over time.
--- The model is a simplified discrete-time selection dynamics:
---   1. Institutions have types (A7-type vs non-A7-type)
---   2. Fitness depends on environment (P0+NEG-EXT active or not)
---   3. Selection pressure pushes toward A7-type when P0+NEG-EXT active
---   4. Convergence theorem: persistent P0+NEG-EXT → all institutions become A7-type
--- This is parallel to SCA_Temporal (selection pressure on frameworks) but
--- applied to institutions. The key insight: A7 is not a "design choice" by
--- some architect — it emerges as the stable equilibrium of institutional
--- selection under P0+NEG-EXT conditions. Any institution that does NOT block
--- exit will be destabilized by returning externalities, and will be replaced
--- by one that does. This is the "structural necessity" of A7.
--- Future refinement:
---   1. Continuous-time model (differential equations)
---   2. Mutation/noise (institutions sometimes randomly change type)
---   3. Multiple institution types (not just binary A7/non-A7)
---   4. Spatial model (institutions in different locations with different P0/NEG-EXT)
---   5. Empirical calibration from historical institutional evolution data
--- These are TIFM/FcCore-Behavioral extension questions.
+  -- [SORRY-formal-12]: existence is trivial.
+  -- The substantive claim is that P0 *necessarily* generates A7 over time
+  -- through institutional selection pressure (parallel to SCA for frameworks).
+  -- Closure: model institutional evolution under P0 + NEG-EXT conditions,
+  -- show exit-blocking behavior is selected for in all stable configurations.
 
 end Fc
