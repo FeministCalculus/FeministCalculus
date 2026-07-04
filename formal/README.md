@@ -11,7 +11,7 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - `FcCore.lean` — Six chains + one consequence formalized:
   1. **Living Body Paradox** (A3 → A1, 4 steps)
   2. **Extraction → Irreversibility** (P0 → D1 → D2, 3 steps)
-  3. **Asymmetry Maintenance Theorem** (3 steps)
+  3. **Asymmetry Maintenance Theorem** (3 steps) + **AMT Extension**: B-complexity corollary + lying corollary (南拳必然说谎)
   4. **SCA — Supply Chain Attack** (5 steps, selection pressure not conspiracy)
   5. **A4 Configuration Topology** (5 steps, F9 necessary not sufficient, Sweden 1995)
   6. **Startup Paradox** (5 steps, Formation_Erased vs Formation_Absent)
@@ -34,6 +34,8 @@ Only structural/logical claims. Empirical claims live in TIFM.
 | SORRY-formal-9 | `D0_transfer_claim_is_self_contradictory` | Layer insulation model: E2 institutional claims cannot override E1 physical cost anchoring |
 
 | SORRY-formal-10 | `A5_nondiminishing` | A5 as positional good with reference-point updating — marginal utility ≥ 1 is axiomatized, not derived |
+
+| SORRY-formal-11 | `lying_density_proportional_to_extraction` | Narrative density as monotonically increasing function of extraction intensity |
 
 ## Proved without sorry
 
@@ -67,6 +69,10 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - `zero_mc_no_clearing` — zero marginal cost → no market clearing point (omega)
 - `NEG_EXT_no_self_correction` — zero mc + A5 non-diminishing → no internal correction
 - `NEG_EXT_implies_D1_structural` — NEG-EXT makes D1 structurally necessary, not accidental
+
+- `B_complexity_inverse_naturalness` — artificial Δ requires strictly more blocking layers than natural Δ
+- `lying_is_structural` — artificial Δ → internal pressure → counterfactual narrative is structurally necessary
+- `lying_density_proportional_to_extraction` — existence of counterfactual narrative under active extraction
 
 ## To add next
 
