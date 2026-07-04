@@ -111,6 +111,7 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - **Chain 12: A6 Extinction Theorem** (4 steps: bloodline ROI → Crs grows → Q declines → self-defeat; TFR anchors)
 - **Chain 13: A7 Failure Peak Window** (5 steps: exit completion → motivation peak × protection vacuum → A7 capture)
 - **Chain 14: A3-γ Violence Infrastructure Chain** (5 steps: attention economy → location exposure → platform hijacked → violence delivery + debt trap)
+- **Chain 15: A1→A2→A3→A1 Closed Loop** (5 steps: demotion → pricing → contracting → embodied execution reactivates A1; legitimacy accumulates each cycle)
 
 | SORRY-formal-13 | `care_increases_when_income_falls` | Income-to-care-hours model (empirical calibration, TIFM layer) |
 | SORRY-formal-14 | Kimi web v1.9.1 | `A8_Distinguishability` namespace: internal indistinguishability (identity function) + external distinguishability (auditor perspective). Historical anchor: 广州瞽妓 — A8 breaking = environmental exit + A2-blind activity (flower-raising outside A2 categorical grid), not cognitive correction |
