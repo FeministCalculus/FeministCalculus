@@ -996,21 +996,33 @@ structure LayeredClaim where
   layer : Layer
   content : Prop
 
-/-- Layer insulation axiom: E2 claims cannot derive E1 facts.
-    If a claim is at E2, it cannot prove a proposition about E1 physical reality.
-    This is a structural non-derivability, not a contingent limitation. -/
+/-- Layer insulation axiom: E2 claims cannot DIRECTLY derive E1 facts.
+    This is the "no reverse derivation" principle from CCST layer architecture.
+
+    Precise statement: E2 is a coordination protocol between E1 entities.
+    When law says "safety equipment required" → workers have safety equipment,
+    this works because there is an E1 entity (factory, enforcement agency)
+    that physically produces and installs the equipment. E2 influences E1
+    *through* another E1 entity as executor — never directly.
+
+    The axiom captures the case where NO E1 executor exists:
+    When law says "reproductive decision rights are transferred" → the physical
+    cost of pregnancy is still borne by the pregnant person, because no E1
+    entity can physically substitute for that cost. The E2 claim is a legal
+    fiction — not because E2 can never affect E1, but because this specific
+    E2 claim lacks the E1 executor that would make it real.
+
+    Formal reading: ¬ (claim.content → physical_fact) means the E2 claim
+    alone, without any E1 executor in the derivation path, cannot establish
+    the E1 physical fact. This is the CCST layer insulation direction:
+    E1 → E2 is permitted (physical facts constrain institution design);
+    E2 → E1 direct derivation is blocked (protocols cannot override physics). -/
 axiom layer_insulation_E2_to_E1
     (claim : LayeredClaim)
     (h_E2 : claim.layer = Layer.E2)
     (physical_fact : Prop) :
-    -- An E2 claim cannot prove an E1 physical fact
+    -- An E2 claim alone (without E1 executor) cannot prove an E1 physical fact
     ¬ (claim.content → physical_fact)
-  -- [NOTE] This is a strong axiom: it says E2→E1 derivation is structurally
-  -- impossible, not just currently unavailable. The justification is that
-  -- E2 operates on legal fictions (rights, contracts, titles) while E1 operates
-  -- on physical constraints (bodies, entropy, thermodynamics). The two layers
-  -- have different truth-conditions: E2 truth is institutional convention,
-  -- E1 truth is physical necessity. No amount of E2 reasoning can change E1.
 
 /-- E1 physical fact: costs are non-transferable. -/
 def E1_cost_nontransferable (c : PhysicalCost) : Prop :=
