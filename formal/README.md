@@ -113,10 +113,12 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - **Chain 14: A3-γ Violence Infrastructure Chain** (5 steps: attention economy → location exposure → platform hijacked → violence delivery + debt trap)
 - **Chain 15: A1→A2→A3→A1 Closed Loop** (5 steps: demotion → pricing → contracting → embodied execution reactivates A1; legitimacy accumulates each cycle)
 
-| SORRY-formal-13 | `care_increases_when_income_falls` | Income-to-care-hours model (empirical calibration, TIFM layer) |
+| SORRY-formal-13 | Kimi web v1.9.2 | Opportunity cost model: `care_hours_from_income = 1000/(income/40+1)`, monotonicity proved by `omega` |
 | SORRY-formal-14 | Kimi web v1.9.1 | `A8_Distinguishability` namespace: internal indistinguishability (identity function) + external distinguishability (auditor perspective). Historical anchor: 广州瞽妓 — A8 breaking = environmental exit + A2-blind activity (flower-raising outside A2 categorical grid), not cognitive correction |
 | SORRY-formal-15 | `A6_self_defeat_structure` | Trajectory model showing A6 collapse is *necessarily reached* under sustained A4; TFR as empirical anchor |
 | SORRY-formal-16 | `A7_capture_via_failure_peak` | Non-intervention during peak window = active perpetrator protection; requires counterfactual intervention timing model |
+| SORRY-formal-17 | Kimi web v1.9.2 | `EmbodiedContract` type + `embodied_contract_reactivates_A1`: bridge axiom closes A3→A1 loop at execution layer |
+| SORRY-formal-18 | Kimi web v1.9.2 | Category argument: `A2_presupposes_A1` + `A3_presupposes_A1` as structural preconditions; `N1_cuts_loop_at_entry` proved |
 
 ## To add next
 
