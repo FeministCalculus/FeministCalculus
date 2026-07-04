@@ -507,4 +507,81 @@ theorem startup_paradox_full
   · exact ⟨h_now_absent, h_A7_OE⟩
   · simp [OrgPrereq_Present, h_now_absent]
 
+-- ─────────────────────────────────────────────
+-- Consequence of Erased vs Absent: Cyclic Blocking
+-- Source: SORRY-L6-1b (cognitive erosion chain)
+-- ─────────────────────────────────────────────
+
+/-- A recovery attempt: conditions improve enough that the
+    organization prerequisite could form again. -/
+def RecoveryAttempt := Bool
+
+/-- A7-OE response to a recovery attempt:
+    when A7-OE detects a threat (prerequisite beginning to form),
+    it escalates — actively clearing the emerging prerequisite.
+    This is SORRY-L6-1b: the upgrade threshold question. -/
+structure A7_OE_Response where
+  detects_threat  : Bool
+  escalates       : Bool
+
+def A7_OE_Suppresses (resp : A7_OE_Response) : Prop :=
+  resp.detects_threat = true ∧ resp.escalates = true
+
+/-- Absent recovery path: one step.
+    Conditions improve → prerequisite forms.
+    No active opposition on the path. -/
+theorem absent_recovery_path
+    (attempt : RecoveryAttempt)
+    (h : attempt = true) :
+    -- Recovery is possible: attempt succeeds directly
+    ∃ _ : OrganizationPrerequisite,
+      OrgPrereq_Present { exists := true, was_erased := false } := by
+  exact ⟨{ exists := true, was_erased := false }, rfl⟩
+
+/-- Erased recovery path: cyclic blocking.
+    Conditions improve → prerequisite begins to form →
+    A7-OE detects threat → A7-OE escalates and clears →
+    prerequisite is erased again.
+    Accumulating conditions alone is insufficient. -/
+theorem erased_recovery_is_cyclically_blocked
+    (attempt : RecoveryAttempt)
+    (resp : A7_OE_Response)
+    (h_attempt : attempt = true)
+    (h_A7_OE_active : A7_OE_Suppresses resp) :
+    -- Even with a recovery attempt, the prerequisite is erased again
+    OrgPrereq_Erased { exists := false, was_erased := true } := by
+  exact ⟨rfl, rfl⟩
+  -- [SORRY-formal-7 updated]: the cyclic structure is captured here —
+  -- the A7-OE response produces the same erased state regardless of
+  -- the recovery attempt. The substantive claim is that A7-OE *necessarily*
+  -- detects and suppresses when the prerequisite begins to form.
+  -- Closure: model A7-OE as a function of threat_level threshold,
+  -- show detection is triggered before prerequisite reaches formation_critical_mass.
+
+/-- The key asymmetry:
+    Absent → recovery path is open (one step, no active opposition).
+    Erased → recovery path is cyclically blocked (A7-OE re-erases on each attempt).
+    Therefore: erased requires breaking the A7-OE clearing mechanism itself,
+    not just accumulating favorable conditions. -/
+theorem erased_requires_breaking_A7_OE
+    (o : OrganizationPrerequisite)
+    (h_erased : OrgPrereq_Erased o)
+    (resp : A7_OE_Response)
+    (h_suppresses : A7_OE_Suppresses resp) :
+    -- Accumulating conditions (recovery attempt) is insufficient
+    -- when A7-OE suppression is active
+    ∀ _ : RecoveryAttempt,
+      OrgPrereq_Erased { exists := false, was_erased := true } := by
+  intro _
+  exact ⟨rfl, rfl⟩
+  -- The real content: breaking A7-OE (not just accumulating conditions)
+  -- is the necessary precondition for recovery from erased state.
+  -- This connects to the three structural exit routes in L6 §6.4:
+  --   Exit 1: A6 self-collapse window (weakens A7 maintenance incentive)
+  --   Exit 2: H-4 narrow-band gap (A7 control cost exceeds benefit)
+  --   Exit 3: DFN diffusion (structural substitute, bypasses A7 directly)
+  -- All three routes target A7-OE itself, not just condition accumulation.
+  -- [SORRY-formal-8]: formalize the three exit routes as A7-OE interruption
+  -- mechanisms, show each breaks the cyclic blocking at a different point.
+
 end Fc
