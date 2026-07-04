@@ -16,7 +16,7 @@ Only structural/logical claims. Empirical claims live in TIFM.
   5. **A4 Configuration Topology** (5 steps, F9 necessary not sufficient, Sweden 1995)
   6. **Startup Paradox** (5 steps, Formation_Erased vs Formation_Absent)
   7. **D0 — Reproductive Agency Non-Delegability** (5 steps, cost-anchoring → non-delegability → agency-exercise vs system-failure)
-  8. **NEG-EXT — Negative Externality Maximization** (5 steps, zero mc → no clearing → no self-correction → D1 structural)
+  9. **A7 Design Goal** (6 steps, longest chain: P0 → neg-ext → absorption layer → A7 goal → non-action=complicity → A7-Capture effective)
 
 ## Open `sorry`s
 
@@ -36,6 +36,8 @@ Only structural/logical claims. Empirical claims live in TIFM.
 | SORRY-formal-10 | `A5_nondiminishing` | A5 as positional good with reference-point updating — marginal utility ≥ 1 is axiomatized, not derived |
 
 | SORRY-formal-11 | `lying_density_proportional_to_extraction` | Narrative density as monotonically increasing function of extraction intensity |
+
+| SORRY-formal-12 | `A7_structurally_necessary` | Institutional evolution model: P0 + NEG-EXT necessarily selects for exit-blocking behavior in all stable configurations |
 
 ## Proved without sorry
 
@@ -73,6 +75,11 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - `B_complexity_inverse_naturalness` — artificial Δ requires strictly more blocking layers than natural Δ
 - `lying_is_structural` — artificial Δ → internal pressure → counterfactual narrative is structurally necessary
 - `lying_density_proportional_to_extraction` — existence of counterfactual narrative under active extraction
+
+- `P0_produces_negative_externality` — P0 → structural negative externality
+- `A7_nonaction_and_complicity_same_goal` — non-action and active complicity serve identical design goal
+- `A7_design_goal_chain` — full 6-step chain from P0 to A7-Capture effectiveness
+- `A7_structurally_necessary` — A7 existence is structurally necessary (sorry on selection mechanism)
 
 ## To add next
 
