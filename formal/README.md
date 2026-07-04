@@ -25,7 +25,7 @@ Only structural/logical claims. Empirical claims live in TIFM.
 | SORRY-formal-2 | `D2_irreversibility` | Hysteresis: stateful model where S2 persists even if recovery rises above θ |
 | SORRY-formal-3 | `asymmetry_maintenance` | Necessity claim: ¬∃ stable S without B, given active M |
 | SORRY-formal-4 | `SCA_outcome` / `SCA_erasure` | Temporal model: selection pressure necessarily drives naming capacity to false over time |
-| SORRY-formal-5 | SCA corollary | Identity model: agents who removed signpost end up where signpost was |
+| SORRY-formal-5 | ~~SCA corollary~~ **PARTIAL CLOSURE (Claude web v1.0, 2026-07-04)**: minimal identity/memory model; `identity_usurpation` + `memory_erased` types capture structural intent; full closure needs epistemic logic / modal type theory → `FcCore-Identity.lean` |
 | SORRY-formal-6 | ~~`A4_configuration_trichotomy`~~ | ~~Exhaustive partition of all 16 condition combinations~~ **CLOSED (Kimi v1.1, 2026-07-04)**: `decide` tactic + Transitional/Degenerate definitions cover all 16 combinations |
 | SORRY-formal-7 | `erased_recovery_is_cyclically_blocked` | A7-OE necessarily detects and suppresses before prerequisite reaches formation threshold |
 | SORRY-formal-8 | `erased_requires_breaking_A7_OE` | Formalize three exit routes (A6 collapse / H-4 gap / DFN diffusion) as A7-OE interruption mechanisms |

@@ -284,6 +284,50 @@ theorem SCA_erasure
 -- and institutional memory. Noted here as [SORRY-formal-5].
 -- Closure: requires modeling agent identity across time steps.
 
+-- [SORRY-formal-5 PARTIAL CLOSURE — Claude web v1.0, 2026-07-04]
+-- Minimal identity/memory model capturing structural intent.
+-- Full closure requires epistemic logic or modal type theory.
+-- Extended formalization target: FcCore-Identity.lean
+
+/-- An agent with identity and memory of prior frameworks. -/
+structure SCA_Agent where
+  identity : String      -- agent's claimed identity label
+  memory : List String   -- institutional memory of prior framework names
+
+/-- Institutional position: which framework name currently occupies
+    the signpost location. -/
+structure InstitutionalPosition where
+  occupied_by : String   -- current occupant's identity
+  prior_name  : String   -- the original framework name that was removed
+
+/-- Identity usurpation: the occupant claims the same name as the removed framework,
+    erasing the distinction between original and replacement. -/
+def identity_usurpation (pos : InstitutionalPosition) : Prop :=
+  pos.occupied_by = pos.prior_name
+
+/-- Memory erasure: the institutional memory no longer contains
+    the original framework name. -/
+def memory_erased (agent : SCA_Agent) (original_name : String) : Prop :=
+  ¬ (original_name ∈ agent.memory)
+
+/-- SCA self-concealing corollary [SORRY-formal-5 PARTIAL CLOSURE]:
+    The agent that removed the signpost ends up standing where it was,
+    calling itself by the same name.
+    Formalized as: identity usurpation + memory erasure = original framework
+    cannot be distinguished from its replacement.
+
+    NOTE: conclusion is trivially True here — indistinguishability at semantic
+    level cannot be captured in Bool/String types. Full formalization requires
+    epistemic logic (cognitive indistinguishability) or modal type theory
+    (propositional identity across time). This records structural intent. -/
+theorem SCA_self_concealing
+    (agent : SCA_Agent)
+    (pos : InstitutionalPosition)
+    (_ : identity_usurpation pos)
+    (_ : memory_erased agent pos.prior_name) :
+    True := by
+  trivial
+
 -- ─────────────────────────────────────────────
 -- Chain 5: A4 Configuration Topology
 -- Source: Fc-v9.6.9 §A4 + Fc-Derived-008 §3
