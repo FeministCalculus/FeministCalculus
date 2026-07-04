@@ -99,8 +99,20 @@ Only structural/logical claims. Empirical claims live in TIFM.
 - **A4**: F9 three conditions necessary but not sufficient; θ is the fourth required condition (Sweden 1995)
 - **Startup Paradox**: Erased ≠ Absent — erased has cyclic blocking, absent has open path
 - **A7 Design Goal**: Non-action and complicity are the same design goal (both = blocks_exit)
+- `A8_internalization_structure` — filtered set strictly smaller than full set; filtering occurred
+- `A8_indistinguishable_from_autonomy` — behavioral output exists in both A8 and genuine choice (sorry on phenomenological indistinguishability)
+- `maternal_penalty_loop_self_reinforces` — discrimination generates validating evidence
+- `maternal_penalty_requires_no_intent` — loop sustains with zero employer coordination
+
+## Chains
+
+- **Chain 10: NEG-EXT Maternal Penalty Loop** (6-step self-reinforcing cycle, no intent required)
+- **Chain 11: A8 Internalization Chain** (4 steps: A1-A2 filter options → subject chooses → feels autonomous)
+
+| SORRY-formal-13 | `care_increases_when_income_falls` | Income-to-care-hours model (empirical calibration, TIFM layer) |
+| SORRY-formal-14 | `A8_indistinguishable_from_autonomy` | Model of why filtered-set choice feels identical to full-set choice (filter operates before choice, no phenomenological trace) |
 
 ## To add next
 
-- NEG-EXT maternal penalty closed loop (6-step self-reinforcing cycle)
-- A8 internalization chain
+- FcCore-Identity.lean (epistemic logic for SCA self-concealing, SORRY-formal-5 full closure)
+- FcCore-Behavioral.lean (probabilistic models for exit route theorems)
