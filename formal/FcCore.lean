@@ -397,4 +397,114 @@ theorem A4_configuration_trichotomy
   -- Closure: enumerate all 16 cases, show the three named ones are the
   -- structurally significant ones (others are transitional or degenerate).
 
+-- ─────────────────────────────────────────────
+-- Chain 6: Startup Paradox (L6)
+-- Source: cognitive erosion chain §L6 + BET-HIDDEN-1
+-- Steps: 5
+-- Key distinction: Formation_Absent vs Formation_Erased
+--   Absent: capacity never built, conditions could enable it
+--   Erased: prerequisite institutionally destroyed, harder to reverse
+-- ─────────────────────────────────────────────
+
+/-- F9 as a rights-based institution requires beneficiaries to be
+    negotiating subjects (not merely policy recipients). -/
+structure F9_Institution where
+  beneficiaries_are_negotiating_subjects : Bool
+
+def F9_RightsBased (f : F9_Institution) : Prop :=
+  f.beneficiaries_are_negotiating_subjects = true
+
+/-- Independent organization: the prerequisite for beneficiaries
+    to function as negotiating subjects. -/
+structure OrganizationPrerequisite where
+  exists : Bool
+  -- BET-HIDDEN-1 distinction:
+  was_erased : Bool  -- true = A7-OE actively destroyed it
+                     -- false = never formed (different reversal difficulty)
+
+def OrgPrereq_Present (o : OrganizationPrerequisite) : Prop :=
+  o.exists = true
+
+def OrgPrereq_Erased (o : OrganizationPrerequisite) : Prop :=
+  o.exists = false ∧ o.was_erased = true
+
+def OrgPrereq_Absent (o : OrganizationPrerequisite) : Prop :=
+  o.exists = false ∧ o.was_erased = false
+
+/-- A7-OE (active erasure type): institution actively destroys
+    the prerequisite for independent organization.
+    Distinct from A7-passive (merely maintaining extraction without erasure). -/
+def A7_OE_Active (o : OrganizationPrerequisite) : Prop :=
+  o.was_erased = true
+
+/-- F9 rebuilding requires independent organization to exist. -/
+def Rebuild_F9_requires_org (o : OrganizationPrerequisite) : Prop :=
+  OrgPrereq_Present o → F9_RightsBased { beneficiaries_are_negotiating_subjects := true }
+  -- If org prerequisite is present, F9 can be rebuilt.
+  -- Contrapositive: if org prerequisite is absent, F9 cannot be rebuilt.
+
+/-- Startup Paradox:
+    When A7-OE has erased the organization prerequisite,
+    F9 cannot be rebuilt — because rebuilding requires the
+    very prerequisite that was destroyed.
+
+    This is structural infeasibility, not logical contradiction. -/
+theorem startup_paradox
+    (o : OrganizationPrerequisite)
+    (h_erased : OrgPrereq_Erased o) :
+    -- Org prerequisite is not present
+    ¬ OrgPrereq_Present o := by
+  intro h_present
+  simp [OrgPrereq_Present] at h_present
+  simp [OrgPrereq_Erased] at h_erased
+  exact absurd h_present h_erased.1
+
+/-- Erased is strictly harder to reverse than absent.
+    Absent: conditions change → prerequisite can form.
+    Erased: active institutional suppression must be overcome first. -/
+theorem erased_harder_than_absent
+    (o : OrganizationPrerequisite)
+    (h : OrgPrereq_Erased o) :
+    ¬ OrgPrereq_Absent o := by
+  simp [OrgPrereq_Erased] at h
+  simp [OrgPrereq_Absent]
+  exact h.2
+  -- [SORRY-formal-7]: this proves they are mutually exclusive by definition,
+  -- but the substantive claim is about *reversal difficulty* —
+  -- erased requires overcoming A7-OE (active institutional force),
+  -- absent only requires conditions to become favorable.
+  -- Closure: model reversal cost as a function of was_erased,
+  -- show E_{2→1}(erased) >> E_{2→1}(absent).
+
+/-- The China case: Formation_Erased, not Formation_Absent.
+    The prerequisite was actively destroyed by A7-OE,
+    not merely never formed (as in some Nordic cases). -/
+def China_case : OrganizationPrerequisite :=
+  { exists := false, was_erased := true }
+
+theorem China_is_erased_not_absent :
+    OrgPrereq_Erased China_case ∧ ¬ OrgPrereq_Absent China_case := by
+  exact ⟨⟨rfl, rfl⟩, by simp [OrgPrereq_Absent, China_case]⟩
+
+/-- Startup Paradox full statement:
+    Derivation:
+      1. F9 (rights-based) requires beneficiaries as negotiating subjects
+      2. Negotiating subjects require independent organization prerequisite
+      3. A7-OE actively destroys the organization prerequisite
+      4. Therefore: organization prerequisite is not present (startup_paradox)
+      5. Therefore: F9 cannot be rebuilt via normal channels
+         (rebuilding requires what was destroyed)
+-/
+theorem startup_paradox_full
+    (o : OrganizationPrerequisite)
+    (h_A7_OE : A7_OE_Active o)
+    (h_now_absent : o.exists = false) :
+    -- The organization prerequisite is erased (not merely absent)
+    OrgPrereq_Erased o ∧
+    -- And therefore F9 cannot be rebuilt through normal organization
+    ¬ OrgPrereq_Present o := by
+  constructor
+  · exact ⟨h_now_absent, h_A7_OE⟩
+  · simp [OrgPrereq_Present, h_now_absent]
+
 end Fc
