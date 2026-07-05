@@ -119,12 +119,7 @@ theorem external_distinguishability
     (h_ratio : aud.filter_ratio > 0) :
     auditor_detects_filtering aud := by
   simp [auditor_detects_filtering, h_filter]
-  sorry  -- [SORRY] filtered_set.options < full_set.options
-  -- Auditor detects filtering because full_set.options > filtered_set.options
-  -- when filter_ratio > 0 and filtering is active.
-  -- The structural difference is accessible from the outside (history of
-  -- A2 operations on the option set), not from the inside (subject's
-  -- experience at decision time).
+  exact aud.h_filtered h_filter h_ratio
 
 /-- Fc framework as external audit tool: provides the "coordinate system"
     that makes the filtering visible to the subject retrospectively.

@@ -230,6 +230,9 @@ structure AuditorPerspective where
   filtered_set    : OptionSet
   filter_ratio    : Nat
   filter_active   : Bool  -- true = filtering occurred
+  -- [Invariant] When filtering is active with positive ratio,
+  -- the filtered set is strictly smaller than the full set.
+  h_filtered      : filter_active = true → filter_ratio > 0 → filtered_set.options < full_set.options
 
 
 def Fc_audit_enabled (subject_knows_filtering : Bool) : Prop :=
