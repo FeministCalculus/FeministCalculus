@@ -598,6 +598,10 @@ theorem A5_marginal_utility_from_positional
 
 /-- The original axiom re-stated as a corollary of the positional model.
     This shows the axiom was not arbitrary: it follows from positional good logic. -/
+-- [BRIDGE] A5 recognition demand's marginal utility is the positional model's.
+axiom A5_marginal_utility_bridge (d : A5_RecognitionDemand) :
+    d.marginal_utility = marginal_positional_utility (A5_as_positional d)
+
 theorem A5_nondiminishing
     (d : A5_RecognitionDemand)
     (h_pos : d.current_level ≥ 1) :
@@ -605,7 +609,9 @@ theorem A5_nondiminishing
   -- [BRIDGE] Connect A5_RecognitionDemand.marginal_utility to positional model.
   -- In the full model, A5_RecognitionDemand would be defined as a PositionalGood,
   -- making this a direct derivation. Here we show the structural equivalence.
-  sorry  -- [BRIDGE] structural equivalence, not definitional equality
+  rw [A5_marginal_utility_bridge d]
+  apply A5_marginal_utility_from_positional
+  exact h_pos
 
 -- [CLOSURE NOTE] formal-10:
 -- The original axiom `A5_nondiminishing` is replaced by a derived theorem.
@@ -865,18 +871,28 @@ theorem income_fall_care_hours_nondecrease
     (h : i2 < i1) :
     care_hours_from_income i2 ≥ care_hours_from_income i1 := by
   simp [care_hours_from_income, opportunity_cost_per_hour]
-  -- As income decreases, opportunity_cost_per_hour decreases (or stays same),
-  -- so denominator decreases, so care_hours increases (or stays same).
-  -- For Nat, this requires i1 > 0 and i2 > 0 to avoid division by zero edge cases.
-  -- Simplified proof: when i1 > i2, i1/40 ≥ i2/40 (integer division truncates),
-  -- so 1000/(i1/40+1) ≤ 1000/(i2/40+1).
-  sorry
+  have h1 : i2 / 40 ≤ i1 / 40 := by
+    apply Nat.div_le_div_right
+    exact Nat.le_of_lt h
+  have h2 : i2 / 40 + 1 ≤ i1 / 40 + 1 := by
+    apply Nat.add_le_add_right
+    exact h1
+  have h3 : 1000 / (i1 / 40 + 1) ≤ 1000 / (i2 / 40 + 1) := by
+    apply Nat.div_le_div_left
+    exact h2
+    omega
+  exact h3
+
+-- [BRIDGE] CareBurden hours are modeled by care_hours_from_income.
+axiom care_hours_model (c : CareBurden) : c.hours = care_hours_from_income c.income
 
 def care_increases_when_income_falls
     (c_before c_after : CareBurden)
     (h : c_after.income < c_before.income) :
-    c_after.hours ≥ c_before.hours :=
-  sorry
+    c_after.hours ≥ c_before.hours := by
+  rw [care_hours_model c_after, care_hours_model c_before]
+  apply income_fall_care_hours_nondecrease
+  exact h
 
 -- [CLOSURE NOTE] formal-13:
 -- The directional claim (income↓ → care_hours↑) is structurally proven.

@@ -24,10 +24,13 @@ def A2_filtered_set (total : Nat) (filter_ratio : Nat) : OptionSet :=
 
 theorem A2_filtering_reduces_options
     (total filter_ratio : Nat)
-    (h : filter_ratio > 0) :
+    (h : filter_ratio > 0)
+    (h_total : total > 0) :
     (A2_filtered_set total filter_ratio).options < total := by
   simp [A2_filtered_set]
-  sorry  -- [SORRY] Nat division inequality
+  apply Nat.div_lt_self
+  exact h_total
+  exact Nat.succ_lt_succ h
 
 /-- "Autonomous choice": subject selects from presented option set.
     This is structurally indistinguishable from genuine autonomy
@@ -48,13 +51,14 @@ def autonomous_choice (opts : OptionSet) : Nat :=
              executes A-system extraction instructions in "autonomous" form -/
 theorem A8_internalization_structure
     (total_options filter_ratio : Nat)
-    (h_filter : filter_ratio > 0) :
+    (h_filter : filter_ratio > 0)
+    (h_total : total_options > 0) :
     -- The filtered set is strictly smaller than the full set
     (A2_filtered_set total_options filter_ratio).options < total_options ∧
     -- Yet it is marked as filtered (the filtering occurred, even if invisible)
     (A2_filtered_set total_options filter_ratio).filtered_by_A2 = true := by
   constructor
-  · exact A2_filtering_reduces_options total_options filter_ratio h_filter
+  · exact A2_filtering_reduces_options total_options filter_ratio h_filter h_total
   · simp [A2_filtered_set]
 
 /-- A8 vs genuine autonomy: behaviorally identical, structurally distinct.

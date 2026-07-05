@@ -82,8 +82,8 @@ theorem reality_inversion_at_high_extraction
     (i : Nat)
     (h : i > reality_inversion_threshold) :
     narrative_density i > reality_inversion_threshold * 2 := by
-  simp [narrative_density, reality_inversion_threshold]
-  sorry  -- [SORRY] Nat multiplication monotonicity
+  simp [narrative_density]
+  exact h
 
 -- [CLOSURE NOTE] formal-11:
 -- The substantive claim is that narrative density increases monotonically
