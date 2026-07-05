@@ -21,3 +21,7 @@ archive/
 
 # Lean audit reports (generated, not source)
 formal/*.lean.md
+
+# Lean build cache
+formal/.lake/
+formal/lake-manifest.json
