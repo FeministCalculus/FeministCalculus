@@ -7,10 +7,12 @@
 **v3修正**：类型学表朝鲜条目修正（SORRY-转型-6）；接口文档引用补全版本号（SORRY-转型-8修正）
 
 **接口文档**（含版本号，不含绝对路径）：
-- `Fc-Derived-A5-Kushan-Narrative-v1.0-DRAFT.md`：A5苦善叙事/"没苦硬吃"=A8日常形态
-- `Fc-Derived-A8-Perfect-Empirical-v1.0-DRAFT.md`：A8-Perfect叙事层操作化/感动中国案例
-- `CCST-v3.10.0-HARDENED.md`：D1提取速率递减/D2不可逆阈值/A6寂灭定理
-- `NAST_v1.8_DRAFT.md`：ND11认知污染/N2司护职位/房地产A3接口
+- `Fc-Derived-A5-Kushan-Narrative-v1.0-DRAFT.md`：A5苦善叙事/"没苦硬吃"=A8日常形态【**DRAFT**，4 SORRY + 2 CALIBRATE】
+- `Fc-Derived-A8-Perfect-Empirical-v1.0-DRAFT.md`：A8-Perfect叙事层操作化/感动中国案例【**DRAFT**，4 SORRY + 2 CALIBRATE】
+- `CCST-v3.10.0-HARDENED.md`：D1提取速率递减/D2不可逆阈值/A6寂灭定理【**HARDENED**】
+- `NAST_v1.8_DRAFT.md`：ND11认知污染/N2司护职位/房地产A3接口【**DRAFT**】
+
+**接口文档状态说明**：前两个接口文档是DRAFT，有未闭合SORRY，缺口会传导到本文档。跨文档共性阻塞项：A8渗透率量化测量（SORRY-A8-Metrics-1）。
 
 ---
 
