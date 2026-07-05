@@ -25,3 +25,6 @@ formal/*.lean.md
 # Lean build cache
 formal/.lake/
 formal/lake-manifest.json
+
+# Spotlight / 系统索引标记
+.metadata_never_index
