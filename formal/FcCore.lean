@@ -125,7 +125,7 @@ theorem living_body_paradox
     (h_intact : AgencyIntact a) :
     A1_Demoted a := by
   have h_prod : body_in_production a := by
-    simp [body_in_production, A3_MonetaryCompleteness, EmbodimentConstraint]; trivial
+    simp [body_in_production]
   have h_susp := body_production_suspends_agency_axiom a h_prod
   simp [A1_Demoted, h_susp]
 
@@ -156,7 +156,7 @@ def SystemState.S1 : SystemState := { current := false, has_been_S2 := false }
 def SystemState.S2 : SystemState := { current := true,  has_been_S2 := true  }
 
 def crosses_threshold (recovery : ℕ) (θ : Threshold) (prev : SystemState) : SystemState :=
-  let current_S2 := recovery ≤ θ
+  let current_S2 := Nat.ble recovery θ
   { current := current_S2, has_been_S2 := prev.has_been_S2 || current_S2 }
 
 /-- D2 irreversibility: has_been_S2 is monotonic under OR — once set, always set.
@@ -2358,18 +2358,37 @@ theorem A3_reactivates_A1
   -- This is the Chain 1 bridge axiom (body_production_suspends_agency_axiom)
   -- reappearing at the contract-execution level.
 
-  /-- Embodied contract: a contract whose execution requires the contractor's
-      physical body to be present and used (not just functionally equivalent labor).
-      Examples: surrogacy (9 months of pregnancy), sex work (body-as-service),
-      live-in care (body-as-presence), military service (body-as-risk-bearer).
+  /-- Embodied contract: a contract whose execution requires THIS SPECIFIC
+      contractor's body — the deliverable cannot be separated from this particular
+      body, nor can it be produced by a substitute (human or machine).
+      The criterion is IRREPLACEABILITY, not merely physical presence.
+
+      Criterion: the deliverable IS the use of this specific body, such that
+      no other body (or AI/machine substitute) could fulfill the contract.
+
+      Clear cases (criterion met):
+        Surrogacy: 9 months of THIS person's pregnancy — irreplaceable
+        Live-in care with specific relationship: presence itself is the service
+
+      Borderline/excluded cases (criterion NOT met without further analysis):
+        Sex work: online/AI forms exist where no body is present;
+          even in-person forms, the question is whether THIS specific body
+          is required or whether any body meeting certain criteria would do
+        Military service: body bears risk, but the deliverable ("national defense
+          service") could in principle be fulfilled by others — body-as-risk-bearer
+          is not the same as body-as-irreplaceable-deliverable
+
       Counter-example: software development (deliverable can be produced by anyone
-      or anything with equivalent capability — body is not structurally required). -/
+        or anything with equivalent capability — body not structurally required) -/
   structure EmbodiedContract where
-    requires_physical_presence : Bool
-    deliverable_requires_body  : Bool  -- true = the deliverable IS the body/use-of-body
+    requires_physical_presence  : Bool
+    deliverable_requires_body   : Bool  -- true = the deliverable IS the body/use-of-body
+    body_is_irreplaceable       : Bool  -- true = no substitute (human or AI) can fulfill
 
   def is_embodied_contract (c : EmbodiedContract) : Prop :=
-    c.requires_physical_presence = true ∧ c.deliverable_requires_body = true
+    c.requires_physical_presence = true ∧
+    c.deliverable_requires_body  = true ∧
+    c.body_is_irreplaceable      = true
 
   /-- Contract execution as body-in-production: when an embodied contract is executed,
       the contractor's body is structurally included in the production function
