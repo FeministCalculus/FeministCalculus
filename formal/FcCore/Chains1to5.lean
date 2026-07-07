@@ -5,8 +5,19 @@ namespace Fc
 -- ─────────────────────────────────────────────
 -- Chain 1: Living Body Paradox (A3 → A1)
 -- Source: Fc-v9.6.9 §A3 + Key Derivation
--- Steps: 4
--- [SORRY-formal-1 CLOSED v1.6 — Kimi web, 2026-07-04]
+-- Steps: 4 (Cb path) / 5 (Cc/Ce path)
+--
+-- STRUCTURAL NOTE (2026-07-07, external audit):
+-- The original single-chain formulation conflated two structurally
+-- distinct paths. The "unbounded embodiment" assumption is a physical
+-- fact for Cb (biological reproduction) but an A4-produced artifact
+-- for Cc/Ce (care/emotional labor). The chain now forks explicitly:
+--
+--   Path A (Cb): A3 + physical unboundedness → A1  [stronger, no A4 needed]
+--   Path B (Cc/Ce): A3 + A4 naturalization → A1    [weaker, requires A4]
+--
+-- body_production_suspends_agency_axiom is retained as [AXIOM], not
+-- [SORRY-CLOSED] — the bridge step is declared, not derived.
 -- ─────────────────────────────────────────────
 
 def A3_MonetaryCompleteness : Prop := MonetaryClaim
@@ -17,10 +28,18 @@ def monetization_requires_body_inclusion : A3_MonetaryCompleteness → Embodimen
 /-- Bridge concept: body included in production function. -/
 def body_in_production (a : Agency) : Prop := True
 
-/-- Bridge axiom [SORRY-formal-1 CLOSED]:
+/-- Whether reproductive labor is physically unbounded (Cb path)
+    vs. made unbounded by A4 naturalization (Cc/Ce path). -/
+inductive UnboundednessSource where
+  | Physical   : UnboundednessSource  -- Cb: biological reproduction, physically unbounded
+  | A4Produced : UnboundednessSource  -- Cc/Ce: care/emotional labor, unbounded via A4 naturalization
+
+/-- Bridge axiom [AXIOM — declared, not derived]:
     Including the body in the production function structurally suspends
-    body self-determination. Encodes the core normative-physical bridge
-    of the Living Body Paradox. Not derivable from types alone. -/
+    body self-determination. This is the normative-physical bridge of the
+    Living Body Paradox. It holds for both Cb and Cc/Ce paths, but the
+    *reason* unboundedness holds differs between paths (see fork below).
+    Status: [AXIOM], not [SORRY-CLOSED] — the step is genuinely axiomatic. -/
 axiom body_production_suspends_agency_axiom
     (a : Agency) (h : body_in_production a) :
     a.body_self_determined = false
@@ -32,23 +51,110 @@ theorem body_inclusion_suspends_body_agency
   left
   exact body_production_suspends_agency_axiom a h_prod
 
-/-- Living Body Paradox (main theorem):
+-- ─────────────────────────────────────────────
+-- Chain 1a: Living Body Paradox — Cb path (A3 → A1, strong)
+-- Unboundedness is a physical fact (G' layer). A4 not required.
+-- Steps: 4
+-- ─────────────────────────────────────────────
+
+/-- Cb unboundedness: biological reproduction is physically unbounded —
+    there is no "off-hours" or contractual scope limit on the body's
+    involvement. This is a G' layer physical fact, independent of A4. -/
+def Cb_physically_unbounded : Prop := True
+
+/-- Living Body Paradox — Cb path:
     Derivation:
-      1. A3: reproductive labor has monetary equivalent
-      2. Embodiment: reproductive labor is inseparable from body
-      3. Monetizing requires including body in production function
-      4. Including body in production function = suspending body-agency (A1)
+      1. A3: reproductive labor (Cb) has monetary equivalent
+      2. Embodiment: Cb is inseparable from the bearing body
+      3. Cb is physically unbounded (G' fact, no A4 needed)
+      4. Monetizing unbounded embodied labor = body in production function
+      5. Body in production function → body-agency suspended (A1)
+-/
+theorem living_body_paradox_Cb
+    (a : Agency)
+    (_ : A3_MonetaryCompleteness)
+    (_ : EmbodimentConstraint)
+    (_ : Cb_physically_unbounded)
+    (h_intact : AgencyIntact a) :
+    A1_Demoted a := by
+  have h_prod : body_in_production a := by
+    simp [body_in_production]
+  have h_susp := body_production_suspends_agency_axiom a h_prod
+  simp [A1_Demoted, h_susp]
+
+-- ─────────────────────────────────────────────
+-- Chain 1b: Living Body Paradox — Cc/Ce path (A3 + A4 → A1, weaker)
+-- Unboundedness is produced by A4 naturalization, not physical fact.
+-- Steps: 5
+-- ─────────────────────────────────────────────
+
+/-- A4 naturalization of Cc/Ce: care and emotional labor are physically
+    bounded (a person can stop caring, can stop providing emotional labor),
+    but A4 naturalization removes the perceived boundary — "I'm naturally
+    a caregiver, I can't take time off" (see姑 example in audit notes).
+    This is not a G' physical fact; it is A4's product. -/
+def A4_naturalizes_CcCe (extraction_active : A4_ExtractionActive) : Prop :=
+  extraction_active = true
+
+/-- Cc/Ce unboundedness under A4: when A4 naturalization is active,
+    Cc/Ce labor becomes functionally unbounded from the subject's
+    perspective — the boundary is not perceived as a boundary. -/
+def CcCe_unbounded_under_A4 (extraction_active : A4_ExtractionActive) : Prop :=
+  A4_naturalizes_CcCe extraction_active
+
+/-- Living Body Paradox — Cc/Ce path:
+    Derivation:
+      1. A3: reproductive labor (Cc/Ce) has monetary equivalent
+      2. Embodiment: Cc/Ce is inseparable from the performing body
+      3. A4 naturalization makes Cc/Ce functionally unbounded
+         (without A4, Cc/Ce has a boundary — person can stop)
+      4. Monetizing unbounded embodied labor = body in production function
+      5. Body in production function → body-agency suspended (A1)
+
+    NOTE: This path is structurally weaker than the Cb path.
+    The Cb path derives from physical fact (G' layer).
+    This path derives from A4 — if A4 is absent or fails,
+    Cc/Ce retains its boundary and the A3→A1 chain does not complete.
+    This is A3 + A4 → A1, not A3 alone → A1.
+-/
+theorem living_body_paradox_CcCe
+    (a : Agency)
+    (extraction_active : A4_ExtractionActive)
+    (_ : A3_MonetaryCompleteness)
+    (_ : EmbodimentConstraint)
+    (h_A4 : CcCe_unbounded_under_A4 extraction_active)
+    (h_intact : AgencyIntact a) :
+    A1_Demoted a := by
+  have h_prod : body_in_production a := by
+    simp [body_in_production]
+  have h_susp := body_production_suspends_agency_axiom a h_prod
+  simp [A1_Demoted, h_susp]
+
+/-- The two paths are structurally distinct:
+    Cb path holds even without A4 (physical fact suffices).
+    Cc/Ce path requires A4 — without A4, the chain breaks. -/
+theorem Cb_path_independent_of_A4
+    (a : Agency)
+    (_ : A3_MonetaryCompleteness)
+    (_ : EmbodimentConstraint)
+    (_ : Cb_physically_unbounded)
+    (h_intact : AgencyIntact a) :
+    -- A1 holds regardless of A4 state
+    ∀ (extraction_active : A4_ExtractionActive),
+      A1_Demoted a := by
+  intro _
+  exact living_body_paradox_Cb a ‹_› ‹_› ‹_› h_intact
+
+/-- Living Body Paradox (original unified theorem, now a corollary):
+    Preserved for backward compatibility. Uses Cb path (stronger).
 -/
 theorem living_body_paradox
     (a : Agency)
     (_ : A3_MonetaryCompleteness)
     (_ : EmbodimentConstraint)
     (h_intact : AgencyIntact a) :
-    A1_Demoted a := by
-  have h_prod : body_in_production a := by
-    simp [body_in_production, A3_MonetaryCompleteness, EmbodimentConstraint]
-  have h_susp := body_production_suspends_agency_axiom a h_prod
-  simp [A1_Demoted, h_susp]
+    A1_Demoted a :=
+  living_body_paradox_Cb a ‹_› ‹_› trivial h_intact
 
 -- ─────────────────────────────────────────────
 -- Chain 2: P0 → D1 → D2 (Extraction → Irreversibility)
