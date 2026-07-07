@@ -84,10 +84,13 @@ theorem null_feedback_boundary_forward
 def NF_total_risk_cost (r : NF_RiskSource) (total : Nat) : Prop :=
   r.active = true → total > 0
 
-/-- [AXIOM] 成本守恒（量化版本）：
+/-- [SORRY-formal-21] 成本守恒（量化版本）：
     总风险成本 = 制度吸收 + 施害者承担 + V/V' 具身承担 + 环境耗散
     这是量化守恒，不是 Bool 转移。
-    量化关系保证"不消失"，但不保证类型可互换（见下方 incommensurability）。 -/
+
+    axiom-level 建模假设，不是从更基础的原则推导出来的。
+    如果被质疑（比如成本可能真的被系统吸收/消失），整个反向定理需要重审。
+    闭合条件 = 从物理/社会因果论证成本不会凭空消失（能量守恒的社会版本）。 -/
 axiom NF_cost_conservation
     (r : NF_RiskSource) (s : NF_System) (v : NF_Victim) (v' : NF_SubstituteNode)
     (total dissipated : Nat)
@@ -98,10 +101,15 @@ axiom NF_cost_conservation
           + v.embodied_cost + v'.embodied_cost_borne
           + dissipated
 
-/-- [AXIOM] 类型不可通约（Fc 立场）：
+/-- [SORRY-formal-22] 类型不可通约（Fc 立场）：
     Institutional 类型的成本承担和 Embodied 类型的成本承担不可互相替代，
     即使数量相等也不构成功能替代。
-    V' 跑路 100 公里 ≠ 警察出警一次；具身自保 ≠ 制度履职。 -/
+    V' 跑路 100 公里 ≠ 警察出警一次；具身自保 ≠ 制度履职。
+
+    axiom-level 建模假设——这是 Fc 的规范立场，编码进公理系统。
+    如果承认功能替代（如：只要"有人承担成本"就行），整个 Chain 18 论点转向。
+    闭合条件 = 从物质主义论证制度成本和具身成本的物理不可交换性
+    （或明确标记为规范公理，不寻求进一步论证）。 -/
 axiom NF_cost_incommensurability
     (c1 c2 : Cost)
     (h_type_diff : c1.ctype ≠ c2.ctype) :
