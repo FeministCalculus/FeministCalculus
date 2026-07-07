@@ -31,9 +31,12 @@ import Mathlib.Tactic
 它可以在 A8 和 econ 都为 0 时单独使 A3 叙事有效，解释了“14岁以后告强奸很难”现象。
 
 ## 核心定理
-1. `A8_independent_contribution`：econ=0 时 A8 独立贡献单调（路径1有效）
-2. `A8_amplifies_economic_coercion`：econ>0 时 A8 放大效应单调（路径2有效）
-3. `A7_bias_independent_contribution`：A7 先验偏袒独立贡献单调（v5 新增）
+1. `A8_independent_contribution`：econ=0 时 A8 独立贡献单调（路径1）
+2. `A8_amplifies_economic_coercion`：econ>0 时 A8 放大效应单调（路径2）
+3. `A7_bias_independent_contribution`：A7 先验偏袒独立贡献单调（v5 新增，路径3）
+4. `fourteen_consent_case`：14岁案例——a8=0 ∧ econ=0 时叙事效力 ≥ a7_prior_bias（v5.1 修正为下界）
+5. `platform_friction_reduces_effectiveness`：平台摩擦↑ → 效力↓（v5.1 新增，语义一致性证明）
+6. `sigmoid_monotone`：sigmoid 函数单调性（Real 版本相对 Nat 近似的实质增量）
 
 ## 剩余 SORRY / CALIBRATE
 - [SORRY-Chain16-权重参数]：三条路径相对权重未定（w_indep, w_amp, w_a7 需实证拟合）
@@ -67,7 +70,7 @@ noncomputable def a8_penetration (ctx : A8ExposureContext) : ℝ :=
 structure A3NarrativeContext where
   a8_penetration    : ℝ   -- ∈ [0,1]，已经过 sigmoid
   a7_prior_bias     : ℝ   -- ≥ 0，A7 / 司法 / bro 对施害者叙事的先验偏袒
-  platform_friction : ℝ   -- ≥ 0
+  platform_friction : ℝ   -- ≥ 0，平台摩擦力（friction↑ → 效力↓）
   legal_form        : Bool
   economic_coercion : ℝ   -- ≥ 0
 
@@ -79,20 +82,29 @@ noncomputable def base_a3 (a8 : ℝ) : ℝ := a8
     使用 (1 + a8) 形式，保证 a8=0 时放大系数为 1（不放大也不缩小）。 -/
 noncomputable def a8_scaling (a8 : ℝ) : ℝ := 1 + a8
 
-/-- A3 叙事效力 v5 组合模型：
+/-- 平台贡献：友好度 = 1 / (1 + friction)。
+    friction=0 → 贡献=1（平台完全不阻碍叙事传播）
+    friction→∞ → 贡献→0（平台完全阻断）
+    连续单调衰减，避免 v5 早期版本的 if-else 阶梯逻辑。
+    命名与语义一致：platform_friction（摩擦）越高，叙事效力越低。 -/
+noncomputable def platform_contribution (friction : ℝ) : ℝ := 1 / (1 + friction)
+
+/-- A3 叙事效力 v5.1 组合模型（2026-07-07 修正 platform 语义）：
     effectiveness = base_a3(a8) + econ * a8_scaling(a8) + a7_prior_bias
-                    + platform_relief + legal_bonus
+                    + platform_contribution(friction) + legal_bonus
 
-    区别于 v2 的 Nat 近似：这里 base_a3 和 a8_scaling 都是 a8 的连续单调函数，
-    捕获 sigmoid 形态的边际递增/递减，而不是阶梯截断。
-
-    2026-07-07 修正：该变量不再被称为 `A3_voluntary_appearance`，
-    因为它不是 A3 叙事产出本身，而是 A8/A7 等因素影响下的叙事**效力**。 -/
+    修正说明（v5→v5.1）：mimo 审计指出原 v5 中
+    `if platform_friction > 0 then 0 else 1` 与变量名 friction（摩擦力）
+    语义不一致（friction=0 才有贡献，理应 friction=0 时贡献最高，且连续衰减）。
+    v5.1 改为 1/(1+friction) 连续衰减，保证：
+      - friction=0 → 贡献=1（最大，与变量名一致：无摩擦→最大传播）
+      - friction↑ → 贡献↓（严格单调）
+      - 无阶梯截断 -/
 noncomputable def A3_narrative_effectiveness (ctx : A3NarrativeContext) : ℝ :=
   base_a3 ctx.a8_penetration
   + ctx.economic_coercion * a8_scaling ctx.a8_penetration
   + ctx.a7_prior_bias
-  + (if ctx.platform_friction > 0 then 0 else 1)
+  + platform_contribution ctx.platform_friction
   + (if ctx.legal_form then (1 : ℝ)/2 else 0)
 
 /-- **定理1（A8 独立贡献）**：
@@ -142,19 +154,50 @@ theorem A7_bias_independent_contribution
   simp only [A3_narrative_effectiveness, base_a3, a8_scaling]
   linarith
 
-/-- **14岁性同意案例的形式化速写**：
-    在 econ=0、a8=0、平台有摩擦（无平台背书）、无法律形式优惠时，
-    A3 叙事效力完全由 A7 先验偏袒决定。
-    这说明 A7_prior_bias 可以单独让 A3 叙事过关。 -/
+/-- **14岁性同意案例的形式化速写（v5.1 修正）**：
+    在 econ=0、a8=0、无法律形式优惠时，A3 叙事效力 ≥ A7 先验偏袒。
+    这说明即使被提取者未内化（a8=0）且无经济胁迫（econ=0），
+    A7 先验偏袒仍能单独贡献至少 a7_prior_bias 的叙事效力，
+    平台贡献进一步在其上叠加（不会削减 a7 部分）。
+
+    修正说明：v5 原定理断言 effectiveness = a7_prior_bias（等式），
+    依赖 platform_friction > 0 → platform 贡献 = 0 的阶梯逻辑。
+    v5.1 platform 改为连续衰减 1/(1+friction)，等式不再成立，
+    但 ≥ 关系仍然成立且更强——A7 先验偏袒是叙事效力的下界。 -/
 theorem fourteen_consent_case
     (ctx : A3NarrativeContext)
-    (h_econ : ctx.economic_coercion = 0)
-    (h_a8   : ctx.a8_penetration = 0)
-    (h_plat : ctx.platform_friction > 0)
+    (h_econ  : ctx.economic_coercion = 0)
+    (h_a8    : ctx.a8_penetration = 0)
+    (h_plat  : ctx.platform_friction ≥ 0)
     (h_legal : ctx.legal_form = false) :
-    A3_narrative_effectiveness ctx = ctx.a7_prior_bias := by
-  simp only [A3_narrative_effectiveness, base_a3, a8_scaling, h_econ, h_a8]
-  norm_num [h_plat, h_legal]
+    A3_narrative_effectiveness ctx ≥ ctx.a7_prior_bias := by
+  simp only [A3_narrative_effectiveness, base_a3, a8_scaling,
+             platform_contribution, h_econ, h_a8, h_legal, Bool.false_eq_true, if_false]
+  have h_pc_nonneg : (1 : ℝ) / (1 + ctx.platform_friction) ≥ 0 := by
+    apply div_nonneg
+    · exact zero_le_one
+    · linarith
+  linarith
+
+/-- **平台摩擦单调性（v5.1 新增）**：
+    platform_friction 增加 → 平台贡献减少 → A3 叙事效力减少。
+    这是 mimo 审计要求的"命名与语义一致"的形式化证明：
+    friction↑（摩擦增大）→ effectiveness↓（叙事更难传播）。 -/
+theorem platform_friction_reduces_effectiveness
+    (ctx : A3NarrativeContext) (delta : ℝ)
+    (h_friction_nonneg : ctx.platform_friction ≥ 0)
+    (h_delta_pos : delta > 0) :
+    A3_narrative_effectiveness { ctx with platform_friction := ctx.platform_friction + delta }
+    ≤ A3_narrative_effectiveness ctx := by
+  simp only [A3_narrative_effectiveness, base_a3, a8_scaling, platform_contribution]
+  have h1 : (1 : ℝ) + ctx.platform_friction > 0 := by linarith
+  have h2 : (1 : ℝ) + (ctx.platform_friction + delta) > 0 := by linarith
+  have h3 : (1 : ℝ) + ctx.platform_friction ≤ 1 + (ctx.platform_friction + delta) := by linarith
+  have h4 : (1 : ℝ) / (1 + (ctx.platform_friction + delta))
+          ≤ 1 / (1 + ctx.platform_friction) := by
+    apply div_le_div_of_nonneg_left _ h1 h3
+    exact zero_le_one
+  linarith
 
 /-- **推论：Sigmoid 单调性**（A8 渗透率函数本身也是单调的）。
     这是 v4 相对 Nat 近似的实质性收获：sigmoid 是真正的 S 形连续函数。 -/
