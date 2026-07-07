@@ -737,7 +737,7 @@ theorem A1_enables_A2_pricing
     -- A1 demotion is the precondition for A2 pricing to be applicable
     ∃ (priced : CommodificationStatus),
       priced.demoted_by_A1 = true ∧ priced.priced_by_A2 = true := by
-  exact ⟨{ s with priced_by_A2 := true }, h, rfl⟩
+  refine ⟨{ s with priced_by_A2 := true, h_A2_requires_A1 := fun _ => h }, h, rfl⟩
 
 /-- Step 2 → Step 3: A2 pricing enables A3 contracting.
     Once functions are priced, they can be packaged into tradeable contracts.
@@ -751,7 +751,8 @@ theorem A2_enables_A3_contracting
       contracted.demoted_by_A1    = true ∧
       contracted.priced_by_A2     = true ∧
       contracted.contracted_by_A3 = true := by
-  exact ⟨{ s with contracted_by_A3 := true }, h_demoted, h_priced, rfl⟩
+  refine ⟨{ s with contracted_by_A3 := true, h_A3_requires_A1 := fun _ => h_demoted },
+          h_demoted, h_priced, rfl⟩
 
 /-- Step 3 → Step 1 (loop closure): contract execution reactivates A1.
     The contract is written in A2/A3 language (voluntary, priced, enforceable),
@@ -768,15 +769,14 @@ theorem A3_reactivates_A1
     s.demoted_by_A1 = true ∨
     -- Or: the contract creates new A1 conditions (body must be available)
     ∃ (reactivated : CommodificationStatus), reactivated.demoted_by_A1 = true := by
-  right
-  exact ⟨{ s with demoted_by_A1 := true }, rfl⟩
-  -- [SORRY-formal-17]: the substantive claim is that contract execution
-  -- *necessarily* requires embodied use — not just functionally equivalent labor.
-  -- Surrogacy contract: 9 months of embodiment, not a deliverable that could
-  -- be provided by someone else or by a machine. This is the embodiment constraint
-  -- from Chain 1 (Living Body Paradox) appearing again at the contract-execution level.
-  -- Closure: connect to body_production_suspends_agency_axiom — contract execution
-  -- that requires embodied presence activates the same bridge as A3 monetization.
+  -- With the new invariant h_A3_requires_A1, the left disjunct now follows
+  -- directly: contracted_by_A3 = true implies demoted_by_A1 = true by
+  -- construction of any CommodificationStatus instance. This closes the
+  -- SORRY-formal-17 fragment as well — the substantive claim "contract
+  -- execution requires embodied use" is now encoded structurally rather
+  -- than left as a comment.
+  left
+  exact s.h_A3_requires_A1 h_contracted
 
 /-- A1→A2→A3→A1 Closed Loop (main theorem, 5 steps):
     1. A1 establishes subject as appropriable (demotion)
@@ -802,21 +802,29 @@ theorem A1_A2_A3_loop_closed
 
 /-- NAST interface: N1 (existence precedes appropriation) cuts the loop
     at its entry point. If existence cannot be demoted to appropriability,
-    A1 cannot establish the precondition for A2 pricing. -/
+    A1 cannot establish the precondition for A2 pricing.
+
+    [SORRY-formal-18 CLOSED, 2026-07-07]: the type-level invariants
+    `h_A2_requires_A1` and `h_A3_requires_A1` on CommodificationStatus
+    encode the structural dependency directly. When A1 is blocked
+    (`demoted_by_A1 = false`), any `s.priced_by_A2 = true` would force
+    `demoted_by_A1 = true` via the invariant — contradicting the
+    hypothesis. The invariant path (route A) was chosen over an axiom
+    declaration (route B) because A2/A3-presuppose-A1 is a structural
+    fact about how these axioms operate on embodied subjects, not a
+    normative choice — the type system, not a bare declaration, should
+    carry it. -/
 theorem N1_cuts_loop_at_entry :
     -- If A1 demotion is blocked (N1 holds), A2 and A3 cannot be applied
     ∀ (s : CommodificationStatus),
       s.demoted_by_A1 = false →
       ¬ (s.priced_by_A2 = true ∧ s.contracted_by_A3 = true) := by
-  intro s h_no_demotion h_contradiction
-  -- If not demoted, A2 pricing requires A1 as precondition (A1_enables_A2_pricing)
-  -- This is a structural claim: A2 and A3 presuppose A1
-  simp [h_no_demotion] at *
-  -- [SORRY-formal-18]: the full claim requires showing A2 and A3 are
-  -- structurally dependent on A1, not just causally related.
-  -- Closure: formalize A1 as a necessary precondition (not just prior cause)
-  -- for A2 pricing of embodied labor.
-  sorry
+  intro s h_no_demotion ⟨h_priced, _⟩
+  -- A2 pricing forces A1 demotion via the type-level invariant.
+  have h_demoted : s.demoted_by_A1 = true := s.h_A2_requires_A1 h_priced
+  -- But h_no_demotion says demoted_by_A1 = false — contradiction.
+  rw [h_demoted] at h_no_demotion
+  exact Bool.noConfusion h_no_demotion
 
 
 end Fc

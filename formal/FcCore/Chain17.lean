@@ -58,8 +58,10 @@ theorem reduction_enables_A3
     (a : ASystemNode) (n : NonASystemNode) :
     ∃ (contracted : CommodificationStatus),
       contracted.demoted_by_A1 = true ∧ contracted.contracted_by_A3 = true :=
-  ⟨{ (a.process n).val with contracted_by_A3 := true },
-   (a.process n).property, rfl⟩
+  let s := (a.process n).val
+  let h_dem : s.demoted_by_A1 = true := (a.process n).property
+  ⟨{ s with contracted_by_A3 := true, h_A3_requires_A1 := fun _ => h_dem },
+   h_dem, rfl⟩
 
 /-- N1 cuts reduction:
     If N1 (existence precedes appropriation) holds for a non-A-system node,

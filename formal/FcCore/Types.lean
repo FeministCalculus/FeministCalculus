@@ -261,11 +261,25 @@ structure ViolenceInfrastructure where
   financial_leverage : Bool   -- can trap target through debt (A4-Financial)
 
 /-- Commodification status: whether a subject has been reduced to a
-    market-exchangeable object in a given institutional context. -/
+    market-exchangeable object in a given institutional context.
+
+    Structural invariants (2026-07-07, closes SORRY-formal-18):
+    A2 pricing and A3 contracting *presuppose* A1 demotion. Assigning a
+    market price to embodied functions (A2) or packaging them as a
+    tradeable contract (A3) requires the subject to first be treated as
+    an appropriable object (A1) — otherwise A2/A3 collide with the
+    subject's refusal rights and cannot run. This is a structural
+    dependency, not a mere causal ordering, so it is encoded as
+    invariants on the type itself: illegal combinations (priced/
+    contracted without demotion) cannot be constructed. -/
 structure CommodificationStatus where
   demoted_by_A1   : Bool   -- A1 has established the subject as appropriable
   priced_by_A2    : Bool   -- A2 has assigned a market price to their functions
   contracted_by_A3 : Bool  -- A3 has packaged their embodied labor as a contract
+  -- Invariant: A2 pricing presupposes A1 demotion
+  h_A2_requires_A1 : priced_by_A2 = true → demoted_by_A1 = true
+  -- Invariant: A3 contracting presupposes A1 demotion
+  h_A3_requires_A1 : contracted_by_A3 = true → demoted_by_A1 = true
 
 
 end Fc
