@@ -131,15 +131,22 @@ theorem cyclic_blocking_cost_increases
   -- Closure: model reversal cost as a function of was_erased,
   -- show E_{2→1}(erased) >> E_{2→1}(absent).
 
-/-- The China case: Formation_Erased, not Formation_Absent.
-    The prerequisite was actively destroyed by A7-OE,
-    not merely never formed (as in some Nordic cases). -/
+/-- The China case: Formation_Absent, not Formation_Erased.
+    2026-07-19 framework-author ruling: no independent feminist
+    organization ever existed in China — activist networks and
+    school-administered clubs never met the Independent(O) threshold,
+    and the Women's Federation is a state-built placeholder occupant
+    (pre-occupied, not erased). The actual F9 China case is the revoked
+    unit-based childcare entitlement (administrative grant, not a
+    rights-based institution) — see case doc F9失效分析_中国vs北欧.
+    NOTE: reclassified from Erased (was_erased := true) on 2026-07-19;
+    compile verification deferred (lake build pending on Claude node). -/
 def China_case : OrganizationPrerequisite :=
-  { org_exists := false, was_erased := true }
+  { org_exists := false, was_erased := false }
 
-theorem China_is_erased_not_absent :
-    OrgPrereq_Erased China_case ∧ ¬ OrgPrereq_Absent China_case := by
-  exact ⟨⟨rfl, rfl⟩, by simp [OrgPrereq_Absent, China_case]⟩
+theorem China_is_absent_not_erased :
+    OrgPrereq_Absent China_case ∧ ¬ OrgPrereq_Erased China_case := by
+  exact ⟨⟨rfl, rfl⟩, by simp [OrgPrereq_Erased, China_case]⟩
 
 /-- Startup Paradox full statement:
     Derivation:
