@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2026-07-19 — A7-OE 假说归档 + BET-ORG-ERASE 自立 + China_case 改挂
+
+- 框架作者裁定：BET 依历史锚定自立，无需等待 A7-OE；`peripheral/BET-v1.7-DRAFT.md` 的 A7-OE 调和条件与 12 个月兜底计时**废止**，BET-ORG-ERASE 转正式执行机制
+- A7-OE 降级为假说：候选条目**不入** v9.6.9，讨论记录归档于草稿区 `A7-OE.md`（三包提案挂起，含 R1–R5 与 MP-3 规则裁决，重启可用）
+- 事实裁定：中国 feminist org 域 erased 为空集（独立女权组织从未形成，妇联为 state-built 占位主体 pre-occupied）；`formal/CASE_MAPPING.md` 的 `China_case` 改挂 `was_erased := false`（Formation_Absent），`formal/FcCore/Chains6to10.lean` 实例与定理同步（`China_is_absent_not_erased`；⚠️lake build 验证待 Claude 节点）
+- F9 中国真案例归位：单位制托育 = 行政配置 F9_partial，市场化转型中被收回——"赠予型 F9_partial 可撤回性"锚点（分析见草稿区《F9失效分析_中国vs北欧》，待入库）
+- 话语层归类裁定：针对女性言论空间的系统性清除归 **A7**（通道消除）非 A5-负向执行；`core/Fc-v9.6.9-REVISED-Core.md` A5-负向执行块新增【边界裁定注】
+- `CHANGE_INDEX.md`：待处理项"BET A7-OE接口注释"关闭（接口已移除）；新增本次变更传播记录
+
 ## 2026-07-19 — 术语修正：A8-θ → A8-θ_cult
 
 - 动机：A8-θ（文化内化吸收系数）与 CCST θ_k（不可逆物理阈值）命名冲突；背刺定理另有 θ_high。三 θ 同名不同物

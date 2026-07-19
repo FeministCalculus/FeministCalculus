@@ -18,6 +18,16 @@
 
 ## 历史变更记录
 
+### [2026-07-19] A7-OE 假说归档 + BET-ORG-ERASE 自立 + China_case 改挂
+- 框架作者裁定：BET 依历史锚定自立，废除 A7-OE 调和条件与 12 个月兜底计时；A7-OE 降级为假说归档（草稿区 A7-OE.md），不入 v9.6.9
+- 事实裁定：中国 feminist org 域 erased 为空集（无独立女权组织曾形成），妇联为 state-built 占位主体（pre-occupied）；话语层系统性清除（炸群/炸号）归 A7 非 A5-负向执行
+├── `peripheral/BET-v1.7-DRAFT.md`：调和条件+兜底废止，BET-ORG-ERASE 转正式，状态行与 §6.1 接口表同步 ✓
+├── `formal/CASE_MAPPING.md`：China_case `was_erased := true→false`（Formation_Erased→Absent），新增改挂记录+F9 单位托育真案例说明+话语层 A7 裁定 ✓
+├── `formal/FcCore/Chains6to10.lean`：China_case 改值，定理更名 China_is_absent_not_erased ✓（⚠️lake build 验证待 Claude 节点）
+├── `core/Fc-v9.6.9-REVISED-Core.md`：A5-负向执行块新增【边界裁定注】（承认层过滤 vs 通道消除判据）✓
+├── 草稿区 `A7-OE.md`：状态头登记归档 ✓
+└── 状态：✓完成
+
 ### [2026-07-01] σ_k漂移修正
 - 原σ_c=照护缺口/σ_e=心理健康增速/σ_n=规范矛盾是Fc特化指标，错误嵌入CCST通用σ_k
 - 修正：σ_e="e"是ecological，σ_c=[CALIBRATE-σ_c]待建，σ_n=社会信任指数下降率
@@ -66,10 +76,9 @@
 
 ## 待处理传播项
 
-### ⚠️ BET A7-OE接口注释
-- 触发：A7-Police-Failure新增后，BET §6.1的A7-OE接口说明需要标注"不适用于警察节点"
-- 影响文件：`女权/边界弹性定理 v1.7-DRAFT BET.md` §6.1
-- 优先级：低（BET在女权目录，不在Fc-public，待下次BET版本更新时顺带处理）
+### ✓ BET A7-OE接口注释（2026-07-19 关闭）
+- 原触发：A7-Police-Failure新增后，BET §6.1的A7-OE接口说明需要标注"不适用于警察节点"
+- 关闭理由：2026-07-19 调和条件废止，BET 的 A7-OE 接口整体移除（BET-ORG-ERASE 自立），待标注对象不再存在
 
 ---
 
