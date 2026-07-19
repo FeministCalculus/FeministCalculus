@@ -120,6 +120,11 @@ L5（v4.1 限定版）：
 
 **v4.1 结构性说明**：演绎闭合仅保留给路由一（Cb）。路由二、三为机制/趋势命题，以可观测指标支撑。审计者须逐路由攻击，单点反例不再能击穿整条链。
 
+**形式化状态（FcCore.lean v1.9.1 映射，v4.1 新增）**：
+  - 路由一（Cb）↔ Chain 1 `living_body_paradox`：闭合承重件为桥公理 `body_production_suspends_agency_axiom`（SORRY-formal-1，公理化关闭，注释明示 "Not derivable from types alone"）；`monetization_requires_body_inclusion` 当前为平凡占位（fun _ _ => True）——外部审计击中 A3→A1 的"断言非推导"点正是此占位。Cb 物理约束为该占位提供内容，v4.1 case-split 应回灌形式层（候选任务：LaborType 归纳类型化，使身体纳入仅对 Cb 强制）。
+  - 路由二（Cc/Ce）↔ Chain 10 `maternal_penalty_loop_self_reinforces`（NEG-EXT 母职惩罚环：统计歧视→收入降→机会成本降→照护时数增→表现缺口→歧视自我验证；方向性闭合，函数形式为示意模型，量级校准归 TIFM）＋ Chain 5 `A4_configuration_complete`（A4 拓扑 16 组合完备，F9 必要不充分，θ 第四条件，瑞典 1995 锚点）。**注意：A3→A4→A1 作为复合定理当前未形式化**——Chain 10 闭合的是 A4 层自我强化环，不到 A1；压价机制→主体性悬置的到达段为候选形式化任务（SORRY-formal-15 候选）。
+  - 路由三（符号光谱）：未形式化。
+
 A1 操作化定义（v3.0）：
   "主体性被制度性悬置，其身体、意志、空间可被外部方合法配置"
   ——多维可配置，非"完全降格为客体"
