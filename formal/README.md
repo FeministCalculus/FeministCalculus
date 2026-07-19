@@ -96,7 +96,7 @@ Only structural/logical claims. Empirical claims live in TIFM.
 
 - **AMT**: Artificial Δ requires 3x blocking layers vs natural Δ; lying is structurally necessary, not moral failure
 - **SCA**: In finite time under persistent selection pressure, naming capacity converges to false (absorbing state)
-- **A4**: F9 three conditions necessary but not sufficient; θ is the fourth required condition (Sweden 1995)
+- **A4**: F9 three conditions necessary but not sufficient; θ_cult is the fourth required condition (Sweden 1995)
 - **Startup Paradox**: Erased ≠ Absent — erased has cyclic blocking, absent has open path
 - **A7 Design Goal**: Non-action and complicity are the same design goal (both = blocks_exit)
 - `A8_internalization_structure` — filtered set strictly smaller than full set; filtering occurred

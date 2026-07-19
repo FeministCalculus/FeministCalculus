@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-07-19 — 术语修正：A8-θ → A8-θ_cult
+
+- 动机：A8-θ（文化内化吸收系数）与 CCST θ_k（不可逆物理阈值）命名冲突；背刺定理另有 θ_high。三 θ 同名不同物
+- 范围：`core/Fc-v9.6.9-REVISED-Core.md`（注释层 17 处＋术语修正注 1 条）、`peripheral/Fc-Derived-008-A4配置族分化与Cb实证层-v1.0-DRAFT.md`（全文 48 处）、`formal/FcCore/Types.lean`、`formal/FcCore/Chains1to5.lean`、`formal/README.md`（注释 4 处，Lean 标识符 `theta_low` 不动）
+- 登记键保留：SORRY-θ-1 / CALIBRATE-A8-θ-1 编号不改；`formal/FcCore.lean.md` 为 gitignore 生成快照，未同步
+- 执行：Kimi Code 节点（机械性修复，无推导）
+
 ## 2026-07-19 — 对齐包 v4.0→v4.1
 
 ### `peripheral/Fc 快速对齐包 | Alignment Package v4.1-DRAFT.md`（原 v4.0-DRAFT 升版）

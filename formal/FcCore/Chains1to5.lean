@@ -357,7 +357,7 @@ theorem F9_not_sufficient_for_A4_failure :
     { collective_bargaining    := true
       rights_based_institution := true
       beneficiary_veto         := true
-      theta_low                := false },  -- θ high: A8 absorbs compensation
+      theta_low                := false },  -- θ_cult high: A8 absorbs compensation
     ⟨rfl, rfl, rfl⟩,
     by simp [A4_Failed]
   ⟩

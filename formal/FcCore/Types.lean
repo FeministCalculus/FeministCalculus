@@ -79,7 +79,7 @@ structure A4_FailureConditions where
   collective_bargaining    : Bool  -- F9-1: economic dependency severed
   rights_based_institution : Bool  -- F9-2: care monopoly severed
   beneficiary_veto         : Bool  -- F9-3: decision rights restored
-  theta_low                : Bool  -- A8-θ: cultural internalization weakened
+  theta_low                : Bool  -- A8-θ_cult: cultural internalization weakened
 
 /-- F9 three conditions: the first three of the four failure conditions.
     These are necessary but not sufficient to close A4. -/
@@ -103,7 +103,7 @@ def A4_Weakened (c : A4_FailureConditions) : Prop :=
   c.collective_bargaining    = true ∧
   c.rights_based_institution = true ∧
   c.beneficiary_veto         = true ∧
-  c.theta_low                = false  -- θ still high: A8 absorbs institutional compensation
+  c.theta_low                = false  -- θ_cult still high: A8 absorbs institutional compensation
 
 /-- A4 failed configuration: all four conditions present. -/
 def A4_Failed (c : A4_FailureConditions) : Prop :=
