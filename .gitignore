@@ -28,3 +28,4 @@ formal/lake-manifest.json
 
 # Spotlight / 系统索引标记
 .metadata_never_index
+.obsidian/workspace.json

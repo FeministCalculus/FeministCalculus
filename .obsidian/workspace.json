@@ -11,14 +11,10 @@
             "id": "7d6eada89ed4898b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "core/Fc-v9.6.8-REVISED-Core.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Fc-v9.6.8-REVISED-Core"
+              "title": "新标签页"
             }
           }
         ]
@@ -53,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "HO",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +70,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -183,8 +180,10 @@
       "bases:新建数据库": false
     }
   },
-  "active": "5c45186545f69622",
+  "active": "d7cbcc6a07a54d1c",
   "lastOpenFiles": [
+    "meta/审计工具登记处.md",
+    "meta",
     "core/Fc-v9.6.8-Appendix-E-PNE.md",
     "core/DEG-v2.21.md",
     "CHANGELOG.md"
