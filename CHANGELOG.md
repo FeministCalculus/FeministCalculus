@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-07-28 — PCS/BET 迁入 models/ 层
+
+- `git mv`：`peripheral/PCS_v0.3_DRAFT.md`、`peripheral/BET-v1.7-DRAFT.md` → `models/`（历史保留）
+- 理由：models/ 层（机制解释层）已开（OIR 为首文档），PCS/BET 同属机制模型，归层
+- README 结构树同步；CHANGE_INDEX 历史条保持当时路径不改
+- 裁定：节点1（2026-07-28）
+
 ## 2026-07-28 — OIR 模型 v0.2 入库：新建 models/ 层（机制解释层）
 
 ### `models/oir-loop-v0.2-draft.md`（新层首文档；源：草稿区 `OIR模型_v0.2-DRAFT.md`，草稿留档）

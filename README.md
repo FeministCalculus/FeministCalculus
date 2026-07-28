@@ -36,9 +36,12 @@ Fc Formalism 公开层仓库 —— Feminist Calculus Framework（Fc）的核心
 │
 ├── peripheral/              # 外围分析与衍生定理
 │   ├── Fc-RadFem-v1.0.1-HARDENED.md
-│   ├── PCS_v0.3_DRAFT.md
-│   ├── BET-v1.7-DRAFT.md
 │   └── ...
+│
+├── models/                  # 机制解释层模型
+│   ├── oir-loop-v0.2-draft.md   # OIR：义务-利益-反抗 loop（v0.2.1，双审已过）
+│   ├── PCS_v0.3_DRAFT.md        # 由 peripheral 迁入（2026-07-28）
+│   └── BET-v1.7-DRAFT.md        # 由 peripheral 迁入（2026-07-28）
 │
 ├── data/                    # 实证数据
 │   ├── education_collapse_report.md   # R_c退化多国实证
