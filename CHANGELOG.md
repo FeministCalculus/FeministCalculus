@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2026-07-28 — Lean 编译验证闭合（Claude 节点）
+
+- 2026-07-19 China_case 改挂遗留项"⚠️lake build 验证待 Claude 节点"**闭合**：Claude 节点已完成 `lake build`，China_case（`was_erased := false`、Formation_Absent）与定理 `China_is_absent_not_erased` 及 formal-15 相关编译全部通过，无问题
+- 报告：节点1 转述（2026-07-28）
+
 ## 2026-07-28 — PCS/BET 迁入 models/ 层
 
 - `git mv`：`peripheral/PCS_v0.3_DRAFT.md`、`peripheral/BET-v1.7-DRAFT.md` → `models/`（历史保留）
