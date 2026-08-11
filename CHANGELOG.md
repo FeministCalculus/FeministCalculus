@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 2026-08-11 — Kimi 案例轮增量 v1-v5 审计闭合：Core A5/A7 章各追加一条注释（Claude 节点执行 Kimi 裁定）
+
+### `core/Fc-v9.6.9-REVISED-Core.md`
+- **A5 章追加**：【A5 跨性别承认操作变体注释】—— A5 母定义"同性社会声誉货币"（Core:341/343）保留；跨性别单向索取变体（男→女直接索取,崇高话语覆盖）作为操作方向变体,非独立子类型。锚定 Kimi 案例轮 C-2"崇高话语作为性掠夺工具"
+- **A7 章追加**：【A7 失效模式：保护真空 → 私人垄断填补】—— 两节点因果链（A7 失效 → 私人垄断填补），区别于 A7-Capture（恐惧驱动）和 A7-Police-Failure（同谋驱动）。锚定连云港火灾 + 挟尸要价。**撤除锚定**：高博 / 法内狂徒案（不构成 A7 失效垄断填补,MCN 包装归 A3-γ）
+
+### 审计链
+Claude v1 → MiMo v1 → Claude v2/v3/v4 → Kimi 交叉审计 → Claude v5 → MiMo v5 元审计 → **Kimi 最终裁定**（网页版 Type-D，由 Claude 本地节点执行 canonical 提交）
+
+### 15 项归属定版
+- 9 项（60%）命名膨胀 → cases/
+- 2 项进 Core 注释层（本条追加的 A5 / A7 两条）
+- 1 项双 anchor（C-1 A3-γ-Physical 主 + A7-Physical 次）
+- 1 项保留弱化版 SORRY（B-5 A3-γ 获取机制差异性：偷拍与越权访问机制未在 canonical 显式区分）
+- 2 项 TIFM / 政策接口（不进 Core）
+
+### 关联文档
+- 审计报告（草稿盒）：`~/Documents/Projects/女权/Fc-Audit-KimiIncrement-v9.6.9-CaseRound-*-20260806.md` + v5 Appendix
+- 审计结论书（Kimi 裁定）：`~/Documents/Projects/女权/for-mimo-20260811-v5-audit/Fc-Audit-FINAL-Report-v1-v5-20260811.md`
+- 元审计框架更新：`~/CLAUDE.md` §2.5（累积 5 种动作面 + 撤回 open set）/ §2.6（新增通用规则 G-1）
+
 ## 2026-07-28 — Lean 编译验证闭合（Claude 节点）
 
 - 2026-07-19 China_case 改挂遗留项"⚠️lake build 验证待 Claude 节点"**闭合**：Claude 节点已完成 `lake build`，China_case（`was_erased := false`、Formation_Absent）与定理 `China_is_absent_not_erased` 及 formal-15 相关编译全部通过，无问题
