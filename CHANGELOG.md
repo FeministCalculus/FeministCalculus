@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 2026-08-14 — 对齐包 v4.2 → v4.3：三层动作分类 + Fc 命名层定位 + R_auto-reverse + exit condition
+
+### `peripheral/Fc 快速对齐包 | Alignment Package v4.2-DRAFT.md` → v4.3-DRAFT
+- **第四章新增 §4.1 三层动作分类**：补丁 / 改造 / 命名三层判据 + Derived-002 时序关系声明（role 是动作累积后被 A1 assign 的位置，非先在属性）+ 跨层效应规则（替代"混合动作"）+ 改造判据本质 = 结果判据（非意图）
+- **Fc 自身定位**：命名层（限定声明——诊断功能作为命名层的上游产出，不单独成层）
+- **exit condition 显式化**：主指标 = A1 变形普遍可见；代理指标 (i) 非 Fc 节点独立识别 A1 / (ii) 主流制度文本开始命名 / (iii) SCA 话术反驳成本显著降低。当前状态：命名远未完成，交棒时机未到
+- **第九章新增 §9.5 R_auto-reverse**：R_auto 的方向性变体，共享四判据结构（时间锚定/递归性/功能指向/替代排除），方向相反——"凡是能连上 A1 就不做"作为姿态化拒绝，功能 = 维持 A5-α 承认循环
+- **第十章新增检查项 7（层归属）**：主层归属 + 主/次效果分别标注 + 命名层退化路径核查
+- **未决 SORRY** 4 项 → 8 项。新增：R2-S1 exit condition 阈值 / R2-S2 改造判据未通用化 / R2-S4 无命名改造历史断言 / R2-S5 结果判据因果归属边界
+
+### 审计链
+Claude v1 → GPT audit（copilot 通道）→ Claude v2 → MiMo audit（3 turn）→ Claude v3 → 用户裁决（Q1 patch-role/action 不分裂，改因果时序；Q2/Q3 结果判据 / Core 不加交叉引用）→ Claude v4 定稿
+
+### 触发案例
+`~/Documents/Projects/女权/动保审计/round2-Fc位置审计.md`（讨论 7 "动保 = 反 fem" + 讨论 8 "打补丁"归谬）—— 审计发现 Fc 位置无 exit condition，"补丁 / 改造"判据未在框架内固化，触发本轮增量
+
+### 关联文档
+- 审计原稿：`~/Documents/Projects/女权/动保审计/round2-Fc位置审计.md`
+- 投稿框架版：`~/Documents/Projects/女权/动保审计/round2-投稿版-Fc.md`
+- 投稿通俗版：`~/Documents/Projects/女权/动保审计/round2-投稿版-通俗.md`
+- 明确不做：Core 不加交叉引用指针（Fc 保持沉默是自洽的，显式交棒预告 = 承认工具行为 A5-α 风险）
+
 ## 2026-08-11 — Kimi 案例轮增量 v1-v5 审计闭合：Core A5/A7 章各追加一条注释（Claude 节点执行 Kimi 裁定）
 
 ### `core/Fc-v9.6.9-REVISED-Core.md`
