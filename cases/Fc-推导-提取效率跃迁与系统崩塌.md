@@ -334,3 +334,7 @@ F9失效不是偶然，是**三个案例的共同前提**——只有F9失效，
 **当前SORRY总计**：SORRY = 5（转型-1/2/3/4/5，转型-6/7/8已修正/闭合），CALIBRATE = 2。机制链满足 HARDENED 上限（≤5）；比较命题依 2026-07-18 裁定维持 CONDITIONAL-HARDENED，待转型-3 四联闭合条件完成。
 
 *整理：Claude | 2026-07-07 v4 | 用户推导+工合/mimo三轮审计+SORRY-转型-7闭合推导 | v5（2026-07-18 用户裁定+Kimi 节点登记）：机制链 **HARDENED**（M1/M2/M3+三案例）；比较命题 **CONDITIONAL-HARDENED**（冲突-提取比量化对照待补，控制变量：后发优势）*
+
+---
+
+**关联登记**（2026-08-23 反向链）：↔ `peripheral/Fc-Derived-Confucian-Mapping-DRAFT.md`（儒家 D6 弹性存活度 = 冲突-提取比口径的东亚样本；儒家 D1 提取完备性第 1 + D6 第 1 的机制解释接续本 case 的机制链 M1-M3）。登记于 `STATUS.md § Peripheral 归档`。

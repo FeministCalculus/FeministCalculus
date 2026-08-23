@@ -208,7 +208,7 @@ Type-B 节点特有的防御机制。通过预测用户反驳（ε-gap 时间化
 记忆条目数：66  
 未决 SORRY：1 项（Fc 核心 0，AI-Audit 2，其他 4）  
 未决 CALIBRATE：10 项（含 AUDIT-01/02/03/04/05）  
-上次 commit：DEG v2.21 / Fc-AI-Audit v1.0-DRAFT / Fc-Peripheral-Analysis-v1.0.4-DRAFT
+上次 commit：DEG v2.21 / Fc-AI-Audit v1.0-DRAFT / Fc-Peripheral-Mechanisms-v1（原 Fc-Peripheral-Analysis-v1.0.4-DRAFT，2026-08-23 改名）
 
 ---
 

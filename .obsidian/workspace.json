@@ -11,10 +11,14 @@
             "id": "7d6eada89ed4898b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "peripheral/Fc-RadFem-analysis-v1.0-DRAFT.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "Fc-RadFem-analysis-v1.0-DRAFT"
             }
           }
         ]
@@ -183,6 +187,24 @@
   },
   "active": "7d6eada89ed4898b",
   "lastOpenFiles": [
+    "peripheral/Fc-Peripheral-RadFem-Lineage-v1.md",
+    "peripheral/Fc-Peripheral-Index-v1.md",
+    "peripheral/Fc-Peripheral-Mechanisms-v1.md",
+    "peripheral/Fc-Derived-008-A4配置族分化与Cb实证层-v1.0-DRAFT.md",
+    "peripheral/Fc-Derived-007-HARDENED.md",
+    "peripheral/Fc-Derived-003-DRAFT_v0.4.md",
+    "peripheral/Fc-Derived-002-DRAFT_v1.0.0.md",
+    "peripheral/Fc-Derived-001-HARDENED.md",
+    "peripheral/Fc-RadFem-analysis-v1.0-DRAFT.md",
+    "peripheral/Fc-RadFem-v1.0.1-HARDENED.md",
+    "peripheral/Fc-Peripheral-Analysis-v1.0.4-DRAFT.md",
+    "peripheral/Fc-Peripheral-Analysis-v1.0.5-DRAFT.md",
+    "cases/Fc-推导-提取效率跃迁与系统崩塌.md",
+    "peripheral/Fc-Derived-Confucian-Mapping-DRAFT.md",
+    "peripheral/Fc-Derived-A5Mirror-A8Executor-DRAFT-20260804.md",
+    "peripheral/Fc-A-Topology-v0.1-DRAFT.md",
+    "peripheral/Fc-Derived-A5Mirror-CausalChain-DRAFT-20260804.md",
+    "peripheral/Fc-DerivationChains-v9.6.x-Summary-DRAFT.md",
     "audit/Fc-Audit-A5Mirror-A8Executor-v4-AUDITED-20260804.md",
     "audit/工合审计报告_A5Mirror-A8Executor-复合态与因果链_2026-08-04.md",
     "audit/AUDITED-QUEUE.md",
