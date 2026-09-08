@@ -354,15 +354,22 @@ theorem three_exits_cover_all_incentive_components :
 -- ─────────────────────────────────────────────
 
 /-- Physical cost: the material cost of a reproductive cycle,
-    borne by and inseparable from a specific physical body. -/
+    borne by and inseparable from a specific physical body.
+    [FIX 2026-09-08 — SORRY-FORMAL-25] Non-transferability of subject-borne
+    costs is now a type invariant (was: universal axiom over freely
+    constructible values, proved inconsistent by external audit witness
+    audit_cost_false: ⟨true, true⟩ was constructible yet forbidden). -/
 structure PhysicalCost where
   borne_by_subject : Bool   -- true = cost is on the bearing subject
   transferable     : Bool   -- false = physical costs cannot be transferred
+  nontransferable : borne_by_subject = true → transferable = false
 
 /-- The physical cost of reproductive labor is non-transferable.
-    This is a physical fact, not a normative claim. -/
-axiom reproductive_cost_nontransferable :
-    ∀ (c : PhysicalCost), c.borne_by_subject = true → c.transferable = false
+    This is a physical fact, not a normative claim.
+    [2026-09-08] Formerly an axiom; now a theorem from the type invariant. -/
+theorem reproductive_cost_nontransferable :
+    ∀ (c : PhysicalCost), c.borne_by_subject = true → c.transferable = false :=
+  fun c => c.nontransferable
 
 /-- D0: Reproductive decision right — whether and when to initiate
     a reproductive cycle — belongs physically and non-delegably to
@@ -453,21 +460,27 @@ structure LayeredClaim where
     Ph ∧ Ch satisfied (law exists and is accessible) but Ac = 0
     (enforcement selectively withheld). The selection is structural, not random.
 
-    The axiom captures the case where NO E1 executor can physically perform
-    the "transfer": reproductive costs are still borne by the pregnant person
-    because no E1 entity can substitute for that physical burden.
-    The E2 claim is empty not because E2 never affects E1, but because
-    this specific E2 claim lacks an E1 executor capable of making it real.
-
     CCST layer insulation direction:
       E1 → E2: permitted (physical facts constrain institution design)
-      E2 → E1: blocked without E1 executor in derivation path -/
-axiom layer_insulation_E2_to_E1
-    (claim : LayeredClaim)
-    (h_E2 : claim.layer = Layer.E2)
-    (physical_fact : Prop) :
-    -- An E2 claim alone (without E1 executor) cannot prove an E1 physical fact
-    ¬ (claim.content → physical_fact)
+      E2 → E1: blocked without E1 executor in derivation path
+
+    [FIX 2026-09-08 — SORRY-FORMAL-24] axiom layer_insulation_E2_to_E1
+    DELETED. It was malformed at the meta level: for any E2 claim it denied
+    `claim.content → physical_fact` for ALL propositions, including True —
+    external audit witness audit_layer_false derived False from it.
+    It was also never USED: every "layer insulation" theorem below derives
+    its E1 conclusion directly from the physical invariant, with the E2
+    premise structurally inert. What remains formalizable of the insulation
+    claim is exactly that inertness, stated honestly below. The strong
+    meta-level claim (E2 cannot contribute to E1 derivations) stays at the
+    text layer (CCST layer architecture), not in Lean. -/
+
+/-- Layer insulation, formalizable residue: the E1 conclusion
+    (non-transferability of subject-borne physical cost) is provable from
+    the E1 invariant alone; no E2 premise appears in the derivation. -/
+theorem E2_premise_inert (c : PhysicalCost) (h_cost : c.borne_by_subject = true) :
+    c.transferable = false :=
+  reproductive_cost_nontransferable c h_cost
 
 /-- E1 physical fact: costs are non-transferable. -/
 def E1_cost_nontransferable (c : PhysicalCost) : Prop :=
@@ -603,22 +616,25 @@ theorem A5_marginal_utility_from_positional
   simp [marginal_positional_utility, A5_as_positional]
   -- current_level ≥ 1 → current_level ≥ current_level - 1 (always true for Nat)
 
-/-- The original axiom re-stated as a corollary of the positional model.
-    This shows the axiom was not arbitrary: it follows from positional good logic. -/
--- [BRIDGE] A5 recognition demand's marginal utility is the positional model's.
-axiom A5_marginal_utility_bridge (d : A5_RecognitionDemand) :
-    d.marginal_utility = marginal_positional_utility (A5_as_positional d)
+/-- [FIX 2026-09-08 — SORRY-FORMAL-27] marginal_utility is a derived
+    function of the positional model, not a free field. The old bridge
+    axiom asserted this equation for ALL demand values — inconsistent
+    (d := ⟨5, 0⟩ forced 0 = 1); same disease pattern as audit witnesses
+    W3/W4, caught in repair review. -/
+def A5_RecognitionDemand.marginal_utility (d : A5_RecognitionDemand) : Nat :=
+  marginal_positional_utility (A5_as_positional d)
+
+/-- The former bridge axiom, now a definitional theorem (rfl). -/
+theorem A5_marginal_utility_bridge (d : A5_RecognitionDemand) :
+    d.marginal_utility = marginal_positional_utility (A5_as_positional d) := rfl
 
 theorem A5_nondiminishing
     (d : A5_RecognitionDemand)
     (h_pos : d.current_level ≥ 1) :
-    d.marginal_utility ≥ 1 := by
-  -- [BRIDGE] Connect A5_RecognitionDemand.marginal_utility to positional model.
-  -- In the full model, A5_RecognitionDemand would be defined as a PositionalGood,
-  -- making this a direct derivation. Here we show the structural equivalence.
-  rw [A5_marginal_utility_bridge d]
-  apply A5_marginal_utility_from_positional
-  exact h_pos
+    d.marginal_utility ≥ 1 :=
+  -- [2026-09-08] marginal_utility is now definitionally the positional
+  -- model's, so this is a direct application — no bridge needed.
+  A5_marginal_utility_from_positional d h_pos
 
 -- [CLOSURE NOTE] formal-10:
 -- The original axiom `A5_nondiminishing` is replaced by a derived theorem.
@@ -890,8 +906,13 @@ theorem income_fall_care_hours_nondecrease
     omega
   exact h3
 
--- [BRIDGE] CareBurden hours are modeled by care_hours_from_income.
-axiom care_hours_model (c : CareBurden) : c.hours = care_hours_from_income c.income
+-- [BRIDGE → THEOREM 2026-09-08 — SORRY-FORMAL-26] CareBurden hours are
+-- modeled by care_hours_from_income. Was a universal axiom over freely
+-- constructible values (inconsistent: audit witness audit_care_false);
+-- now proved from the type invariant (Types.CareBurden.hours_model).
+theorem care_hours_model (c : CareBurden) :
+    c.hours = care_hours_from_income c.income :=
+  c.hours_model
 
 def care_increases_when_income_falls
     (c_before c_after : CareBurden)
