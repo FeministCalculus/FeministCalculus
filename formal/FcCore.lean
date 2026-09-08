@@ -6,6 +6,7 @@ import FcCore.Chains11to15
 import FcCore.Chain17
 import FcCore.Chain16
 import FcCore.Chain18_NullFeedback
+import FcCore.ConsistencyTests
 
 namespace Fc
 end Fc
