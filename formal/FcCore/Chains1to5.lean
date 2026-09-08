@@ -16,8 +16,14 @@ namespace Fc
 --   Path A (Cb): A3 + physical unboundedness → A1  [stronger, no A4 needed]
 --   Path B (Cc/Ce): A3 + A4 naturalization → A1    [weaker, requires A4]
 --
--- body_production_suspends_agency_axiom is retained as [AXIOM], not
--- [SORRY-CLOSED] — the bridge step is declared, not derived.
+-- [FIX 2026-09-08 — SORRY-FORMAL-23] body_production_suspends_agency_axiom
+-- REMOVED. External audit (GPT-6/Codex, 2026-09-08) proved it inconsistent
+-- (witness audit_body_false: body_in_production := True held for every
+-- a : Agency, so the axiom denied the existence of any intact agency).
+-- Repair: "body in production" is now a STATE (structure BodyInProduction)
+-- whose type invariant carries the suspension, and the paradox theorems are
+-- restated as honest incompatibility claims (an intact agency cannot occupy
+-- the body-in-production state).
 -- ─────────────────────────────────────────────
 
 def A3_MonetaryCompleteness : Prop := MonetaryClaim
@@ -25,8 +31,14 @@ def A3_MonetaryCompleteness : Prop := MonetaryClaim
 def monetization_requires_body_inclusion : A3_MonetaryCompleteness → EmbodimentConstraint → Prop :=
   fun _ _ => True
 
-/-- Bridge concept: body included in production function. -/
-def body_in_production (a : Agency) : Prop := True
+/-- Body-in-production STATE [SORRY-FORMAL-23 fix, 2026-09-08]:
+    the state's type invariant carries what the deleted axiom asserted —
+    an agency in this state has body self-determination suspended.
+    The state is satisfiable (see ConsistencyTests.witness_body_in_production)
+    and an intact agency simply cannot occupy it. -/
+structure BodyInProduction where
+  agency : Agency
+  agency_suspended : agency.body_self_determined = false
 
 /-- Whether reproductive labor is physically unbounded (Cb path)
     vs. made unbounded by A4 naturalization (Cc/Ce path). -/
@@ -34,22 +46,13 @@ inductive UnboundednessSource where
   | Physical   : UnboundednessSource  -- Cb: biological reproduction, physically unbounded
   | A4Produced : UnboundednessSource  -- Cc/Ce: care/emotional labor, unbounded via A4 naturalization
 
-/-- Bridge axiom [AXIOM — declared, not derived]:
-    Including the body in the production function structurally suspends
-    body self-determination. This is the normative-physical bridge of the
-    Living Body Paradox. It holds for both Cb and Cc/Ce paths, but the
-    *reason* unboundedness holds differs between paths (see fork below).
-    Status: [AXIOM], not [SORRY-CLOSED] — the step is genuinely axiomatic. -/
-axiom body_production_suspends_agency_axiom
-    (a : Agency) (h : body_in_production a) :
-    a.body_self_determined = false
-
+/-- Formerly bridged by the (inconsistent) axiom; now immediate from the
+    state invariant: being in the body-in-production state means body
+    self-determination is suspended — hence A1 demotion holds. -/
 theorem body_inclusion_suspends_body_agency
-    (a : Agency)
-    (h_prod : body_in_production a) :
-    (a.body_self_determined = false) ∨ A1_Demoted a := by
-  left
-  exact body_production_suspends_agency_axiom a h_prod
+    (s : BodyInProduction) :
+    (s.agency.body_self_determined = false) ∨ A1_Demoted s.agency :=
+  Or.inl s.agency_suspended
 
 -- ─────────────────────────────────────────────
 -- Chain 1a: Living Body Paradox — Cb path (A3 → A1, strong)
@@ -67,8 +70,14 @@ def Cb_physically_unbounded : Prop := True
       1. A3: reproductive labor (Cb) has monetary equivalent
       2. Embodiment: Cb is inseparable from the bearing body
       3. Cb is physically unbounded (G' fact, no A4 needed)
-      4. Monetizing unbounded embodied labor = body in production function
-      5. Body in production function → body-agency suspended (A1)
+      4. Monetizing unbounded embodied labor puts the body in the
+         production state — whose invariant suspends body self-determination
+      5. Hence the state and AgencyIntact are incompatible: production
+         inclusion demotes (A1). The paradox: the labor requires a living
+         body while the state requires a demoted one.
+    [SORRY-FORMAL-23 repair, honest form] The pre-repair version concluded
+    `A1_Demoted a` for an intact `a` directly — derivable only ex falso
+    from the inconsistent axiom. The honest content is the incompatibility:
 -/
 theorem living_body_paradox_Cb
     (a : Agency)
@@ -76,11 +85,11 @@ theorem living_body_paradox_Cb
     (_ : EmbodimentConstraint)
     (_ : Cb_physically_unbounded)
     (h_intact : AgencyIntact a) :
-    A1_Demoted a := by
-  have h_prod : body_in_production a := by
-    simp [body_in_production]
-  have h_susp := body_production_suspends_agency_axiom a h_prod
-  simp [A1_Demoted, h_susp]
+    ¬ ∃ s : BodyInProduction, s.agency = a := by
+  rintro ⟨s, rfl⟩
+  simp [AgencyIntact] at h_intact
+  rw [s.agency_suspended] at h_intact
+  exact Bool.noConfusion h_intact.1
 
 -- ─────────────────────────────────────────────
 -- Chain 1b: Living Body Paradox — Cc/Ce path (A3 + A4 → A1, weaker)
@@ -116,6 +125,8 @@ def CcCe_unbounded_under_A4 (extraction_active : A4_ExtractionActive) : Prop :=
     This path derives from A4 — if A4 is absent or fails,
     Cc/Ce retains its boundary and the A3→A1 chain does not complete.
     This is A3 + A4 → A1, not A3 alone → A1.
+    [SORRY-FORMAL-23 repair] Conclusion restated in incompatibility form
+    (same reason as the Cb path).
 -/
 theorem living_body_paradox_CcCe
     (a : Agency)
@@ -124,37 +135,38 @@ theorem living_body_paradox_CcCe
     (_ : EmbodimentConstraint)
     (h_A4 : CcCe_unbounded_under_A4 extraction_active)
     (h_intact : AgencyIntact a) :
-    A1_Demoted a := by
-  have h_prod : body_in_production a := by
-    simp [body_in_production]
-  have h_susp := body_production_suspends_agency_axiom a h_prod
-  simp [A1_Demoted, h_susp]
+    ¬ ∃ s : BodyInProduction, s.agency = a := by
+  rintro ⟨s, rfl⟩
+  simp [AgencyIntact] at h_intact
+  rw [s.agency_suspended] at h_intact
+  exact Bool.noConfusion h_intact.1
 
 /-- The two paths are structurally distinct:
     Cb path holds even without A4 (physical fact suffices).
-    Cc/Ce path requires A4 — without A4, the chain breaks. -/
+    Cc/Ce path requires A4 — without A4, the chain breaks.
+    [2026-09-08] Conclusion restated in incompatibility form: regardless
+    of A4 state, an intact agency cannot occupy the production state. -/
 theorem Cb_path_independent_of_A4
     (a : Agency)
     (_ : A3_MonetaryCompleteness)
     (_ : EmbodimentConstraint)
     (_ : Cb_physically_unbounded)
     (h_intact : AgencyIntact a) :
-    -- A1 holds regardless of A4 state
-    ∀ (extraction_active : A4_ExtractionActive),
-      A1_Demoted a := by
+    ∀ (_ : A4_ExtractionActive),
+      ¬ ∃ s : BodyInProduction, s.agency = a := by
   intro _
   exact living_body_paradox_Cb a ‹_› ‹_› ‹_› h_intact
 
-/-- Living Body Paradox (original unified theorem, now a corollary):
-    Preserved for backward compatibility. Uses Cb path (stronger).
--/
+/-- Living Body Paradox (forward direction over the state):
+    any agency occupying the body-in-production state is A1-demoted.
+    [2026-09-08] The pre-repair form (intact agency → demoted) was only
+    derivable from the inconsistent axiom and is removed. -/
 theorem living_body_paradox
-    (a : Agency)
+    (s : BodyInProduction)
     (_ : A3_MonetaryCompleteness)
-    (_ : EmbodimentConstraint)
-    (h_intact : AgencyIntact a) :
-    A1_Demoted a :=
-  living_body_paradox_Cb a ‹_› ‹_› trivial h_intact
+    (_ : EmbodimentConstraint) :
+    A1_Demoted s.agency :=
+  Or.inl s.agency_suspended
 
 -- ─────────────────────────────────────────────
 -- Chain 2: P0 → D1 → D2 (Extraction → Irreversibility)
