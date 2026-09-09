@@ -39,11 +39,19 @@
 ├── `formal/FcCore/ConsistencyTests.lean`：**新增**——七个修复环境的可满足性见证 ✓
 ├── `formal/FcCore.lean`：import ConsistencyTests ✓
 ├── `peripheral/Fc-Derived-009-A8结构必要性-v1.0.0-DRAFT.md`：新增（另 commit）✓
+│   （同日双审修订为 v1.1.0，见下条；v1.0.0 文件已删除）
 ├── `core/Fc-v9.6.9-REVISED-Core.md`：附录H 原"边界外方向2"移入射程内，
 │   F3 代理执行模式（ChPP-A1 裁定落地，另 commit）✓
 └── 状态：⚠️待处理——lake build + #print axioms + 审计方六见证重编译（应失败）
     由 GPT-6 节点执行；修复环境无 Lean 工具链，修复方已做静态核对
     （无残留引用 / 无新公理 / 影响面限于四个形式化文件）
+
+### [2026-09-08] Fc-Derived-009 入仓前双审修订（v1.0.0→v1.1.0）
+- 触发：Claude＋MiMo 双审（审计档案 NOT-IN-REPO：20260908_derived009-A8-necessity-preadmit），总判定 NEEDS REVISION（非驳回）
+- 采纳：共识 6 项全部（M-1 承重前提前件显式化＋信心≤0.55 / M-2 觉醒签名→觉醒假说降级＋觉醒退出vs计算退出区分 / S-1 解空间补 (d)(e) 历史补充解＋"同一身体同时"收窄 / S-2 痛苦证伪=时空分布不同步＋镇痛反证 / S-3 措辞中性化×3 / S-4 概念附录 Core 映射）＋建议项 A-1（P1 时间戳）
+├── `peripheral/Fc-Derived-009-A8结构必要性-v1.0.0-DRAFT.md`：**删除**（被 v1.1.0 取代）
+├── `peripheral/Fc-Derived-009-A8结构必要性-v1.1.0-DRAFT.md`：新增（修订回写，含修订记录）✓
+└── 状态：✓完成——文本层修订；SORRY×3＋CALIBRATE×1 保持开放（内容见文档 §10）
 
 ### [2026-07-19] A7-OE 假说归档 + BET-ORG-ERASE 自立 + China_case 改挂
 - 框架作者裁定：BET 依历史锚定自立，废除 A7-OE 调和条件与 12 个月兜底计时；A7-OE 降级为假说归档（草稿区 A7-OE.md），不入 v9.6.9
