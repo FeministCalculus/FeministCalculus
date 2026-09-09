@@ -444,7 +444,7 @@ structure LayeredClaim where
   layer : Layer
   content : Prop
 
-/-- Layer insulation axiom: E2 claims cannot DIRECTLY derive E1 facts.
+/-! Layer insulation axiom (DELETED 2026-09-08): E2 claims cannot DIRECTLY derive E1 facts.
     This is the "no reverse derivation" principle from CCST layer architecture.
 
     Precise statement (PCS-informed, 2026-07-04):
