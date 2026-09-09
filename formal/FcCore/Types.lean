@@ -155,10 +155,16 @@ abbrev MarginalCostToExtractor := Nat
 
 /-- A5 recognition demand: the extractor's need for external recognition
     does not exhibit diminishing marginal utility — more recognition
-    generates more need, not satiation. -/
+    generates more need, not satiation.
+    [FIX 2026-09-08 — SORRY-FORMAL-27] `marginal_utility` is no longer a
+    free field: the bridge axiom `A5_marginal_utility_bridge` asserted its
+    equality with the positional-good model for ALL demand values, which is
+    inconsistent (d := ⟨5, 0⟩ forces 0 = 1) — a seventh witness of the same
+    disease pattern as audit witnesses W3/W4, caught in repair review
+    (the audit's six witnesses did not cover it). It is now a derived
+    function of `current_level` (see Chains6to10). -/
 structure A5_RecognitionDemand where
   current_level    : Nat
-  marginal_utility : Nat  -- utility of one more unit of recognition
 
 
 /-- Positional good: value depends on relative standing, not absolute level.
@@ -195,10 +201,16 @@ def A7_Capture_Effective (cap : A7_Capture) : Prop :=
 
 /-- Care burden: hours of unpaid care labor borne by the subject.
     Determined by opportunity cost — lower income → lower opportunity cost
-    of care → more care taken on. -/
+    of care → more care taken on.
+    [FIX 2026-09-08 — SORRY-FORMAL-26] The hours–income relation is now a
+    type invariant (was: universal axiom over freely constructible values,
+    proved inconsistent by external audit witness audit_care_false).
+    The arithmetic mirrors care_hours_from_income (Chains6to10), which is
+    defined downstream and cannot be referenced here. -/
 structure CareBurden where
   hours      : Nat
   income     : Nat   -- income level of care-bearer
+  hours_model : hours = 1000 / (income / 40 + 1)
 
 
 /-- Labor market performance proxy: observable output used by employers

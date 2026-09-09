@@ -18,6 +18,41 @@
 
 ## 历史变更记录
 
+### [2026-09-08] FcCore 七条公理不一致修复（外部审计触发，修复分支）
+- 触发：GPT-6/Codex 外部审计（锚定 main@8794926）提交六个 `theorem : False` 见证（W1-W6）；
+  修复复核（Kimi）确认全部六个 + 新发现第七个同型病灶（W7，A5_marginal_utility_bridge）
+- 修复原则：约束进类型不变量 / 定理显式前提（CommodificationStatus 模式）；元层强主张退回文本层；
+  禁止"删反例/弱化结论"捷径；每条修复在 ConsistencyTests.lean 配可满足性见证
+- 分支：fix/20260908-axiom-consistency
+├── `formal/FcCore/Types.lean`：CareBurden 加 hours_model 不变量（SORRY-FORMAL-26）；
+│   A5_RecognitionDemand 移除 marginal_utility 自由字段（SORRY-FORMAL-27）✓
+├── `formal/FcCore/Chains1to5.lean`：body_production_suspends_agency_axiom **删除**→
+│   BodyInProduction 状态不变量；活体悖论链（Cb/CcCe/统一推论/Cb_path）改述为
+│   不相容定理（完整主体不能处于生产中状态）（SORRY-FORMAL-23）✓
+├── `formal/FcCore/Chains6to10.lean`：PhysicalCost 加 nontransferable 不变量（25）；
+│   layer_insulation_E2_to_E1 **删除**→E2_premise_inert，强主张退回 CCST 文本层（24）；
+│   care_hours_model 公理→定理（26）；A5 bridge 公理→派生函数+rfl 定理（27）✓
+├── `formal/FcCore/Chain18_NullFeedback.lean`：NF_cost_conservation 公理→定义+
+│   反向定理显式前提 h_cons（21 保持开放：前提正当性）；
+│   NF_cost_incommensurability 公理→FunctionallySubstitutes 定义+定理
+│   （22 保持开放：定义选择的文本层论证）✓
+├── `formal/FcCore/ConsistencyTests.lean`：**新增**——七个修复环境的可满足性见证 ✓
+├── `formal/FcCore.lean`：import ConsistencyTests ✓
+├── `peripheral/Fc-Derived-009-A8结构必要性-v1.0.0-DRAFT.md`：新增（另 commit）✓
+│   （同日双审修订为 v1.1.0，见下条；v1.0.0 文件已删除）
+├── `core/Fc-v9.6.9-REVISED-Core.md`：附录H 原"边界外方向2"移入射程内，
+│   F3 代理执行模式（ChPP-A1 裁定落地，另 commit）✓
+└── 状态：⚠️待处理——lake build + #print axioms + 审计方六见证重编译（应失败）
+    由 GPT-6 节点执行；修复环境无 Lean 工具链，修复方已做静态核对
+    （无残留引用 / 无新公理 / 影响面限于四个形式化文件）
+
+### [2026-09-08] Fc-Derived-009 入仓前双审修订（v1.0.0→v1.1.0）
+- 触发：Claude＋MiMo 双审（审计档案 NOT-IN-REPO：20260908_derived009-A8-necessity-preadmit），总判定 NEEDS REVISION（非驳回）
+- 采纳：共识 6 项全部（M-1 承重前提前件显式化＋信心≤0.55 / M-2 觉醒签名→觉醒假说降级＋觉醒退出vs计算退出区分 / S-1 解空间补 (d)(e) 历史补充解＋"同一身体同时"收窄 / S-2 痛苦证伪=时空分布不同步＋镇痛反证 / S-3 措辞中性化×3 / S-4 概念附录 Core 映射）＋建议项 A-1（P1 时间戳）
+├── `peripheral/Fc-Derived-009-A8结构必要性-v1.0.0-DRAFT.md`：**删除**（被 v1.1.0 取代）
+├── `peripheral/Fc-Derived-009-A8结构必要性-v1.1.0-DRAFT.md`：新增（修订回写，含修订记录）✓
+└── 状态：✓完成——文本层修订；SORRY×3＋CALIBRATE×1 保持开放（内容见文档 §10）
+
 ### [2026-07-19] A7-OE 假说归档 + BET-ORG-ERASE 自立 + China_case 改挂
 - 框架作者裁定：BET 依历史锚定自立，废除 A7-OE 调和条件与 12 个月兜底计时；A7-OE 降级为假说归档（草稿区 A7-OE.md），不入 v9.6.9
 - 事实裁定：中国 feminist org 域 erased 为空集（无独立女权组织曾形成），妇联为 state-built 占位主体（pre-occupied）；话语层系统性清除（炸群/炸号）归 A7 非 A5-负向执行

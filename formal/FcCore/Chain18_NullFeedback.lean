@@ -84,39 +84,39 @@ theorem null_feedback_boundary_forward
 def NF_total_risk_cost (r : NF_RiskSource) (total : Nat) : Prop :=
   r.active = true → total > 0
 
-/-- [SORRY-formal-21] 成本守恒（量化版本）：
-    总风险成本 = 制度吸收 + 施害者承担 + V/V' 具身承担 + 环境耗散
-    这是量化守恒，不是 Bool 转移。
-
-    axiom-level 建模假设，不是从更基础的原则推导出来的。
-    如果被质疑（比如成本可能真的被系统吸收/消失），整个反向定理需要重审。
-    闭合条件 = 从物理/社会因果论证成本不会凭空消失（能量守恒的社会版本）。 -/
-axiom NF_cost_conservation
+/-- [SORRY-formal-21 → 前提化 2026-09-08] 成本守恒（量化版本）：
+    总风险成本 = 制度吸收 + 施害者承担 + V/V' 具身承担 + 环境耗散。
+    原为公理——对所有自由可构造值断言等式，外部审计见证
+    audit_conservation_false 证明其不一致（total=5、全组件=0 时被迫 5=0）。
+    修复：守恒降为定义（Prop 值），反向定理将其列为显式前提 h_cons。
+    前提本身的物理正当性（成本不会凭空消失，能量守恒的社会版本）
+    仍是开放的 [SORRY-formal-21]——若被质疑，反向定理需重审。 -/
+def NF_cost_conservation
     (r : NF_RiskSource) (s : NF_System) (v : NF_Victim) (v' : NF_SubstituteNode)
-    (total dissipated : Nat)
-    (h_total : NF_total_risk_cost r total)
-    (h_active : r.active = true) :
+    (total dissipated : Nat) : Prop :=
     total = s.institutional_cost_absorbed
           + r.perpetrator_constrained
           + v.embodied_cost + v'.embodied_cost_borne
           + dissipated
 
-/-- [SORRY-formal-22] 类型不可通约（Fc 立场）：
-    Institutional 类型的成本承担和 Embodied 类型的成本承担不可互相替代，
-    即使数量相等也不构成功能替代。
-    V' 跑路 100 公里 ≠ 警察出警一次；具身自保 ≠ 制度履职。
+/-- [SORRY-formal-22 → 定义化 2026-09-08] 功能替代关系的定义：
+    只有同类型成本才谈得上功能替代。Fc 规范立场编码在定义里：
+    异类型成本不构成替代关系（V' 跑路 100 公里 ≠ 警察出警一次；
+    具身自保 ≠ 制度履职）。
+    原公理对"类型不同"的 Cost 断言一个格式错误的否定命题，外部审计见证
+    audit_incommensurability_false 证明其不一致（交换 c1/c2 类型后
+    蕴含式前件不可满足而空洞为真，与公理的否定冲突）。
+    若承认跨类型功能替代（"只要有人承担成本就行"），整个 Chain 18 论点转向。
+    闭合条件（文本层）：从物质主义论证制度成本与具身成本的物理不可交换性。 -/
+def FunctionallySubstitutes (c1 c2 : Cost) : Prop :=
+  c1.ctype = c2.ctype
 
-    axiom-level 建模假设——这是 Fc 的规范立场，编码进公理系统。
-    如果承认功能替代（如：只要"有人承担成本"就行），整个 Chain 18 论点转向。
-    闭合条件 = 从物质主义论证制度成本和具身成本的物理不可交换性
-    （或明确标记为规范公理，不寻求进一步论证）。 -/
-axiom NF_cost_incommensurability
+/-- 类型不可通约：类型不同的成本不满足功能替代关系。 -/
+theorem NF_cost_incommensurability
     (c1 c2 : Cost)
     (h_type_diff : c1.ctype ≠ c2.ctype) :
-    -- 类型不同的 Cost 不满足功能替代关系
-    ¬ (c1.ctype = CostType.Institutional ∧ c2.ctype = CostType.Embodied
-       → c2.amount = c1.amount → True → False)
-    -- 即：即使 c2.amount = c1.amount，也不能推出 c2 功能上替代了 c1
+    ¬ FunctionallySubstitutes c1 c2 :=
+  h_type_diff
 
 /-- Reverse direction (量化版本): 反馈阻断 + 风险持续 + S 未吸收 + 施害者未受约束
     → V' 被迫承担成本。
@@ -132,11 +132,13 @@ theorem null_feedback_boundary_reverse
     (h_S_zero : s.institutional_cost_absorbed = 0)
     (h_perp_zero : r.perpetrator_constrained = 0)
     (h_V_zero : v.embodied_cost = 0)
-    (h_diss_bounded : dissipated < total) :
+    (h_diss_bounded : dissipated < total)
+    (h_cons : NF_cost_conservation r s v v' total dissipated) :
     v'.embodied_cost_borne > 0 := by
-  have h_cons := NF_cost_conservation r s v v' total dissipated h_total h_active
+  -- [2026-09-08] 守恒方程是显式前提 h_cons（[SORRY-formal-21] 未闭合：
+  -- 前提正当性待物理/社会因果论证），不再由公理无条件提供。
   have h_total_pos : total > 0 := h_total h_active
-  simp [h_S_zero, h_perp_zero, h_V_zero] at h_cons
+  simp [NF_cost_conservation, h_S_zero, h_perp_zero, h_V_zero] at h_cons
   omega
 
 /-- Corollary: A7 的制度未履职不能被 V' 的具身承担"替代"，
